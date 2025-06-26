@@ -1,0 +1,159 @@
+package za.co.wethinkcode;
+
+import java.util.*;
+
+    static String fizzBuzzOnce(int input) {
+        if (input % 15 == 0) return "FizzBuzz";
+        if (input % 3 == 0) return "Fizz";
+        if (input % 5 == 0) return "Buzz";
+        return String.valueOf(input);
+    }
+
+    static List<String> fizzBuzz(int n) {
+        List<String> result = new ArrayList<>();
+        for (int indx = 0; indx < n; indx ++) {
+            result.add(fizzBuzzOnce(indx + 1));
+        }
+        return result;
+    }
+
+    static String getFibonacciSequence(int n) {
+        StringBuilder result = new StringBuilder("Fibonacci Sequence: ");
+        if(n <= 0) return result.toString();
+        int a = 0; int b = 1;
+        result.append(a);
+        if(n == 1) return result.toString();
+        result.append(", ").append(b);
+        for(int indx = 2; indx < n; indx++){
+            int next = a + b;
+            result.append(", ").append(next);
+            a = b;
+            b = next;
+        }
+        return result.toString();
+    }
+
+    static int recursiveFibonacciN(int n) {
+        if(n == 1) return 0;
+        if(n == 2) return 1;
+        return recursiveFibonacciN(n - 1) + recursiveFibonacciN(n - 2);
+    }
+
+    static String drawTriangle(int n) {
+        StringBuilder triangle = new StringBuilder();
+        for (int indx = 0; indx < n; indx ++) {
+            triangle.append("*".repeat( indx + 1));
+            triangle.append("\n");
+        }
+        return triangle.toString();
+    }
+
+    static String calculate(int a, int b, String operator) {
+        if (operator.equals("+")) {
+            return "Okay: " + (a + b);
+        } else if (operator.equals("-")) {
+            return "Okay: " + (a - b);
+        } else if (operator.equals("*")) {
+            return "Okay: " + (a * b);
+        } else if (operator.equals("/")) {
+            if (b == 0) return "Error: Division by zero is not allowed.";
+            return "Okay: " + (a / b);
+        } else if (operator.equals("%")) {
+            return "Okay: " + (a % b);
+        }
+        return "Error: Invalid operator: " + operator;
+    }
+
+    static String calculateModCorrectly(int a, int b, String operator) {
+        if (operator.equals("%")) {
+            return "Okay: " + (a % b);
+        }
+        return calculate(a, b, operator);
+    }
+
+    static List<String> correctOrder(List<String> names) {
+        ArrayList<String> sortedNames = new ArrayList<>(names);
+        sortedNames.sort(Comparator.comparingInt(String::length));
+        return sortedNames;
+    }
+
+    static boolean dnaProtein(String dna) {
+        return (dna.length() % 3 == 0 && dna.startsWith("ATG") && dna.endsWith("TGA"));
+    }
+
+    static String[][] punnettSquare(String genotype1, String genotype2) {
+        String[][] result = new String[2][2];
+        for(int a = 0; a < 2; a++){
+            for(int b = 0; b < 2; b++){
+                result[a][b] = "" + genotype1.charAt(a) + genotype2.charAt(b);
+            }
+        }
+        return result;
+    }
+
+    static String binaryConversion(String binaryNumber) {
+        try {
+            int decimal = Integer.parseInt(binaryNumber, 2);
+            return String.valueOf(decimal);
+        } catch (NumberFormatException e) {
+            return "Error: Not a binary number.";
+        }
+    }
+
+    static String decimalToBinary(String decimalNumber) {
+        try {
+            int decimal = Integer.parseInt(decimalNumber);
+            return Integer.toBinaryString(decimal);
+        } catch(NumberFormatException e) {
+            return "Error: Not a valid decimal number.";
+        }
+    }
+
+    static int firstSubstring(String subString, String wholeString) {
+        return wholeString.indexOf(subString);
+    }
+
+    static int frequencyOf(int character, String string) {
+        long count = string.chars().filter(ch -> ch == character).count();
+        return (int) count;
+    }
+
+    static int hammingDistance(String firstString, String secondString) {
+        if(firstString.length() != secondString.length()) return -1;
+        return (int) firstString.chars().filter(k-> secondString.indexOf(k) < 0).count();
+    }
+
+    static boolean isPalindrome2(String string) {
+      StringBuilder result = new StringBuilder();
+      string.toLowerCase().chars().filter(Character:: isAlphabetic).forEach(n->result.append((char) n));
+      return result.toString().contentEquals(new StringBuilder(result).reverse().toString());
+    }
+
+    static boolean isPalindrome(String string){
+        string =  string.toLowerCase().replaceAll("[^a-0z-Z]", "");
+        return string.contentEquals(new StringBuilder(string).reverse().toString());
+    }
+
+    static int sumIntegers(Collection<Integer> numbers) {
+        return numbers.stream().reduce(0, Integer::sum);
+    }
+
+
+    private static int combination(int n, int k) {
+        return factorial(n) / (factorial(k) * factorial(n - k));
+    }
+
+    private static int factorial(int num) {
+        int result = 1;
+        for(int indx = 0; indx < num; indx ++) result *= indx + 1;
+        return result;
+    }
+
+    static List<Integer> pascalTriangle(int n) {
+      List<Integer> result = new ArrayList<>();
+      for(int indx = 0; indx < n + 1; indx ++){
+        result.add(combination(n, indx));
+      }
+      return result;
+    }
+

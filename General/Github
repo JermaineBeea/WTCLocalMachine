@@ -1,0 +1,15 @@
+Github settings
+
+SSH and GPG keys
+enter 'New SSH key'
+copy output of command 'cat id_rsa.pub' into Add SSH key
+Make it a title, preferbly name of device
+
+Cloning - creating a distinct copy of a repository, of which HAS effect to the main cloned repo
+
+Forking - creating a distinct copy of a repository, of which has no effect to the main cloned repo
+
+git remote add upstream https://gitlab.com/original-owner/project-name.git
+git fetch upstream
+
+

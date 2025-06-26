@@ -1,0 +1,57 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.IOException;
+import java.util.List;
+import java.util.Arrays;
+
+public class SimpleFileIO {
+    public static void main(String[] args) {
+        // File paths
+        String inputFilePath = "input.txt";
+        String outputFilePath = "output.txt";
+        
+        // Demonstrate writing to a file
+        writeToFile(outputFilePath);
+        
+        // Demonstrate reading from a file
+        readFromFile(outputFilePath);
+    }
+    
+    // Simple method to write to a file
+    public static void writeToFile(String filePath) {
+        try {
+            // Create content to write
+            List<String> lines = Arrays.asList(
+                "Line 1: This is a test file.",
+                "Line 2: Learning file I/O in Java.",
+                "Line 3: Using the simplest methods available."
+            );
+            
+            // Write all lines at once
+            Files.write(Paths.get(filePath), lines);
+            
+            System.out.println("Successfully wrote to file: " + filePath);
+        } catch (IOException e) {
+            System.out.println("Error writing to file: " + e.getMessage());
+        }
+    }
+    
+    // Simple method to read from a file
+    public static void readFromFile(String filePath) {
+        try {
+            // Read all lines at once
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            
+            System.out.println("\nReading from file: " + filePath);
+            System.out.println("------------------------");
+            
+            // Print each line
+            for (String line : lines) {
+                System.out.println(line);
+            }
+            
+        } catch (IOException e) {
+            System.out.println("Error reading from file: " + e.getMessage());
+        }
+    }
+}

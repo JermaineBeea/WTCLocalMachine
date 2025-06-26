@@ -1,0 +1,23 @@
+public abstract class AbstractClass {
+    public void concreteMethod() {
+        System.out.println("This is a concrete method in the abstract class.");
+    }
+
+    public abstract void abstractMethod();
+}
+
+public interface MyInterface {
+    void interfaceMethod();
+}
+
+public class MyClass extends AbstractClass implements MyInterface {
+    @Override
+    public void abstractMethod() {
+        System.out.println("Abstract method implemented.");
+    }
+
+    @Override
+    public void interfaceMethod() {
+        System.out.println("Interface method implemented.");
+    }
+}

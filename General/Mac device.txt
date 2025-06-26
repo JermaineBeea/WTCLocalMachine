@@ -1,0 +1,6 @@
+Mac
+Username: WTC
+password: Xinxan@99
+
+Bash to adjust screen brightness
+xrandr --output DP-3 --brightness 1.2

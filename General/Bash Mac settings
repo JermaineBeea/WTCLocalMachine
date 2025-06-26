@@ -1,0 +1,24 @@
+ADJUST BRIGHTNESS
+
+It looks like you're using Pop!_OS, which is a Linux-based operating system, and not macOS. The osascript command and the brightness utility are both macOS-specific tools and won't work on Pop!_OS or any Linux distribution.
+
+To change the screen brightness on Pop!_OS using bash, here are some Linux-based alternatives:
+
+1. Using xrandr
+You can use the xrandr command to adjust brightness settings on most Linux systems, including Pop!_OS.
+Steps:
+
+Open a terminal and run the following command to list the displays:
+
+bash
+xrandr --verbose
+
+Identify the display name (it might be something like eDP-1, HDMI-1, etc.).
+To set the brightness (e.g., to 50%):
+
+bash
+xrandr --output DP-3 --brightness 0.5
+xrandr --output 
+
+Replace DP-3 with your display's name and 0.5 with your desired brightness level (where 1.0 is maximum brightness).
+

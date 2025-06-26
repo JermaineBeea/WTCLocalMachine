@@ -1,0 +1,57 @@
+In Java, **abstract classes** and **interfaces** are both used to achieve abstraction, but they have key differences:
+
+### Abstract Class:
+1. **Definition**: A class declared with the `abstract` keyword. It can have both abstract methods (without a body) and concrete methods (with a body).
+2. **Inheritance**: A class can extend only one abstract class (single inheritance).
+3. **Access Modifiers**: Abstract classes can have fields and methods with any access modifier (`private`, `protected`, `public`).
+4. **Constructors**: Abstract classes can have constructors.
+5. **State**: Can maintain state (fields/variables).
+6. **Use Case**: Used when classes share common behavior and state.
+
+Example:
+```java
+abstract class Animal {
+    String name; // Field (state)
+
+    Animal(String name) { // Constructor
+        this.name = name;
+    }
+
+    abstract void makeSound(); // Abstract method
+
+    void eat() { // Concrete method
+        System.out.println(name + " is eating.");
+    }
+}
+```
+
+### Interface:
+1. **Definition**: A blueprint of a class declared with the `interface` keyword. It can only have abstract methods (before Java 8) or default/static methods (from Java 8 onwards).
+2. **Inheritance**: A class can implement multiple interfaces (multiple inheritance).
+3. **Access Modifiers**: All methods are implicitly `public` and abstract (before Java 8). Fields are `public`, `static`, and `final` by default.
+4. **Constructors**: Interfaces cannot have constructors.
+5. **State**: Cannot maintain state (no instance variables).
+6. **Use Case**: Used to define a contract that implementing classes must follow.
+
+Example:
+```java
+interface Animal {
+    void makeSound(); // Abstract method
+
+    default void eat() { // Default method (Java 8+)
+        System.out.println("Animal is eating.");
+    }
+}
+```
+
+### Key Differences:
+| Feature              | Abstract Class                     | Interface                          |
+|----------------------|-------------------------------------|------------------------------------|
+| **Keyword**          | `abstract`                         | `interface`                       |
+| **Methods**          | Abstract + Concrete                | Abstract (default/static allowed) |
+| **Fields**           | Any type                          | `public static final` only        |
+| **Inheritance**      | Single inheritance                 | Multiple inheritance              |
+| **Constructors**     | Yes                                | No                                |
+| **State**            | Can maintain state                 | Cannot maintain state             |
+
+Choose an abstract class when you need shared behavior or state, and an interface when you need to define a contract for unrelated classes.

@@ -1,0 +1,10 @@
+# VSCode
+.vscode/
+*.code-workspace
+# Pycache
+__pycache__/
+*.py[cod]
+*$py.class
+# PyCharm
+.idea/
+*.iml
