@@ -1,0 +1,40 @@
+# Maven build output
+target/
+# Maven wrapper jar
+.mvn/wrapper/maven-wrapper.jar
+# Maven caching
+.mvn/.cache/
+# Maven properties and backup files
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# IntelliJ IDEA
+.idea
+**/.idea
+.attach_pid*
+
+# VSCode settings
+.vscode/
+# VSCode workspace storage
+.vscode-test/
+.vscode-remote/
+.history/
+
+# Python cache (if any accidentally present)
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/

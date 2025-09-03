@@ -1,0 +1,9 @@
+Attention operates as a bottleneck, limiting how much information enters conscious processing. Multitasking isn’t true parallelism; it’s rapid task-switching that degrades performance. The brain incurs a cognitive cost each time it redirects focus.
+
+Inflation erodes purchasing power by decreasing the value of money over time. Central banks manipulate interest rates to stabilize inflation within target ranges. Excessive liquidity in a market often signals looming price instability.
+
+Enzymes catalyze biochemical reactions by lowering activation energy thresholds. Their specificity comes from the precise shape of their active sites. Temperature and pH extremes can denature them, halting their function entirely.
+
+The Treaty of Versailles imposed punitive conditions on Germany after World War I. These terms sowed economic hardship and national resentment, contributing to the rise of extremism. Historians debate whether the treaty ensured peace or incubated conflict.
+
+Encryption converts readable data into coded form to prevent unauthorized access. Public key cryptography relies on mathematically linked key pairs: one public, one private. The system’s strength lies in the computational difficulty of reversing the encryption without the private key.
