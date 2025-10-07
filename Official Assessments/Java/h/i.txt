@@ -18,6 +18,11 @@ public class Format {
             
     long number1 = 2433;
     double number2 = 7899;
+    
+      public String formattedAsRands(){
+        return new DecimalFormat("R0.00").format((double)amount/100);
+    }
+
 
     // Technique one
     DecimalFormat decFormat = new DecimalFormat("R0.00");

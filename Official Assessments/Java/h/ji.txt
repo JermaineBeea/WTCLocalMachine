@@ -1,0 +1,53 @@
+Java OOP Cheatsheet (Text-Focused)
+Object-Oriented Programming (OOP) is a paradigm centered around the concept of objects, which
+bundle data and behavior together. Java is a fully OOP language (except for primitive types) and
+strongly encourages developers to think in terms of real-world objects. The four main principles —
+Encapsulation, Abstraction, Inheritance, and Polymorphism — provide the foundation for designing
+reusable, modular, and scalable software systems. This cheatsheet emphasizes conceptual
+understanding with simple examples and minimal code.
+
+1. Encapsulation
+Encapsulation means restricting direct access to an object's data and only allowing controlled
+interaction through methods. It mirrors real-world scenarios — for example, when you use an ATM,
+you don’t directly access the bank’s database. Instead, you go through a secure interface. Similarly,
+in Java, fields are often declared private, and access is given via getters and setters. This
+prevents misuse and protects integrity.
+Example (Conceptual): A car hides its engine details from the driver. You only interact with the car
+using the steering wheel, accelerator, and brakes. Internally, the engine and other systems are
+encapsulated.
+
+2. Abstraction
+Abstraction is about hiding unnecessary details and exposing only the relevant aspects of an
+object. It helps simplify complex systems. In Java, abstraction is achieved using abstract classes
+and interfaces. The goal is to let users focus on *what* an object does, rather than *how* it does it.
+Example (Conceptual): Think of a TV remote. You only know which buttons to press to change
+channels or adjust volume. You don’t know the internal circuit design, and you don’t need to. That
+hidden complexity is abstraction in action.
+
+3. Inheritance
+Inheritance allows one class to derive from another, reusing its properties and behaviors. It
+represents an 'is-a' relationship. For example, a Dog is an Animal, and therefore inherits traits of an
+Animal while adding its own. In Java, inheritance is implemented with the `extends` keyword. It
+encourages code reuse and logical hierarchy, but should not be overused as it can create tight
+coupling.
+Example (Conceptual): A smartphone is a type of phone, but with extra features such as apps and
+internet. The base class ‘Phone’ provides calling functionality, and ‘Smartphone’ extends it with new
+abilities.
+
+4. Polymorphism
+Polymorphism allows a single interface to be used for different types of objects. It means ‘many
+forms’. In Java, this is primarily achieved through method overriding and method overloading. It
+lets objects respond differently to the same message (method call), depending on their type.
+Example (Conceptual): The word ‘drive’ means different things depending on context. A human
+drives a car differently than how software might ‘drive’ a robot. The action is the same, but theunderlying implementation varies.
+
+Quick Comparison of OOP Principles- Encapsulation: Protects internal state; provides controlled access (like an ATM).
+
+- Abstraction: Hides implementation details; shows only essential features (like a TV remote).
+- Inheritance: Enables reusability by creating parent-child relationships (like Phone →
+Smartphone).
+- Polymorphism: Allows objects to take multiple forms; same action but different behaviors (like
+‘drive’).
+Together, these four principles make Java applications cleaner, easier to maintain, and closer to
+how humans naturally think about real-world problems. Mastering them allows developers to build
+flexible and scalable systems.
