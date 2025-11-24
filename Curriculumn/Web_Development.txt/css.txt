@@ -1,0 +1,127 @@
+Making Web Pages Pretty: Cascading Style Sheets (CSS)
+You have already seen the role of CSS in web applications - to manage the style and layout of a web page. In this section, you will work through the extensive body of CSS knowledge. CSS is vast and incredibly flexible. In many cases, the flexibility and vastness can be overwhelming, so give yourself time to go over the same material a few times. The best way to learn CSS is to actually experiment with CSS and watch the output in a browser.
+
+Note	This is a long section so pace yourself well. Don’t rush but don’t get bogged down on one part. Move on and come back to the parts you don’t understand fully. (Almost nobody understands CSS fully!)
+Understanding CSS
+Suggested Time: 4 to 8 hours
+
+What is CSS?
+This section sets down the role of the browser as the run-time for CSS code. It is a quick read, but do make sure that you understand what CSS actually is.
+
+Getting started with CSS
+The content of this section is critical. It lays out the basic form of CSS code. Just as you learn about the "rules" of general purpose programming languages, here you learn about CSS "rules". CSS is a different language because it is a declarative language - you specify what you want, and not how it should be done. The browser figures out how to do what you want.
+
+The structure of CSS
+There are many ways to use CSS in a web page. This section shows you the various ways and what is preferred and what should be avoided. You do need to know both so that you can clean up nasty CSS code and write clean CSS code too.
+
+How CSS works
+This is short explanation of how CSS works and is applied to the DOM of a web page. Understanding this will help you debug and track down odd CSS behaviour.
+
+SELF-ASSESSMENT: Styling a single page
+Using the above knowledge, you get to style an existing HTML web page. As a reminder, these self-assessments are not for submission. Nevertheless, it is important to complete them to reinforce your understanding.
+
+CSS Fundamentals
+Suggested Time: 24 to 32 hours
+
+Cascade and inheritance rules
+While being a completely declarative language, CSS does not impose any limitations on styling elements in a multiple ways. Even the same elements can have multiple different style declarations in different CSS files. It is further complicated when styles are applied to elements nested within other elements. As complicated as it may seem (and it can often be confusing), there are rules around cascading styles, inheriting styles. There is also the concept of specificity. Understanding how these rules work and relate to each other will help you deal with "unexpected" styling disasters. This is a long section but take your time to understand it.
+
+Selectors
+Selectors are at the very center of the CSS language. There different kinds of selectors and knowing which kind to use will help you keep your CSS code DRY and clean.
+
+The box model
+Everything in CSS is a box. Every box has a size, margins and padding. Knowing how to work with the box model is vital to creating great page layouts. There is a lot in this section but is not complex. If you focus on understanding the box model, then you can always reference specifics when you want to accomplish something that is non-trivial.
+
+Backgrounds and Borders
+Apart from the most minimal of web pages, you are very likely to use borders, backgrounds, images and color to style a web page. This is a long section but uncomplicated. It ends with a self-assessment which you should do because you are going to use these often.
+
+Overflowing content
+What should your page display if the content can’t fit in it’s box? This section helps you tackle this all to common situation. It’s short, to the point and straight forward.
+
+Values and Units
+There are several units of measure for values in CSS. This section covers the different units of measure and when best to use each. It also covers specifying colors. This is so commonly used and abused. Make sure that you understand this well because it will help you design great looking web pages.
+
+Sizing items
+This section is obvious in its value. You have to know how to work with elements that need to be of a specific size or it’s natural size. It also introduces the concept of a viewport. Take your time as this influences your ability to design responsive web pages.
+
+Debugging CSS
+Trying to isolate and track down the culprit for an unexpected style on single element on a web page can be frustrating. This section shows you how to use the developer tools of your browser to help debug CSS gremlins. Don’t skip this section! You will eventually need it — and sooner than you think!
+
+Organising CSS code
+This section has very useful advice on how to structure your CSS code and files. CSS, like any other code, can quickly become messy if you don’t pay attention to how you write and organise your code.
+
+Text and Fonts
+In this section you learn about styling text and how the default font system works. Also, go through the related section on Web fonts.
+
+Styling lists
+Lists appear quite often in web pages and are often (ab)used for menus, navigation bread-crumbs and more. This section walks you through the rather common challenge of styling lists to suit different purposes.
+
+Styling links
+Hyperlink styling is another common coding challenge. This section shows you the various options you have for working with hyperlinks.
+
+SELF-ASSESSMENT
+Complete the following self-assessments.
+
+CSS Comprehension
+
+A Cool Looking Box
+
+A Community School Webpage
+
+Note that these are not for submission but don’t skip them because these are the fundamentals of CSS!
+
+Optional
+The following sections are optional study. We recommend that you come back to these after Learning JavaScript. You can also tackle these if you feel you need to use these in your exercise submission.
+
+Handling different text directions
+
+Images, media and form elements
+
+Styling tables
+
+Page Layouts
+Suggested Time: 8 to 16 hours
+
+Layout of webpages sometimes feels like a (dark) art form. It can be incredibly frustrating at times. Yet, with careful planning, design and good understanding of CSS you will be able to create effective page layouts for any situation. There are many ways to layout pages and the following sections walk you through some of the most common techniques.
+
+Introduction
+This section does a walk through of the various techniques with just enough code examples. After this, we have selected a few techniques below that you absolutely must complete.
+
+Normal Flow
+This covers how a page is normal flow of a page. It is the starting point of all flow variations. Therefore, do make sure you know this starting point before proceeding below.
+
+Flexbox
+This handles one-dimensional layouts in single rows or columns. It can also be used for parts of page, and not just the entire page.
+
+Grids
+Grids offer two-dimensional layout of content into rows and columns. It is popular and can be used to suit a wide variety of different situations.
+
+Positioning
+Positioning allows you to position elements outside the normal flow. This could be an element in a fixed position or sitting on top of another element.
+
+Responsive design
+Modern web development must take into consideration that web apps are accessed from different devices with different screen sizes. Responsive web design focuses on designing web apps that adjust their size dynamically based on the size of the screen on the device from which the app is accessed. This is now considered as a must-have for all web development.
+
+Legacy layout methods
+Before the introduction of the CSS grid and flexbox, many different techniques were used to layout web pages. Most of these were very creative use <div> and <span> with clever CSS classes that simulated grids, columns and rows. Do go over this in detail because you are likely to encounter code bases that still use these methods.
+
+Floats
+Floats were also used before the introduction of the CSS grid and flexbox for layout. More recently, the use of floats is reserved for what it was originally intended. Learn this and ensure that you use floats in the right way.
+
+SELF-ASSESSMENT
+Complete the self-assessment that tests your knowledge about CSS layouts. Remember, this is not for submission but you will need to know this for your career and for the exercises coming up.
+
+Optional
+The following can be done when you have time. Feel free to come back to these at a later stage.
+
+Multiple columns
+
+Introduction to media queries
+
+Supporting older browsers
+
+Basic Page Markup: HTML
+Programming Web Pages: Javascript
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

@@ -1,0 +1,650 @@
+Week 5: Data processing
+This week delves into the fundamental concepts and techniques of data processing, highlighting its significance in the realm of data management. Understanding the importance of data processing is vital for extracting meaningful information from raw data and supporting business intelligence. Various methods and types of data processing will be explored, along with a detailed comparison of batch and stream processing. The implications of big data and the unique challenges it presents in data processing will also be discussed, providing a comprehensive view of the landscape. A review of various tools and technologies used for data processing will be included to highlight their roles in managing and manipulating data efficiently. Furthermore, the concept of orchestration in data processing will be covered, focusing on how to manage and automate workflows.
+
+Learning outcomes:
+
+A student will understand the role of data processing in data pipelines.
+
+A student will understand the concept of big data and how the Speed Consistency Volume principle is applied to big data processing.
+
+A student will understand the difference between batch and stream processing and when to use each method.
+
+A student will be able to utilise the relevant tools to process data in batches or in real time.
+
+A student will be able to plan and orchestrate a simple data pipeline.
+
+Daily guide:
+
+Content
+
+Deliverables
+
+Monday
+
+5.1 Data processing
+
+5.2 Big data processing
+
+5.3 Batch and stream processing
+
+Additional learning: Big data
+
+Tuesday
+
+5.4 Data processing tools
+
+Online tutorials: Pandas, Spark and Beam (x2)
+
+Wednesday
+
+5.4 Data processing tools continued
+
+5.5 Orchestration
+
+Online tutorials: Kafka (x3)Online tutorial: Airflow
+
+Thursday
+
+5.5 Orchestration continued
+
+Continue with online tutorials, start exercise
+
+Friday
+
+Consolidation
+
+Exercise
+
+5.1 Data processing
+Data processing is a crucial aspect of data engineering that involves collecting, transforming, and organising data to extract valuable insights and support decision-making processes. Data processing is also integral to the ETL (Extract, Transform, Load) process, where it fits into the transformation stage. As we know, the transformation stage involves cleaning, enriching and structuring data to meet business requirements and ensure its quality and usability for subsequent analysis and reporting.
+
+5.1.1 Value of data processing
+Once data is ingested from various sources, it must undergo processing to convert it into a structured and meaningful format. This transformation is essential for several reasons:
+
+Data processing ensures the data’s accuracy and consistency, removing errors and redundancies that could lead to incorrect analysis and decisions.
+
+It enhances the data’s usability by organising it into a coherent structure, making it easier to query and analyse.
+
+Processed data is crucial for uncovering insights and patterns that drive business intelligence and strategic decision-making.
+
+Without proper data processing, raw data remains a jumble of unrefined information, rendering it ineffective for any practical application or analysis.
+
+Data processing is divided into six distinct stages, each crucial for transforming unprocessed data into valuable information. These stages ensure data is systematically collected, prepared, processed, and stored for effective analysis and decision-making. The various stages are outlined below:img 40
+
+[Source]
+
+. Data collection
+
+This initial step involves gathering data from various trusted sources, ensuring the information is of high quality for subsequent processing.
+
+. Data preparation
+
+At this stage, raw data is cleaned and organised by removing errors, redundancies, and inconsistencies to ensure it is of high quality for analysis.
+
+. Data input
+
+The cleaned data is then entered into a system (such as a data warehouse) and translated into a format that the system can understand and process.
+
+. Processing
+
+Using machine learning algorithms or other methods, the input data is processed to extract meaningful information tailored to its intended use. We will discuss exactly how this is done throughout this week.
+
+. Data output and interpretation
+
+The processed data is translated into a readable and usable format, such as graphs or reports, enabling non-data scientists to use the information for decision-making.
+
+. Data storage
+
+Finally, the processed data is stored securely for future use, ensuring it can be easily accessed and complies with data protection regulations.
+
+5.1.2 Data processing methods and types
+Data processing can be approached through three primary methods:
+
+Manual
+
+Involves human intervention for tasks such as data entry and analysis, which can be time-consuming and prone to error.
+
+Mechanical
+
+Utilises basic tools or machines, like calculators or punch cards, to handle data more efficiently than manual methods but with limited complexity.
+
+Electronic
+
+Leverages computers and advanced software to automate and streamline data handling, providing speed, accuracy, and the ability to manage large volumes of data, making it the preferred method of modern data processing.
+
+While these methods describe the manner in which data is processed, data processing types refer to the timing and specific nature of processing tasks. The various data processing types include:
+
+Batch processing
+
+Involves collecting data over a period and processing it all at once at scheduled intervals. Suitable for tasks like payroll and billing.
+
+Stream processing
+
+Handles data in real-time as it arrives. Ideal for applications requiring immediate analysis and response, such as fraud detection and live monitoring.
+
+Distributed processing
+
+Involves spreading data and computational tasks across multiple computers or servers to enhance processing power and efficiency. Commonly used in big data applications.
+
+Online transaction processing (OLTP)
+
+Manages transaction-oriented applications where data is continuously updated, such as banking systems and e-commerce platforms.
+
+Time-sharing
+
+Allows multiple users to share computing resources simultaneously by rapidly switching between tasks, maximising resource utilisation in environments like mainframes and minicomputers.
+
+Parallel processing
+
+Involves dividing a large computational task into smaller sub-tasks that can be processed concurrently on multiple processors. This significantly speeds up data processing for scientific simulations and large-scale computations.
+
+Multi-processing
+
+Utilises multiple processors within a single computer to perform parallel processing tasks, improving performance for complex calculations and simulations.
+
+Understanding these distinctions between data processing methods and types helps in selecting the appropriate approach for your data handling needs so that you may ensure efficiency, accuracy, and scalability in data management.
+
+5.2 Big data processing
+The term ‘big data’ refers to datasets that are so large, complex and dynamic that traditional data processing tools are insufficient to handle them. These datasets are generally characterised by their large volume, high velocity, and wide variety, often referred to as the "three Vs" of big data:
+
+Volume
+
+The amount of data generated and stored is enormous, ranging from terabytes to petabytes and beyond, and comes from various sources.
+
+Velocity
+
+The speed at which data is generated, processed, and analysed. This includes real-time or near-real-time data streams from various sources.
+
+Variety
+
+The different types of data being generated, which can be structured, semi-structured, or unstructured. This includes text, images, videos, audio, logs, and more.
+
+Big data processing, on the other hand, involves techniques and technologies designed to handle, store, analyse and visualise these massive datasets to extract valuable insights. In today’s data-driven world, big data processing is crucial for addressing modern data needs such as personalised marketing, real-time fraud detection, predictive maintenance and advanced scientific research. Organisations leverage big data to make data-informed decisions, improve operational efficiency and gain competitive advantages.
+
+Speed Consistency Volume (SCV) Principle
+We mentioned previously that distributed data processing is commonly used in big data applications. The SCV principle is a fundamental concept in distributed data processing. It states that a distributed data processing system can be designed to meet only two out of the following three requirements:
+
+Speed
+
+Speed refers to how quickly data is processed after generation, focusing on real-time analytics to minimise latency and deliver immediate insights.
+
+Consistency
+
+Consistency ensures that results are both accurate (close to the true value) and precise (consistent with each other), using all available data to achieve this.
+
+Volume
+
+Volume pertains to the amount of data processed, emphasising the need to handle vast datasets efficiently in a distributed manner.
+
+SCV trade-offs
+img 41
+
+If a system requires both speed and consistency , it will struggle to process high volumes of data. Large data volumes slow down processing, making it difficult to achieve both speed and consistency. The same concept applies when a system requires both consistency and the ability to process high volumes of data, it will not achieve high-speed processing. Processing large data volumes quickly typically requires compromises in consistency. Finally, if a system needs to process high volumes of data quickly (therefore requiring speed ), the results may not be consistent. High-speed processing of large amounts of data often involves sampling, which can reduce consistency.
+
+In big data environments, choosing which two dimensions to prioritise depends on the specific requirements of the analysis. Forgoing volume (V) in favour of speed (S) and consistency © must be carefully considered, as large amounts of data are often needed for in-depth analysis. Compromising consistency is not ideal either, as it can result in basing decisions on potentially inaccurate data, undermining the reliability of insights and leading to faulty conclusions. To summarise, the SCV principle highlights the inherent trade-offs in distributed data processing, guiding system design based on the specific needs for speed, consistency, and volume. By understanding these trade-offs, organisations can better align their data processing strategies with their analytical and operational goals.
+
+E-commerce fraud detection system
+
+An e-commerce platform implements a fraud detection system that prioritises speed and consistency by analysing a sample of transactions in real-time to catch fraudulent activity immediately and accurately. To achieve this, it processes fewer transactions, sacrificing the volume of data analysed. If the system were to process all transactions to enhance its analysis, it would face delays (sacrificing speed) or would rely on approximations for faster processing (sacrificing consistency).
+
+Additional learning
+To learn more about big data, engage with the following resources
+
+Video
+
+Big data in 5 minutes
+
+Reading
+
+A comprehensive guide to the main components of big data
+
+5.3 Batch and stream processing
+We will focus on batch and stream processing in detail because these two types of data processing are essential for handling large volumes of data and providing timely insights. As previously mentioned, batch processing allows for the efficient handling of large datasets by processing them in bulk at scheduled intervals, making it ideal for tasks like end-of-day reporting and periodic data aggregation. Stream processing, on the other hand, enables real-time data analysis by processing data continuously as it arrives, which is crucial for applications requiring immediate responses, such as fraud detection, live monitoring and recommendation systems. By understanding the intricacies of both batch and stream processing, we can optimise data workflows to meet the diverse needs of modern data-driven applications. Let’s have a closer look at each.
+
+5.3.1 Batch processing
+Batch processing, also known as offline processing, handles data in chunks or batches, which introduces delays and high latency responses. This means the data is not processed in real-time, but rather at scheduled intervals, causing a delay between data collection and data availability. Batch processing is designed to handle large volumes of data efficiently, processing massive datasets in a single operation.
+
+img 42
+
+The advantages and disadvantages of batch processing are detailed in the table below:
+
+Advantages
+
+Disadvantages
+
+Efficiency in handling large volumes: can handle vast amounts of data, making it ideal for large-scale data processing tasks.Cost-effective: due to the periodic nature of batch processing jobs, resource usage can be optimised, reducing operational costs.Simplified processing: the system can be simplified by processing data in batches, as it handles data in a more structured and controlled manner.Scheduled processing: allows for processing to be done in off-peak hours, minimising the impact on system performance during peak usage time.
+
+High latency: there is a delay between data collection and processing.Unsuitable for time-sensitive data: the high latency in batch processing means it cannot be used for applications requiring immediate data processing and response.Resource intensive during batch runs: when batch jobs are running, they consume significant system resources that may affect other operations.
+
+Batch processing is highly effective for handling large datasets where real-time processing is not critical as it enables efficient management of extensive data at scheduled intervals. Its high latency and complexity are however drawbacks in scenarios requiring immediate responses. Batch processing is therefore suitable for situations where large volumes of data need to be processed systematically, as seen in the use cases below.
+
+Use case 1: Payroll processing
+
+A company processes its monthly payroll by managing all employee data efficiently in a single cycle. It gathers key details such as attendance records, timesheets and wage rates. The data is reviewed to ensure accuracy, correcting any errors found. The clean data is then used to calculate gross wages based on hours worked. Deductions for taxes, insurance and other necessary withholdings are applied, and net pay is calculated accordingly. Paychecks or direct deposits are issued to employees, and the payroll records are archived to meet compliance standards and allow for future audits. This process ensures smooth and accurate payroll management.
+
+Batch processing is ideal for payroll processing, where a company handles all employee payroll data in one comprehensive cycle each month, allowing for efficient management, accurate calculations, and systematic output of paychecks or deposits.
+
+Use case 2: Monthly Netflix account billing
+
+Netflix processes monthly subscription fees for its users by handling multiple accounts simultaneously, based on their chosen plans. User account information and subscription plans are gathered, and subscription statuses are validated to ensure accuracy. The system calculates the amount due for each user according to their plan, and the invoices or billing statements are generated. These statements are sent to users via email or app notifications. Finally, billing records are archived for future reference and auditing to ensure smooth financial management and compliance.
+
+Batch processing is used for monthly account or subscription billing, where the system consolidates and processes subscription fees for all users in a single cycle, ensuring accurate invoicing and record-keeping for numerous accounts at once.
+
+5.3.2 Stream processing
+Stream processing, also known as real-time processing, involves handling data continuously as it is generated, allowing for immediate analysis and response. Data is processed in small, manageable pieces as it arrives, resulting in low latency and near-instantaneous processing. This means that data is analysed and made available almost immediately after collection, enabling timely insights and actions.
+
+img 43
+
+Source
+
+The advantages and disadvantages of stream processing are detailed in the table below:
+
+Advantages
+
+Disadvantages
+
+Real-time insights: provides immediate analysis and feedback, enabling quick decision-making.Low latency: data is processed as it arrives, minimising delays and providing timely information.Scalability: can handle varying data loads efficiently, scaling up or down based on data flow.Continuous processing: data is processed continuously, ensuring up-to-date information is always available.
+
+High resource usage: continuous processing can consume significant system resources, potentially increasing operational costs.Complexity: setting up and managing stream processing systems can be complex and require specialised skills.Potential for data loss: real-time systems need robust error handling to prevent data loss during high-speed processing.Limited historical analysis: focusing on real-time data can make it challenging to perform comprehensive historical data analysis.
+
+In summary, stream processing is highly effective for applications requiring immediate data processing and response. While it provides real-time insights and low latency, it can be resource-intensive and complex to manage, making it less suitable for scenarios with limited computational resources or where historical data analysis is critical. Stream processing is therefore most suitable for situations such as immediate fraud detection and consistent stock market analysis, as seen in the use cases below.
+
+Use case 1: Fraud detection
+
+A financial institution processes transactions in real-time to detect and prevent fraudulent activities, ensuring the security of customer accounts. Transaction data is continuously collected from various sources, such as credit card swipes, online purchases and ATM withdrawals. The data is verified for authenticity and enriched with additional context such as user location and transaction history. Using this clean data, the system analyses transaction patterns with machine learning algorithms to detect anomalies that could indicate fraud. Suspicious transactions are flagged, and alerts are generated for the customer and the fraud prevention team. Transaction records and fraud detection logs are archived for compliance, future reference and improving fraud detection models.
+
+Stream processing is crucial for fraud detection, allowing a financial institution to analyse transactions in real-time, identify anomalies, and prevent fraudulent activities instantly while maintaining a real-time dashboard for ongoing monitoring and response.
+
+Use case 2: Stock market analytics
+
+A financial services company provides real-time analytics and insights on stock market activities, helping clients make informed investment decisions. Stock market data, including prices, trading volumes and market news, is continuously collected from various exchanges. The data is verified for accuracy, normalised into a consistent format, and enriched with additional information such as historical trends and market indicators. The system then analyses this data using real-time algorithms to detect trends and predict stock price movements. Clients receive real-time analytics reports and alerts on significant market events, which are displayed on a dashboard. All real-time analytics results and raw data are archived for historical analysis and model training, ensuring long-term insights and data accuracy.
+
+Stream processing is essential for stock market analytics, enabling a financial services company to provide clients with real-time insights and alerts on market trends, price movements, and trading opportunities, while continuously monitoring and analysing data for informed investment decisions.
+
+5.3.3 Batch vs stream processing
+Now that we understand more about both batch and stream processing, let us compare the two data processing types. The table below provides a comprehensive overview of the differences between batch and stream processing.
+
+Attribute
+
+Batch processing
+
+Stream processing
+
+Processing latency
+
+Higher latency; data is processed in chunks or at set intervals.
+
+Low latency; data is processed immediately as it arrives.
+
+Suitability
+
+Suitable for large-scale, periodic tasks where real-time processing is not needed.
+
+Suitable for real-time applications requiring immediate processing and responses.
+
+Complexity
+
+Generally less complex; simpler to implement and manage for periodic tasks.
+
+More complex; requires handling continuous data streams and real-time processing.
+
+Resource requirements
+
+Typically less resource-intensive during processing as it handles data in bulk.
+
+Resource-intensive due to continuous processing and the need for low-latency handling.
+
+Tools
+
+Apache Hadoop, Apache Spark (batch mode), AWS Batch.
+
+Apache Kafka, Apache Flink (stream mode), AWS Kinesis.
+
+Data volume handling
+
+Efficient with large volumes of data and historical data.
+
+Efficient with high-velocity, continuous data but may struggle with large volumes.
+
+Consistency vs speed
+
+Balances consistency and speed within batch intervals.
+
+Prioritises speed, potentially compromising consistency.
+
+Data storage
+
+Data is stored and then processed; may introduce delays.
+
+Data is processed in-memory and stored afterward; minimal delay in processing.
+
+Error handling
+
+Errors are typically handled after processing batches; may be complex.
+
+Errors need to be managed in real-time; may be challenging.
+
+When selecting between batch and stream processing, data engineers must consider the trade-offs in terms of system complexity, maintenance and cost. Batch processing systems are generally easier to set up and maintain because they process data at scheduled intervals, minimising the need for constant monitoring. However, in stream processing, data engineers need to manage additional complexities such as system downtime, ensuring that continuous streams are not disrupted, and implementing robust error-handling mechanisms to deal with late-arriving data in real time.
+
+While stream processing is highly effective for real-time analytics, it can be significantly more expensive due to continuous processing and the associated resource consumption. This makes it critical for data engineers and businesses to evaluate whether the additional cost is justified by the use case. Stream processing should not be the default choice unless real-time data insights are required for business-critical decisions, such as monitoring live transactions or providing real-time recommendations. For non-urgent tasks, batch processing can be a much more cost-effective solution, as it allows for optimal resource usage by processing large amounts of data at once, rather than continuously.
+
+Understanding these differences is crucial for selecting the appropriate processing method based on factors such as data volume, latency requirements and system complexity. By aligning the processing approach with the specific needs of a task, whether it’s handling vast datasets periodically or analysing continuous data streams in real-time, organisations can optimise performance and achieve their desired outcomes effectively.
+
+5.4 Data processing tools
+Data processing tools are essential for efficiently handling and analysing large volumes of data. These tools range from simple libraries designed for straightforward tasks to sophisticated frameworks capable of managing complex, large-scale operations. Understanding the capabilities and best use cases of each tool is crucial for selecting the right one for specific data processing needs. This section will introduce a variety of data processing tools, including pandas for tabular data manipulation, Apache Spark for both batch and stream processing, Apache Beam for unified data pipelines, and Apache Hadoop for distributed batch processing.
+
+5.4.1 Pandas
+Pandas is a versatile and widely-used library in Python for data manipulation and analysis. It specialises in handling tabular data and is particularly effective for batch processing with its DataFrame structure, which allows for easy data manipulation, filtering and aggregation. Pandas is ideal for small to medium-sized datasets and is commonly used in data cleaning, transformation, and exploratory data analysis tasks.
+
+It is well-suited for analysing sales data from a CSV file, where it allows you to load, clean and transform the data efficiently, as we did in the week one practical. For example, you can use pandas to filter transactions by date, aggregate sales totals by region and generate summary reports. This can all be done within a DataFrame structure that simplifies data manipulation and analysis. This makes pandas an ideal tool for tasks that involve manageable datasets and require straightforward data processing. Additionally, pandas provides detailed documentation, such as the following user guide, which enables its widespread use.
+
+Test your knowledge
+
+W3 schools provides in-depth information about pandas. Consult the following collection of detailed tutorials before testing your pandas knowledge with these exercises, also provided by W3 schools. There are 22 exercises, each consisting of one question. Answers are provided.
+
+5.4.2 Apache Hadoop
+Apache Hadoop is a framework for distributed storage and processing of large datasets using a cluster of computers. It consists of several components, with the Hadoop Distributed File System (HDFS) providing scalable and fault-tolerant storage across multiple nodes and Yet Another Resource Negotiator (YARN) managing and scheduling resources for running applications. Hadoop primarily uses the MapReduce framework to perform tasks such as sorting, filtering and aggregating data.
+
+Hadoop is well-suited for batch processing and is designed to handle vast amounts of data across a distributed environment. It is perfect for performing large-scale data analysis and processing on a cluster of machines, such as generating end-of-day reports from massive datasets. For example, Hadoop can collect extensive transactional data throughout the day, store the data across a cluster using HDFS and utilise YARN to efficiently allocate resources for the MapReduce framework to sort, filter and aggregate the data. This batch processing capability allows for comprehensive analysis and report generation, making Hadoop ideal for managing large-scale data workloads in a distributed environment.
+
+MapReduce Framework
+The MapReduce framework is a core component of Apache Hadoop. It is a system for processing large datasets across a distributed cluster of computers. It simplifies data processing by breaking tasks into smaller, manageable parts and running them in parallel, which speeds up the analysis. It breaks down tasks into three main functions:
+
+Map function
+
+The input data is divided into smaller, manageable chunks. Each chunk is processed independently by the map function, which transforms the data into key-value pairs.
+
+Shuffle and sort
+
+The key-value pairs generated by the map function are shuffled and sorted based on their keys. This step ensures that all values associated with the same key are grouped together.
+
+Reduce function
+
+The reduce function takes the grouped key-value pairs as input and processes each group to produce the final output.
+
+Observe the example in the diagram below:
+
+img 44
+
+Source
+
+This framework is valuable because it efficiently handles vast amounts of data, ensuring scalability and reliability even in complex data environments. MapReduce is ideally used for processing and analysing large datasets that require distributed computing. It is particularly effective for tasks like log analysis, data mining, indexing and aggregating large volumes of structured and unstructured data. Its strength lies in its ability to handle complex computations across a distributed network of computers, making it well-suited for big data applications.
+
+Learn more about Apache Hadoop with the following resources
+
+Watch
+
+Hadoop in 5 minutes
+
+Read
+
+Hadoop for beginners
+
+5.4.3 Apache Spark
+Apache Spark is an open-source distributed processing system designed for big data workloads. It supports both batch and stream processing and is known for its speed and scalability. Spark provides a unified analytics engine with built-in modules for SQL, machine learning, graph processing and streaming. It uses DataFrames and Resilient Distributed Datasets (RDDs) to handle large-scale data processing efficiently.
+
+Apache Spark is ideal for processing large-scale log data to provide real-time analytics and insights. For instance, Spark can ingest log data from various sources, process it in-memory for speed and apply complex transformations to detect patterns or anomalies. It supports both batch and streaming operations, allowing for real-time monitoring and historical analysis, making it a powerful tool for big data workloads and real-time data processing tasks.
+
+Spend some time learning more about Apache Spark using the following resources
+
+Read
+
+Beginner’s guide to Apache Spark
+
+Watch
+
+Spark tutorial for beginners
+
+Complete
+
+Apache Spark quickstart guide to run your first Spark application.
+
+5.4.4 Apache Beam
+Apache Beam is a unified programming model for both batch and stream processing, designed to handle large-scale data processing workflows across various execution engines. It provides an abstraction layer that allows users to write data processing pipelines in a consistent manner, regardless of whether the data is processed in real-time or batch mode.
+
+Apache Beam is well-suited for building data pipelines that can process streamed social media data, enabling real-time sentiment analysis. For example, Beam can continuously collect social media posts, validate and enrich the data with contextual information and input it into a real-time analytics system. By applying machine learning algorithms and predictive models, Beam can analyse sentiment in real-time, providing instant insights and alerts on social media trends, making it an ideal tool for applications that require continuous data processing and analysis.
+
+Utilise the resources provided before attempting to complete the tutorials
+
+Useful resources
+
+Beam programming guide
+
+Tour of Beam
+
+Tutorial 1
+
+Use the playground provided to complete the mobile gaming pipeline tutorial
+
+Tutorial 2
+
+Google Colab: Try Apache Beam - python (wordcount)
+
+5.4.5 Apache Kafka
+Apache Kafka is a distributed streaming platform designed for high-volume, fault-tolerant and real-time data processing. Kafka is used for building real-time data pipelines and streaming applications, where data is read, processed and stored continuously. It operates as a publish-subscribe messaging system, allowing producers to publish messages to topics and consumers to subscribe to those topics to receive data in real time.
+
+Kafka is well-suited for use cases requiring large-scale data handling and low-latency message transmission, such as monitoring systems, event sourcing and real-time analytics. It achieves high performance by using a distributed architecture, where data is partitioned across multiple brokers and stored in a fault-tolerant manner. For example, Kafka can ingest large volumes of log data from various sources, such as web servers, applications or IoT devices, and stream this data to consumers in real time for immediate analysis. This capability makes Kafka ideal for scenarios that require real-time processing and quick decision-making, providing a robust solution for handling high-velocity data streams in a scalable and reliable way.
+
+Follow the instructions below to learn more about Apache Kafka
+
+- Read the following resource to gain a high-level understanding of what Apache Kafka is.
+
+- Install Kafka on your machine (if you have not used it before).
+
+- Complete the tutorials below. Each tutorial is paired with a useful resource to enhance understanding. It is recommended that you consult the resource before completing the tutorial.
+
+Topics
+
+* What is a Kafka topic?
+
+* Kafka topics CLI tutorial
+
+Producer
+
+* Kafka producers
+
+* Kafka producer CLI tutorial
+
+Consumer
+
+* Kafka consumers
+
+* Kafka consumer CLI tutorial
+
+5.5 Orchestration
+Orchestration in data processing refers to the automated coordination and management of data workflows and tasks. It ensures that various data processing jobs and dependencies are executed in a structured and efficient manner, enabling seamless integration and operation across different components of a data pipeline. Dependencies are defined as the relationships between tasks where the completion of one task is required for the successful execution of subsequent tasks. The management of dependencies is necessary to ensure that each task starts only after its prerequisite tasks have successfully completed. Orchestration therefore involves defining and managing a series of interconnected tasks or workflows that must be executed in a specific order. The orchestration system schedules and monitors these tasks, handles dependencies, retries failed tasks and ensures that the entire data pipeline operates smoothly and efficiently.
+
+It is important to understand that orchestration is not the same as automation. Orchestration involves coordinating and managing complex workflows with multiple interconnected tasks to ensure they are executed in the correct sequence, while automation refers to the use of technology to perform individual tasks without human intervention. For example, automation involves using a script that automatically backs up a database each night at midnight without human intervention. Orchestration, on the other hand, includes a system that not only automates the backup process mentioned, but also schedules, coordinates and manages subsequent tasks such as data cleaning, transforming the backup for analytics and notifying administrators upon completion.
+
+In the following example, tasks are orchestrated to ensure a seamless and automated flow of data processing, from data extraction to loading, enabling the creation of an up-to-date analytics dashboard for retail sales.
+
+Retail sales data pipeline workflow
+
+Task 1: Data extraction
+
+Each hour a job is triggered to extract sales data from various retail point-of-sale systems, e-commerce platforms and inventory management systems.
+
+Task 2: Data cleaning
+
+Upon successful completion of the extraction job, another job is triggered to clean the data, removing duplicates, correcting formatting issues and standardising data entries (for example, ensuring consistent product codes and date formats).
+
+Task 3: Data merging
+
+Once the data cleaning is complete, a subsequent job is triggered to merge data from different sources into a unified dataset, combining online and offline sales records to create a comprehensive view of sales activities.
+
+Task 4: Data enrichment
+
+After merging, another job is triggered to enrich the data with additional context, such as appending product category information, store locations and customer demographics.
+
+Task 5: Data aggregation
+
+Once enrichment is complete, a final job is triggered to aggregate the enriched data, calculating key metrics such as total sales, average transaction value and sales trends over time.
+
+Task 6: Data loading
+
+Finally, upon successful aggregation, a job is initiated to load the processed data into a real-time analytics dashboard, making it available for business analysts and decision-makers.
+
+Two orchestration tools commonly used by data engineers include Apache Airflow and AWS Step Functions. We will discuss these tools next.
+
+5.5.1 Apache Airflow
+Apache Airflow is a popular open-source tool for orchestrating complex workflows. Airflow allows users to define workflows as code using Python, providing a flexible and scalable solution for scheduling and monitoring data processing tasks.
+
+Airflow displays workflows by using Directed Acyclic Graphs (DAGs), which are a collection of all the tasks you want to run, organised in a way that reflects their relationships and dependencies. Each task in a DAG represents a single unit of work, which can be anything from a simple data extraction job to a complex data transformation. This can be seen in the diagram below:
+
+img 45
+
+By using DAGs, Airflow ensures that complex workflows are executed reliably and efficiently, with clear visibility into each step of the process. This makes it an invaluable tool for managing data pipelines and other automated processes in data engineering and beyond.
+
+Characteristics of DAGs
+DAGs are defined using Python code, making them highly customizable and easy to version control.
+
+Airflow’s scheduler runs DAGs at specified intervals, ensuring tasks are executed in the correct order based on their dependencies.
+
+The Airflow web interface allows users to visualise DAGs, monitor task progress and troubleshoot any issues that arise.
+
+Airflow supports a wide range of pre-built components, called operators, for various tasks such as running shell commands, interacting with databases and calling APIs.
+
+Engage with the resources provided below before completing the guided tutorial
+
+Read
+
+* Getting started with Apache Airflow
+
+* Apache airflow: DAGs
+
+* Hello world data pipeline using apache airflow
+
+Watch
+
+* Build your first pipeline DAG: Apache airflow for beginners
+
+* Airflow DAG: coding your first DAG for beginners
+
+Complete
+
+* Build an ETL pipeline with Airflow
+
+Week 5 practical
+Follow the Exercise Instructions to complete the practical.
+
+Week 5 consolidation
+Self-assessment
+Before closing off the week by completing the week 5 quiz, let’s revisit the learning outcomes for this week by asking ourselves the following questions:
+
+Do I understand the role of data processing in data pipelines?
+
+Do I understand the concept of big data and how the Speed Consistency Volume principle is applied to big data processing?
+
+Do I understand the difference between batch and stream processing and when to use each method?
+
+Am I able to utilise the relevant tools to process data in batches or in real time?
+
+Am I able to plan and orchestrate a simple data pipeline?
+
+If you are not confident that you can answer ‘yes’ to the above questions, revisit the necessary content from this week and consult the additional resources below to strengthen your understanding.
+
+Additional resources
+
+Videos
+
+* Apache Kafka in 5 minutes
+
+* Data streaming, explained
+
+* What is batch processing?
+
+* Apache airflow for beginners
+
+* Tutorial: create data pipelines with no airflow experience
+
+Reading
+
+* Batch vs stream processing
+
+* Understanding batch and stream processing
+
+* Batch vs stream processing: Guide for developers
+
+* Dataframes
+
+* Apache Beam tutorial
+
+Revision
+
+* Python pandas tutorial: The ultimate guide for beginners
+
+* Short online course by kaggle: Pandas
+
+* Apache Spark tutorial for beginners
+
+* Apache Beam tutorial and beginner’s guide
+
+Week 5 quiz
+Spend some time consolidating all the new knowledge you have acquired before completing the assessment that the SP team will provide. You will have one attempt to complete it. The quiz is based on all the content covered in week 5.
+
+Completion check
+Ensure that you have completed all the compulsory deliverables for this week.
+
+Deliverable:
+
+Expectation:
+
+Big data - additional learning
+
+Watch video and read through guide
+
+Data processing tools
+
+Pandas - W3 schools exercises
+
+Complete online exercises
+
+Apache Spark - Quick start guide
+
+Work through guide
+
+Apache Beam
+
+* Mobile gaming pipeline
+
+* Google Colab: Python (wordcount)
+
+Work through both tutorials
+
+Apache Kafka - online tutorials
+
+* Kafka topics CLI tutorial
+
+* Kafka producer CLI tutorial
+
+* Kafka consumer CLI tutorial
+
+Work through each tutorial
+
+Orchestration
+
+Apache Airflow - online tutorial
+
+* Build an ETL pipeline with Airflow
+
+Work through tutorial
+
+AWS Step Functions - online tutorial
+
+* Design a state machine in Workflow Studio
+
+Work through tutorial
+
+Practical
+
+Exercise Instructions
+
+Submit notebook to gitlab for grading
+
+Week 5 Assessment
+
+Submit Google form; auto-graded
+
+Week 4: Data architecture and ingestion
+Week 5 Exercise
+© 2024 WeThinkCode_, All Rights Reserved.

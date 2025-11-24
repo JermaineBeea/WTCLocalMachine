@@ -1,0 +1,25 @@
+Relational Databases
+This iteration takes you on a bit of detour on the brownfields development of Robot Worlds. You must first learn about relational database concepts and related technologies. Relational databases are common in the industry, and it is important that you familiarise yourself with them. Remember, this is an introduction: there is a lot more to using Relational Databases than we can cover in this iteration. Some people specialise in just relational databases as a career.
+
+Iteration Goals
+The end goal for this iteration is for you to implement saving and restoring the map of a RobotWorld to a relational database. In order to do that, we will work through the following.
+
+Relational Databases
+An introduction to what relational databases are and the conceptual foundations of relational theory. The concepts introduced are tables, rows, columns, values, primary keys and foreign keys. Understanding how to structure your data in a relational database is the outcome we are after.
+
+Introduction to SQL
+Introducing you to Structured Query Language — SQL (pronounced "see-quill" or "ess-kew-all", as you wish) — the language used by all relational database systems to define databases, read data from the database, and insert, update and delete data in the database.
+
+Simple Persistence in Java
+Armed with your newfound understanding of relational databases and how to work with them using SQL, it’s time to see how to get that SQL to work inside a Java application. We introduce the Java Database Connectivity (JDBC) API, its main classes and how to work with them.
+
+Individual Contribution
+There is no explicit individual contribution because the understanding of relational databases and SQL is important. It is important that you each of you work through the entire iteration individually, and interacting with each other to clear up your any gaps in your understanding.
+
+In a later iteration or a later module, you will be expected to contribute code using SQL and related programming tasks.
+
+Package for Deployment
+Relational Databases
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

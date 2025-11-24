@@ -1,0 +1,65 @@
+Server-side UI for the Web
+In this module you will develop the web-server backend that provides the HTML, CSS and JavaScript elements to the web-browser for rendering and capturing user interaction. The web-server must also implement the form-handling endpoints (URLs) necessary to process those user inputs.
+
+The core web technologies (HTML, CSS) and server framework (Javalin) are already familiar to you, so there are no surprises in store on that score. We will introduce two new concepts for this iteration:
+
+Template-generated HTML and
+
+The Model-View-Controller architecture for structuring the application
+
+The main goal for this iteration is to develop the WeShare application. We’ll get to spelling out the requirements for the project after we’ve covered these two new concepts.
+
+Your Learning Path
+In this iteration we’ll cover:
+
+iter 1 lesson flow
+The bulk of your time will be spent on implementing the WeShare application.
+
+5. Other user interactions
+Generating HTML from Templates
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.
+
+
+
+WeShare: A Social Expense Tracker
+The following describes the high level requirements for the project.
+
+Some requirements are contrived to meet specific learning goals, without the whole project becoming overly complex.
+
+The key to success with this project is to divide and conquer the problem. Have a look at the guidelines for Planning your work.
+
+Please do not ask for changes to the requirements, and don’t invent your own requirements that will inevitably increase the scope of work!
+
+User Requirements
+You will build a web application that tracks expenses shared amongst friends. It is based on social trust.
+
+Users
+Each user will log in with a valid email address. To avoid complexity of password or token based authentication, only an email address is needed for login.
+
+Expenses
+An expense is anything that you spent money on. All you are interested in recording is what you spent your hard-earned money on, when you spent it and how much you spent.
+
+your expenses
+
+Payment Requests
+Sometimes, you might go out with some friends and, maybe, pay on behalf of someone else. The person you paid for then owes you some money back. In this app, you record the amount you paid as an expense, and you make a payment request for the share of that expense from the friend that you helped.
+
+For example, say you go for lunch with two friends and they’re short of cash. As a group of friends at the lunch, you offer to pay the for lunch on condition that your friends pay you back. Let’s say that the lunch came to R300 in total, and one friend owes you R80 and the other owes you R120. So you log on to the app and record your lunch expense for the lunch. Then, for the lunch expense you make two payment requests: one for R80, and the other for R120.
+
+people who owe you
+
+Payments
+A payment request is paid by the person who received the payment request to the person that sent the payment request. When payment request is paid, the payment becomes an expense for the person that made the payment. Then, the expense of the person that sent the payment request is reduced by the amount paid back.
+
+people you owe
+
+User Journeys
+The WeShareUserJourneys.pdf file contains mockups of the user journeys for the application. Remember that the provided CSS files are rudimentary are used to create the mockups. Feel free to create your own page layouts and styles.
+
+Important	You must use the CSS id’s, page URL’s, and form action URL’s contained in the mockups because the project test suite uses those to verify the functionality of your code.
+Planning your work
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

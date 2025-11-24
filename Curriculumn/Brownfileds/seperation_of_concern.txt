@@ -1,0 +1,37 @@
+Separation of Concerns: Designing for Change
+In the previous iteration, you implemented functionality to save and restore the contents of a Robot World to persistent storage using a relational database. To do this, you were encouraged to use an appropriate pattern to keep the domain code as free as possible of the data access code. Conceptually, your software architecture should have transformed to something like the illustration below.
+
+soc data access
+In effect, we applied the principle of separation of concerns. We separated out the code that is concerned with data access from the code that handles how the world works (the domain).
+
+In this iteration, you will deliberately apply separation of concerns to improve the architecture your Robot Worlds system.
+
+Iteration Goals
+Architectural Patterns for Separating Concerns
+So far, your focus as been at the level of the actual lines of code. Now we rise up to a higher altitude viewpoint and look at the architecture of the system. From this vantage point we get to see the boundaries around each part and make design decisions to improve the overall architecture. We will look at a few archictectural patterns and you will inspect your codebase and consider how its architecture can be improved.
+
+Understanding HTTP
+We also want to implement a Web API for the RobotWorld. In order to do this, you will need to understand HTTP. In this goal, you will get to explore an existing Web API and use different tools to understand more about the HTTP protocol. This goal has a learning outcome and prepares you for the next goal.
+
+Implementing a Web API
+Based on your newfound understanding of the HTTP protocol, you will extend the architecture by implementing a Web API for the RobotWorld server. Remember, this is about separating concerns and, so, the implementation of the Web API must be done in such a way that it does not adversely impact the rest of the server codebase.
+
+Object-Relation Mapping
+Continuing with the theme of separation of concerns, you will "test" how well-designed your data access code is from the previous iteration by modifying it to use an Object Relational Mapper. To tackle this goal, you will first learn about object relational mappers, and then apply that to your data access code.
+
+By the end of this iteration, you will have applied the principle of separation of concerns to improve the architecture of your RobotWorld server. The RobotWorld server architecture should then have a clearly separated data access layer and a clearly separated Web API layer. The rest of the code should be mostly the Domain Layer. How quality of the Domain Layer design is a topic for another day and involves the use of Domain Driven Design patterns.
+
+Individual Contribution
+You must complete the learning goals for Architectural Patterns, HTTP and Object Relational Mappers.
+
+You must contribute code to one or both of the following:
+
+code that implements a Web API including associated tests;
+
+code that implements an Object-Relational Mapper including associated tests.
+
+Persistence in Java
+Separation of Concerns
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

@@ -1,0 +1,29 @@
+Build Pipelines
+Iteration Goals
+Stories to be delivered for this iteration.
+In this iteration, you are required to continue implementing stories for Robot World. Some scenarios may not be on the backlog that you created in the previous iteration. Make sure that you add the missing scenarios as required.
+
+Code analysis.
+You will continue with using CodeScene to analyse the health of your codebase, taking careful note of which parts are affected by the stories that need to be delivered for this iteration.
+
+Integrating code changes.
+Now that you have a build script, the next step is to use that build script to create a Continuous Integration/Continuous Delivery (CI/CD) build pipeline which will run when new commits are made to your main branch.
+
+Packaging for deployment.
+Extend your build script and CI/CD pipeline to package your server. This topic introduces you to a containerisation technology known as Docker.
+
+Individual Contribution
+Every team member must complete at least two scenarios. This can be done in a pair, but you have to be in the role of the driver for the scenario.
+
+Every team member must have contributed to the build process in Integrating code changes or Packaging for deployment.
+
+Everyone must be able to successfully run the Docker related build tasks, regardless of whether they worked on the goal or not. Each person must demo this from their own computers in the showcase.
+
+Getting Started
+Read through the entire iteration requirements by yourself.
+
+Have a discussion as a team where each of you share your own understanding of what needs to be done. This is not a discussion to understand how each goal must be implemented.
+
+Run an iteration planning session and update your taskboard to reflect the work you plan commit to doing in this iteration. In this iteration, you will need to install Docker so don’t forget to include that setup effort in your planning.
+
+Tip	Work in pairs and decide in your daily standup which pair is going to be working on specific items on your taskboard.

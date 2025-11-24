@@ -1,0 +1,843 @@
+Week 3: Database management systems
+Database Management Systems (DBMS) are sophisticated software applications designed to store, retrieve, and manage data efficiently. They enable organisations to handle vast amounts of structured information with precision and ease. DBMSs provide robust tools for data manipulation, ensuring data integrity, security, and availability. These systems support various database models, such as relational and NoSQL databases, catering to different data needs and applications. By streamlining data operations and supporting complex queries, DBMS play a crucial role in facilitating informed decision-making and driving business success.
+
+This week will investigate various database types, after which we will explore relational and non-relational databases in more detail. Further, we will discuss additional considerations such as database design principles, scalability and security in database management.
+
+Learning outcomes:
+
+A student will understand what database management systems are, as well as the difference between relational and non-relational databases.
+
+A student will be able to apply SQL fundamentals in relational databases.
+
+A student will understand normalisation of data and the use of entity relationship diagrams.
+
+A student will be able to differentiate between non-relational database models.
+
+A student will be able to implement database design principles and best practices.
+
+A student will understand the value of security in database management.
+
+Daily guide:
+
+Content
+
+Deliverable
+
+Monday
+
+3.1 Database types3.2 Relational databases
+
+SQL tutorial
+
+Tuesday
+
+3.2 Relational databases continued
+
+Normalisation tutorial
+
+Wednesday
+
+3.3 Non-relational databases
+
+Non-relational database model comparison
+
+Thursday
+
+3.4 Additional considerations
+
+Practical
+
+Friday
+
+Consolidation
+
+Quiz
+
+3.1 Database types
+A database is a structured collection of data that is stored and managed electronically and designed to facilitate efficient retrieval, insertion, and update of information. There are various types of databases, each tailored to different use cases and data management requirements. These database types differ based on their storage architecture, data model, and specific characteristics, which impact their performance, scalability and suitability for different applications.
+
+There are two main database types: relational and non-relational. Relational databases, such as MySQL, PostgreSQL, and Oracle, organise data into structured tables with predefined schemas, supporting complex queries using SQL and ensuring data integrity through ACID (Atomicity, Consistency, Isolation, Durability) properties. Non-relational databases, or NoSQL databases, like MongoDB, Cassandra, and Redis, offer flexible schema design and horizontal scaling, catering to diverse data models including document stores, key-value, column-family, and graph formats. While relational databases are ideal for structured data and transactional systems, non-relational databases excel in handling unstructured data, high-speed transactions, and large-scale distributed data environments. Let’s have a closer look at each of these.
+
+3.2 Relational databases
+A relational database is a type of database that stores and organises data in structured formats using tables, which consist of rows and columns. Each table represents a different type of entity, such as customers, orders or products. The strength of relational databases lies in their ability to establish connections between different tables through keys, which help maintain data integrity and facilitate complex queries.
+
+A primary key is a unique identifier for each record in a table, ensuring that no two rows have the same primary key value. This uniqueness helps maintain the integrity of the data. For example, a customer table might use a customer ID as the primary key. A foreign key is a column or a set of columns in one table that references the primary key in another table. This relationship creates a link between the two tables, allowing for the organisation and retrieval of related data across them. For instance, an orders table might have a customer ID as a foreign key to reference the primary key in the customer table, establishing a connection between the customer and their orders.
+
+img 9
+
+Relational databases are widely used in various applications due to their robustness, flexibility, and the ease with which they can handle complex queries and relationships among different data entities.
+
+This section delves into the foundational aspects of relational databases, beginning with SQL fundamentals, which cover the basic commands and operations used to interact with relational databases. We then explore the ACID properties (Atomicity, Consistency, Isolation, Durability) that ensure reliable transactions within relational databases. Normalisation is another crucial topic, focusing on the process of organising data to reduce redundancy and improve integrity. Lastly, we will discuss the Relational Database Management System (RDBMS), the software that facilitates the creation, management, and utilisation of relational databases. Together, these topics provide a comprehensive understanding of how relational databases function and why they are integral to data management.
+
+3.2.1 SQL Fundamentals
+What is SQL?
+
+SQL (Structured Query Language) is a standard programming language designed for managing relational databases. It provides a set of commands for querying, updating, and managing data stored in RDBMS. SQL enables users to retrieve specific information from databases by writing declarative queries.
+
+Basic SQL syntax involves using keywords like SELECT, INSERT, UPDATE, and DELETE to perform operations on a database. Queries are constructed using clauses such as FROM, WHERE, GROUP BY, and ORDER BY to specify the data to retrieve, filter, and organise according to specified criteria.
+
+The diagram below shows some common keywords that you will encounter in SQL, along with their function:
+
+img 10
+
+In the table below you will find a list of frequently used SQL commands:
+
+Query
+
+Description
+
+SELECT col1, col2``FROM tab;
+
+Query data in columns 1 and 2 from table
+
+SELECT *``FROM tab;
+
+Query all data from table_NOTE: Not recommended due to high cost incurred_
+
+SELECT *FROM tabLIMIT 10;
+
+Query all data from table but display only 10 entries_NOTE: This only limits the results after running the full query and returning all results (unlike the WHERE clause)_
+
+SELECT *FROM tabWHERE condition;
+
+Query all data from table where condition is true
+
+SELECT COUNT(col2)``FROM tab;
+
+Query data in column 2 and count the number of entries
+
+SELECT COUNT(col2) AS cnt FROM tab;
+
+Query data in column 2 and count the number of entries, naming the count column 'cnt'
+
+SELECT COUNT(DISTINCT col2) FROM tab;
+
+Query data in column 2 and count the number of unique entries
+
+SELECT col1, MAX(col2)FROM tabGROUP BY col1;
+
+Query column 1 and the maximum of column 3 (must be numeric), grouped by column 1 (i.e. this will return the maximum column 2 value for every unique column 1 value)
+
+SELECT *FROM tabORDER BY col4 ASC [DESC];
+
+Query all data from table, ordered by column 4 in ascending [or descending] order
+
+SELECT AVG(col2)``FROM tab;
+
+Query the average value of column 2 (must be numeric) from table
+
+SELECT SUM(col2)``FROM tab;
+
+Query the sum of column 2 (must be numeric) from table
+
+Querying data from multiple tables
+
+When querying data from multiple tables, joins are used to combine rows from two or more tables based on a related column between them. By specifying the join condition, such as matching values in the related columns, SQL joins allow for the retrieval of data from multiple tables in a single query, facilitating complex data analysis and reporting. They facilitate the retrieval of cohesive and interconnected data sets, enabling efficient querying and extraction of insights from relational databases.
+
+Ingestion processes often involve retrieving data from multiple sources or tables within a database. SQL joins can be valuable in ingestion by allowing data engineers to consolidate related information from different tables or databases into a unified dataset, simplifying the data extraction process and ensuring that all relevant data is captured for further processing and analysis.
+
+Relying on Query Optimisation
+
+“Query optimization is a feature of many relational database management systems and other databases such as NoSQL and graph databases. The query optimizer attempts to determine the most efficient way to execute a given query.”“This is particularly important in join ordering: The performance of a query plan is determined largely by the order in which the tables are joined. For example, when joining 3 tables A, B, C of size 10 rows, 10,000 rows, and 1,000,000 rows, respectively, a query plan that joins B and C first can take several orders-of-magnitude more time to execute than one that joins A and C first.”Consequently, it is wise to unload as much of the processing of data to the RDBMS as it is optimised for that workload. [ref]
+
+The two tables below (and accompanying diagram) describe the various types of joins commonly used followed by examples that show how data is queried from multiple tables.
+
+Join type
+
+Description
+
+(Inner) join
+
+This is the default join, which returns records that have matching values in both tables
+
+Left (outer) join
+
+Returns all the records from left table, and the matched records from the right table
+
+Right (outer) join
+
+Returns all the records from the right table, and the matched records from the left table
+
+Full (outer) join
+
+Returns all records from the left and right tables, irrespective of whether there is a match on the joining field in the other table
+
+img 11
+
+Query
+
+Description
+
+SELECT col1, col2FROM tab1JOIN tab2 ON condition;
+
+Complete an inner join of table 1 and table 2 where joining condition is true (inner join is the default)
+
+SELECT col1, col2FROM tab1LEFT JOIN tab2 ON condition;
+
+Complete a left join of table 1 and 2 where joining condition is true
+
+SELECT col1, col2FROM tab1RIGHT JOIN tab2 ON condition;
+
+Complete a right join of table 1 and 2 where joining condition is true
+
+SELECT col1, col2FROM tab1FULL JOIN tab2 ON condition;
+
+Complete a full outer join of table 1 and 2 where joining condition is true
+
+Example: Data pipeline for e-commerce analytics
+
+In an e-commerce company, a data engineer is tasked with building a data pipeline to analyse customer purchase behaviour. The company uses a relational database to store transactional data. The data engineer utilises SQL in the following ways:
+
+Data extraction: Using SQL queries to extract sales data from the relational database. For example, a query might retrieve all transactions within the last month to understand recent sales trends:
+
+SELECT * FROM transactions WHERE transaction_date >= DATESUB(month, 1, GETDATE());
+
+Data transformation: Cleaning and transforming the extracted data using SQL operations. This might involve joining tables to combine customer information with transaction data:
+
+SELECT t.transaction_id, t.amount, c.customer_name, c.emailFROM transactions tJOIN customers c ON t.customer_id = c.customer_id;
+
+Data loading: Inserting the transformed data into a data warehouse for further analysis. The data engineer can use SQL to ensure that the data is loaded accurately and efficiently:
+
+INSERT INTO analytics.transactions_cleaned (transaction_id, amount, customer_name, email)``SELECT transaction_id, amount, customer_name, email FROM staging.transactions_transformed;
+
+SQL Practice
+Complete the tutorial and answer the questions on page 5.
+
+Submit your answers using the following form.
+
+The result of this exercise will not be used for your final grade.
+
+Once you have submitted your answers you will receive your result accompanied by the correct answers (select “View score”). Take some time to work through any incorrect answers.
+
+Completion of this tutorial is compulsory.
+
+3.2.2 Entity relationship diagrams (ERD)
+An entity relationship diagram (ERD) is used as a graphical representation to show the relationships between entities (e.g. people, objects, concepts) in a relational database. There are 5 basic components in an ERD, namely entities (represented as rectangles), attributes (ovals), relationships (diamonds or connecting lines), primary keys (unique identifiers), and foreign keys (linking attributes). ERDs are essential in database design as they provide a clear and structured way to model the logical structure of the database, helping to ensure data integrity and facilitate efficient data retrieval and manipulation.
+
+The following notations are used to represent different relationship types between entities:
+
+img 12
+
+Relationships between entities
+
+Traditionally, relationships between entities in ERDs were represented using 1 and *, where 1 signifies one entity and * indicates many entities.
+
+Keeping the above notations in mind, observe the example of a simple ERD below. In the example it shows that a CustomerID can be connected to zero or many orders, however an order is linked back to one customer only. In other words, a single customer can have multiple orders, but every order is linked to a single customer.
+
+img 13
+
+For learners new to drawing Entity-Relationship Diagrams (ERDs), some useful tips include starting with identifying key entities and their relationships, keeping the diagram simple and focused, and ensuring clear labelling of entities, attributes, and relationships. Tools such as Lucidchart, draw.io, and Microsoft Visio offer intuitive interfaces and templates to help create ERDs easily. Additionally, online tutorials and guides can provide step-by-step instructions and examples to aid in understanding and applying ERD concepts effectively, such as the following:
+
+Lucidchart: How to draw an ERD diagram
+
+Getting Started with ER Diagrams in Vertabelo
+
+3.2.3 Normalisation
+Normalisation is a fundamental process in relational database design that organises data to reduce redundancy and improve data integrity. The goal of normalisation is to divide a database into two or more tables and define relationships between the tables in a way that minimises duplication and ensures that data dependencies make sense. This process involves applying a series of rules called normal forms to achieve a more efficient and stable database structure.
+
+Normal forms
+Normalisation is typically carried out through several stages known as normal forms, each with specific criteria that must be met. The most common normal forms include:
+
+First normal form (1NF)
+
+Focuses on organising data in a table to eliminate repeating groups and ensure that each piece of data is simple and indivisible. This means that each column should contain unique values, and you shouldn’t have multiple items listed in a single cell.
+
+For example, if you have a table with columns for Customer ID, Order ID, and Product Name, you shouldn’t list multiple products in one cell; each product should have its own row.
+
+OrderID
+
+CustomerID
+
+CustomerName
+
+ProductID
+
+ProductName
+
+Quantity
+
+1
+
+1001
+
+John Doe
+
+P01
+
+Widget
+
+2
+
+2
+
+1002
+
+Jane Smith
+
+P02
+
+Gizmo
+
+1
+
+3
+
+1001
+
+John Doe
+
+P03
+
+Thingamajig
+
+5
+
+Second normal form (2NF)
+
+Builds on the principles of 1NF by making sure that all the extra information in the table depends only on the primary key (the unique identifier for each row). This means that if you have a column with information that relies on part of the key, you should remove that column.
+
+For instance, in a table with Customer ID, Order ID, and Product Name, product details should not depend on both Customer ID and Order ID together; instead, each product should be linked to one specific order. To eliminate partial dependencies, separate customer details into a different table:
+
+Customers table:
+
+CustomerID
+
+CustomerName
+
+1001
+
+John Doe
+
+1002
+
+Jane Smith
+
+Orders table:
+
+OrderID
+
+CustomerID
+
+ProductID
+
+Quantity
+
+1
+
+1001
+
+P01
+
+2
+
+2
+
+1002
+
+P02
+
+1
+
+3
+
+1002
+
+P03
+
+5
+
+Products table:
+
+ProductID
+
+ProductName
+
+P01
+
+Widget
+
+P02
+
+Gizmo
+
+P03
+
+Thingamajig
+
+Now, the customer information is stored separately, which means we don’t have to repeat customer details for every order. Each table is organised based on the unique identifiers.
+
+Third normal form (3NF)
+
+Third Normal Form (3NF) takes normalisation a step further by ensuring that all information in the table directly relates to the primary key and that there are no indirect relationships. This means that non-key attributes should not depend on other non-key attributes.
+
+In the 2NF example above, we already have separate tables for Customers, Orders, and Products, which avoids any transitive dependencies. However, if you have a table that includes Customer ID, Order ID, and Customer Address, you should remove the Customer Address from this table and create a separate table for customers, linking it by Customer ID. This helps prevent repeating the address for each order.
+
+Boyce-Codd normal form (BCNF)
+
+Ensures that every relationship in the table is a result of a candidate key (a potential unique identifier for the table). This helps address certain issues that 3NF might not cover.
+
+Higher normal forms (4NF, 5NF, etc.)
+
+Higher normal forms, such as Fourth Normal Form (4NF) and Fifth Normal Form (5NF), deal with even more complex types of relationships and dependencies in very intricate databases. These forms help further refine how data is organised, but they are generally only needed in specialised cases.
+
+This structured approach not only makes data management easier but also enhances data integrity and efficiency in database operations.
+
+Value of normalisation
+Eliminates redundancy :
+
+By organising data into related tables, normalisation removes duplicate data, which saves storage space and prevents inconsistencies. For example, instead of storing a customer’s information multiple times in different places, normalisation ensures it is stored once and referenced as needed.
+
+Enhances data integrity:
+
+With reduced redundancy, the potential for data anomalies (insertion, update, and deletion anomalies) decreases, ensuring that the data remains accurate and consistent across the database. For instance, updating a customer’s address in one place automatically updates it everywhere it is referenced.
+
+Improves query performance:
+
+Normalised databases can improve query performance by structuring data in a way that makes retrieval more efficient. This can lead to faster query responses, as the data is logically stored and indexed.
+
+The normalisation of data is especially crucial for operational databases, where frequent updates and changes occur, as it ensures that any modification to a record, such as a user’s name, only needs to be made in one place. For example, if a customer’s name changes, we only need to update the name in the Customers table, as opposed to every record for that customer in the Orders table. Normalisation is less critical for analytical databases, which often involve historical data to gain insights on how data has changed over time.
+
+A key disadvantage of normalisation is that querying a normalised database often requires joining multiple tables, which can be cumbersome and computationally expensive. Users must understand the join conditions between tables, adding to the complexity. While storage costs are typically lower than compute costs, the balance can vary significantly depending on the data and usage patterns. Furthermore, in cloud environments, normalisation becomes irrelevant in the cloud, where storage and querying is far more efficient at a large scale.
+
+Normalisation tutorial
+Take your time to work through the following tutorial where you will learn how to normalise a raw dataset containing university student data.
+
+Submit your answer using the following form.
+
+Your response will not be used for your final grade.
+
+Once you have submitted your answer you will receive the memo.
+
+Completion of this tutorial is compulsory.
+
+3.2.4 ACID Properties
+ACID properties are fundamental principles that ensure the reliability and consistency of transactions.[1] in relational databases. They are essential for maintaining data integrity, particularly in systems where multiple transactions occur simultaneously. Understanding and implementing ACID properties is crucial for data engineers who design and manage database systems. ACID stands for Atomicity, Consistency, Isolation, and Durability, and here we will discuss each in detail.
+
+Atomicity
+
+Atomicity guarantees that each transaction is treated as a single, indivisible unit. This means that a transaction is either fully completed or has no effect at all. If any part of the transaction fails, the entire transaction is rolled back, ensuring that the database remains in a consistent state.
+
+Bank transfer transaction
+
+Consider a banking system where a customer transfers money from one account to another. The transaction involves debiting one account and crediting another. Atomicity ensures that if either the debit or the credit operation fails, the transaction is rolled back, and both accounts remain unchanged.
+
+Consistency
+
+Consistency ensures that a transaction brings the database from one valid state to another. It means that any data written to the database must conform to all predefined rules, such as constraints, cascades, and triggers.
+
+Inventory management constraint
+
+In an e-commerce database, a product’s inventory count must not fall below zero. If a transaction attempts to reduce the inventory count below zero, it will fail and be rolled back, preserving the consistency of the database.
+
+Isolation
+
+Isolation ensures that the execution of one transaction is independent of other transactions. This means that the operations of one transaction cannot interfere with the operations of another. Isolation is crucial for maintaining data accuracy in concurrent transactions.
+
+Simultaneous purchase handling
+
+Two customers simultaneously purchasing the last item in stock must not result in both transactions succeeding. Isolation ensures that one transaction will complete first, updating the stock count, and the second transaction will see the updated count and fail if the item is out of stock.
+
+Durability
+
+Durability guarantees that once a transaction has been committed, it will remain so, even in the event of a system failure. This means that the changes made by the transaction are permanently stored in the database.
+
+Post-purchase data persistence
+
+After a customer completes an online purchase, the transaction is committed to the database. Even if the server crashes immediately after, the purchase record remains intact, ensuring that the order is not lost.
+
+Importance for data engineers
+For data engineers, ensuring that their database systems adhere to ACID properties is critical for maintaining data integrity and reliability. Whether designing data pipelines, building ETL processes, or managing data warehouses, understanding and applying ACID properties helps data engineers create robust systems that can handle complex transactions and concurrent operations without data corruption or loss.
+
+Watch the following video for a deeper understanding of ACID properties.
+
+3.2.5 Relational database management systems (RDBMS)
+Relational Database Management Systems (RDBMS) are a type of database management system that stores data in a structured format using rows and columns. This structured data is organised into tables, which can be linked (or related) based on data common to each. The primary function of an RDBMS is to manage and query relational databases. They are widely used due to their ability to maintain data integrity and facilitate complex queries. RDBMSs support SQL, which is the standard language for interacting with relational databases. Characteristics of RDBMS include:
+
+Data integrity
+
+Ensures accuracy and consistency of data over its lifecycle.
+
+Data security
+
+Provides access controls and encryption to protect data.
+
+ACID compliance
+
+Ensures reliable transactions through atomicity, consistency, isolation, and durability.
+
+Scalability
+
+Supports data growth and increased workload.
+
+Backup and recovery
+
+Offers tools and processes to backup data and recover it in case of failure.
+
+Concurrency control
+
+Manages simultaneous operations without conflicts.
+
+Data independence
+
+Separates data from application logic, allowing changes in database structure without altering applications.
+
+RDBMS tools
+Relational Database Management Systems (RDBMS) are crucial software tools for managing structured data in an organised and efficient manner. Popular RDBMS software includes Oracle Database, SQLite, Microsoft SQL Server, MySQL, and PostgreSQL, each offering unique features and capabilities suited to different use cases. These systems are fundamental in data engineering, supporting complex queries, transactions, and analytics, and they play a pivotal role in building and maintaining robust data pipelines. In this section, we will delve into the features of these popular RDBMS software and compare their strengths and weaknesses.
+
+RDBMS
+
+Characteristics
+
+Advantages
+
+Disadvantages
+
+MySQL
+
+Open-source, widely used, supports SQL, high performance
+
+Free to use, large community, easy to use, robust performance
+
+Limited support for advanced features, less extensible compared to PostgreSQL
+
+PostgreSQL
+
+Open-source, advanced features, supports SQL and NoSQL, ACID compliant
+
+Highly extensible, supports complex queries, strong compliance with SQL standards
+
+Steeper learning curve, slower performance for simple queries compared to MySQL
+
+Oracle DB
+
+Commercial, highly scalable, robust performance, extensive features
+
+High performance, advanced security features, extensive support and documentation
+
+Expensive licensing costs, complex to manage
+
+SQL Server
+
+Commercial, developed by Microsoft, integrates well with Windows, supports SQL and other languages
+
+Strong integration with Microsoft products, high performance, robust tools for data analysis
+
+Expensive licensing, best suited for Windows environments
+
+SQLite
+
+Lightweight, embedded database, serverless
+
+Simple to set up, requires minimal configuration, highly portable
+
+Not suitable for large-scale applications, limited concurrency support
+
+Implementation in data pipelines
+RDBMSs play a crucial role in data pipelines, serving as both the source and destination for data. Data engineers often use RDBMSs to:
+
+img 14
+
+Stored procedures
+
+A stored procedure is a precompiled set of SQL statements that perform a specific task within a database, allowing for reusable and optimised queries. However, it is used less frequently now because stored procedures can create a tight coupling between the database and application, making it harder to manage and scale applications across different environments and platforms.
+
+RDBMSs are essential for maintaining the structured nature of data throughout the data pipeline, ensuring data integrity, and facilitating complex querying and reporting. This makes them indispensable tools in data engineering.
+
+RDBMS usage in data pipelines
+
+Extraction: Data is extracted from multiple relational databases (e.g., sales data from MySQL, customer data from SQL Server).Transformation: The extracted data is cleaned and transformed using SQL operations to ensure consistency and accuracy.Loading: The transformed data is loaded into a PostgreSQL database where it can be queried and analysed by business intelligence tools.
+
+3.3 Non-relational databases
+Non-relational databases, also known as NoSQL databases, are designed to handle large volumes of unstructured, semi-structured, or structured data with flexible schema requirements. Unlike traditional relational databases that use tables to store data in a fixed structure, Non-relational databases offer a more adaptable approach, allowing developers to work with various data models, including key-value, document, columnar, and graph formats. This flexibility enables organisations to store and retrieve data in ways that best suit their specific applications and use cases, accommodating the dynamic nature of modern data. The various strengths and weaknesses of non-relational databases are outlined below:
+
+Advantages
+
+Disadvantages
+
+Scalability: Easily scales horizontally to handle increased data volumes and traffic.Flexibility: Accommodates changing data models without requiring a predefined schema.Performance: Provides fast read and write capabilities, crucial for real-time applications.Availability: Ensures high availability and fault tolerance through distributed architectures.
+
+Consistency issues: Some NoSQL databases prioritise availability and partition tolerance over consistency, potentially leading to stale reads.Complexity: Learning and managing different NoSQL models can be complex compared to traditional relational databases.Lack of standardisation: With various NoSQL solutions available, there is less standardisation, which can lead to vendor lock-in and interoperability challenges.
+
+3.3.1 Data models
+A data model is a conceptual framework that defines how data is stored, organised and manipulated within a database system. It serves as a blueprint for constructing and managing databases, specifying the structure of the data and the relationships between different data elements. In the context of NoSQL databases, there are four primary data models that cater to various data storage and retrieval needs: columnar, key-value, document, and graph. Each of these models has unique architectural features and characteristics that make them suitable for specific types of applications and use cases. Additionally, various query languages are used to interact with these data models, allowing for efficient data manipulation and retrieval. In this section, we will explore these four data models in detail.
+
+Key-value stores
+Key-value stores are known to store data as a collection of key-value pairs, where a key is a unique identifier and the value is the data associated with the key. This data model is common in caching and session management and typically uses simple APIs rather than complex query languages. For example, Redis, a popular key-value store, uses commands like GET, SET, INCR, and HDEL to manage data. These commands are used for straightforward data retrieval and manipulation based on unique keys, making them ideal for applications requiring fast lookups and updates. Other tools typically used for key-value stores include DynamoDB and Riak.
+
+Document stores
+Data is typically stored in JSON, BSON or XML documents, with flexible schema, allowing for nested structures and varying fields. Document stores are common in content management systems where they use query languages that are more flexible than those of key-value stores. For example, MongoDB employs a powerful query language based on JSON-like syntax. Queries are constructed using documents to specify criteria. Other tools typically used for document stores include CouchDB and Firebase.
+
+Columnar stores
+Data is stored in columns rather than rows. This allows for efficient querying of specific columns where each column family can have its own schema. Columnar stores are optimised for read-heavy operations, making them suitable for analytical queries. They may use SQL-like query languages or their own specific query methods. For example, Apache Cassandra uses CQL (Cassandra Query Language), which resembles SQL but is designed to work with its distributed and columnar nature. Other tools typically used include Apache HBase and Google BigTable.
+
+Graph stores
+In graph stores, data is stored as nodes and edges, representing entities and their relationships. This data model is suitable for complex, interconnected data. It uses specialised query languages designed to traverse and analyse graph structures. For example, Neo4j uses Cypher, a declarative graph query language. Another tool typically used includes Amazon Neptune.
+
+Compare the various data model types by observing the advantages and disadvantages of each in the table below:
+
+Data model
+
+Advantages
+
+Disadvantages
+
+Key-value stores
+
+Simple and fast, highly scalable, efficient for read and write operations.
+
+Limited querying capabilities, no support for complex data relationships.
+
+Document stores
+
+Flexible schema, easy to store complex data types, scalable.
+
+May lack transactional integrity, potential for data redundancy.
+
+Columnar stores
+
+Fast query performance for analytical workloads, efficient data compression.
+
+Slower for transactional operations, complexity in schema changes.
+
+Graph stores
+
+Highly scalable, provide fast data retrieval, ideal for handling large volumes of simple data.
+
+Lacks complex querying capabilities, and can be inefficient for managing structured or relational data.
+
+Explore database models
+To gain exposure to the various database models, tools and query languages associated with them, take your time to work through the following online tutorials.
+
+Database model
+
+Tool
+
+Tutorial
+
+Key-value stores
+
+DynamoDB
+
+* Build an application using a Nosql key-value data https://aws.amazon.com/tutorials/build-an-application-using-a-no-sql-key-value-data-store/[store]
+
+Document stores
+
+MongoDB
+
+* Introduction to MongoDB and document databases* W3 schools: MongoDB tutorial
+
+Columnar stores
+
+Cassandra
+
+* Quickstart* Intro to Apache Cassandra for data engineers
+
+Graph stores
+
+Neo4j
+
+* Tutorial: getting started with Cypher
+
+3.4 Additional considerations
+3.4.1 Database design principles
+Effective database design is crucial for building robust, efficient and scalable data management systems. Well-designed databases ensure data integrity, reduce redundancy, and improve query performance, which is essential for maintaining the overall health and performance of applications. In this section, we will explore best practices in database schema design and delve into indexing, query optimization, partitioning and clustering techniques, all of which are foundational elements of good database design.
+
+Best practices in database schema design
+When creating a database schema, which is the logical structure that defines how data is organised and related within a database, it’s important to follow certain best practices to ensure data integrity, efficiency and scalability. The schema acts as a blueprint for the database, outlining tables, columns, relationships and constraints. Here are key guidelines to consider:
+
+Optimise data types
+
+Choose appropriate data types for each column to optimise storage and performance.
+
+Normalise data
+
+Organise data to reduce redundancy and improve integrity through normalisation.
+
+Use primary and foreign keys
+
+Define primary keys for unique identification and foreign keys to enforce relationships between tables.
+
+Implement indexing strategies
+
+Create indexes on frequently queried columns to enhance search performance.
+
+Design for scalability
+
+Plan the schema to accommodate future growth and changes in data volume.
+
+Maintain data integrity
+
+Use constraints and validation rules to ensure data accuracy and consistency.
+
+Document the schema
+
+Maintain clear and up-to-date documentation of the schema for reference and future development.
+
+Indexing and query optimisation
+Indexing is a database optimization technique that involves creating data structures to improve the speed of data retrieval operations. Query optimization refers to the process of enhancing the performance of database queries by rewriting them or modifying the database schema to execute more efficiently. Together, these practices ensure that databases can handle large volumes of data and complex queries as proper indexing and query optimization are essential for efficient database performance. Below are some best practices to consider:
+
+Create efficient indexes
+
+Identify columns frequently used in queries and create indexes to accelerate data retrieval.
+
+Monitor and tune queries
+
+Regularly review query performance, identify slow-performing queries, and optimise them by rewriting queries, adding indexes, or restructuring data.
+
+Utilise query analyzers
+
+Employ query analyzers and performance monitoring tools to pinpoint performance bottlenecks and optimise query execution plans.
+
+Keep indexes updated
+
+Regularly maintain and update indexes to ensure they remain efficient and effective.
+
+Avoid over-indexing
+
+Balance the need for indexing with potential performance impacts on write operations to avoid over-indexing.
+
+Implementing these practices ensures databases are designed and optimised to handle increasing data volumes and demanding application workloads effectively.
+
+Partitioning and clustering
+Partitioning and clustering are essential techniques in database management used to handle large datasets more effectively and improve query performance. Partitioning involves dividing a large database table into smaller, more manageable pieces, while clustering organises data in a way that related records are stored close together on disk. These strategies help databases handle extensive data volumes and complex queries efficiently. Below are some best practices to consider:
+
+Choose the right partitioning strategy
+
+Select between horizontal (row-based) and vertical (column-based) partitioning depending on the data and query patterns.
+
+Partition based on query patterns
+
+Analyse the most common queries and partition data to minimise the amount of data scanned during query execution.
+
+Cluster data based on access patterns
+
+Group related records together on disk by clustering, ensuring faster data retrieval for queries that involve range scans or related data access.
+
+Monitor and adjust partitions
+
+Regularly assess partition usage and adjust partitioning schemes to balance load and optimise performance as data grows.
+
+Avoid excessive partitions
+
+Ensure the number of partitions is optimal, avoiding unnecessary overhead that can result from too many partitions.
+
+Leverage clustering for sorted data
+
+Use clustering to maintain sorted order within partitions, improving the performance of range queries and sequential data access.
+
+The diagram below shows the effect of clustering and partitioning on an orders table. The orders table is first clustered by country, then partitioned by order date. Clustering by country ensures faster queries for country-specific data, while partitioning by order date allows efficient querying and management of date-based records, improving overall performance and scalability.
+
+img 15
+
+By carefully applying partitioning and clustering strategies, database performance can be significantly enhanced, leading to faster query response times and more efficient data management.
+
+3.4.2 Scalability
+Scalability is a critical consideration in database management systems (DBMS), ensuring they can handle increasing data loads efficiently. To recap, scalability refers to the ability of a system, network or process to handle growing amounts of work or users by adding resources or distributing the workload across multiple entities.
+
+Horizontal vs vertical scaling
+Horizontal scaling and vertical scaling are two strategies for increasing the capacity or performance of a system, such as a database, to handle larger workloads or higher demand.
+
+Horizontal scaling
+
+Horizontal scaling, also referred to as scaling out, involves adding more machines or nodes to distribute the workload across multiple servers, rather than increasing the resources of a single server. NoSQL databases are particularly suited to horizontal scaling due to their distributed architecture and schema flexibility. With horizontal scaling, databases can handle large volumes of data and high throughput by spreading the load across multiple nodes, each handling a subset of the workload.
+
+Horizontal scaling offers advantages in terms of scalability, fault tolerance and performance under heavy load, making it suitable for applications requiring high availability and scalability beyond the limits of a single server.
+
+img 16
+
+Sharding is a specific form of horizontal scaling where data is partitioned across multiple databases or servers. Each shard contains a subset of the data, and together they represent the entire dataset.
+
+Sharding
+
+For a large e-commerce platform, sharding can be implemented to distribute customer data, order histories, and product catalogues across different servers. This setup ensures that no single server is overwhelmed by traffic, leading to faster query response times and improved user experience.
+
+Vertical scaling img 17
+
+Vertical scaling, also known as scaling up or scaling vertically, involves adding more resources to a single node or machine. This is typically done by increasing its processing power (CPU), memory (RAM) or storage capacity. In relational databases (RDBMS), vertical scaling often means upgrading the hardware of the database server to enhance its capacity to process queries and store data. It can be effective for applications with modest growth in data volume or transaction rates that can be managed by a single, more powerful server.
+
+Vertical scaling in trading
+
+For a financial services company managing high-frequency trading systems, vertical scaling can be implemented to handle the intensive computational requirements. By upgrading the server hardware with more powerful CPUs and additional RAM, the company can process transactions and complex calculations faster. This ensures that the trading platform remains responsive and efficient even during peak trading hours, providing a seamless experience for traders.
+
+Watch the following video to learn more about the advantages and disadvantages of both horizontal and vertical scaling.
+
+3.4.3 Security in database management
+Ensuring the security of data within database management systems is crucial for protecting sensitive information from unauthorised access and breaches. This section explores key security measures: data encryption, access control and authentication, and backup and recovery strategies.
+
+Data encryption
+
+Data encryption is the process of converting data into a coded format to prevent unauthorised access. Encrypting data both at rest (when stored) and in transit (when transmitted) ensures that sensitive information remains secure even if intercepted or accessed without permission. Implementing strong encryption algorithms and managing encryption keys securely are essential for effective data protection.
+
+Access control and authentication
+
+Access control and authentication mechanisms ensure that only authorised users can access the database. This involves setting up user roles and permissions, implementing multi-factor authentication (MFA), and regularly reviewing access rights. Robust access control policies help prevent unauthorised access and ensure that users have the minimum necessary permissions to perform their tasks.
+
+Backup and recovery strategies
+
+Backup and recovery strategies are essential for protecting data against loss or corruption. Regularly scheduled backups ensure that data can be restored in case of accidental deletion, hardware failure, or cyberattacks. Effective recovery strategies involve creating multiple backup copies, storing them in different locations (on-site and off-site), and testing the restore process to ensure data can be quickly and reliably recovered when needed.
+
+Week 3 practical
+Fork the Jupyter notebook from Gitlab so that you have your own Gitlab repo with the starter code. Complete the notebook (instruction in the notebook file) so that the pipeline runs end-to-end and produces the required output.csv file. Submit the code by pushing back to the GitLab repository.
+
+Note	Ensure your notebook produces the required output.csv file, as the auto-grading will run tests against this file. You will also see the starter code contains a .lms/exercises.toml file. Do not edit or remove this directory or file, as this is how the LMS knows to which project to connect the submission.
+Week 3 consolidation
+Self-assessment
+Before closing off the week by completing the week 3 quiz, let’s revisit the learning outcomes for this week by asking ourselves the following questions:
+
+Do I understand what database management systems are and the difference between relational and non-relational databases?
+
+Am I able to apply SQL fundamentals in relational databases?
+
+Do I understand how to normalise data and use entity relationship diagrams?
+
+Am I able to differentiate between non-relational database models?
+
+Am I able to implement database design principles and best practices?
+
+Do I understand the value of security in database management?
+
+If you are not confident that you can answer ‘yes’ to the above questions, revisit the necessary content from this week and consult the additional resources below to strengthen your understanding.
+
+Additional resources
+
+Videos
+
+* 7 database paradigms* Database normalisation* How do NoSQL databases work?* Entity Relationship Diagram Tutorial
+
+Reading
+
+* Database normalisation* What is a relational database management system?* Horizontal vs vertical scaling - How to scale a database
+
+Revision
+
+* Free short course: Intro to SQL* Khan Academy: Intro to SQL
+
+Completion check
+Ensure that you have completed all the compulsory deliverables for this week.
+
+Deliverable:
+
+Expectation:
+
+SQL tutorial
+
+Submit Google form; work through answers
+
+Normalisation tutorial
+
+Work through tutorial, submit Google form
+
+Non-relational database model comparison
+
+Explore database models
+
+Week 3 exercise
+
+Submit notebook to gitlab for grading
+
+1. In the context of databases and ACID properties, a transaction refers to a sequence of operations performed as a single logical unit of work.
+Week 2: Data storage and virtualisation
+Week 4: Data architecture and ingestion
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

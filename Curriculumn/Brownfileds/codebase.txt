@@ -1,0 +1,22 @@
+The Codebases
+The codebases for learning brownfields software development are the very same codebases that each team wrote in the Object Oriented Programming module. The LMS will randomly allocate one of the codebases to your team. Each codebase is in a different state of completeness, has differing quality of code, and a potentially different design.
+
+For convenience, the Robot World specification is repeated below.
+
+The World Server
+The server program is a standalone, console Java program that runs the robot world. It builds the world, with all its obstacles and whatever new artefacts we invent for this world.
+
+The server listens on a network port for robots that will inhabit the world. Once a connection is received, it is responsible for receiving instructions from each robot and updating the world based on the behaviour of each robot. Take careful note that the world can have many robots at the same time and is responsible for managing all robots in the world.
+
+The server receives instructions from a robot, updates the world, and sends a response back to the robot client.
+
+The Robot Client
+The client program is a standalone Java program that connects over the network to the robot world. Once connected, it must launch a robot into the world. As a user, you must be able to send the robot commands over the network to the world and the world will update where the robot is, whether it was blocked, etc.
+
+Take note that the client robot program does not run the world code and therefore has very little knowledge of the world. In fact, when the robot is launched into the world, it has no knowledge of the world. It "learns" about the world as it moves around.
+
+The Robot Worlds Protocol
+Every team will have to implement the same messaging protocol which is described in detail in Robot Worlds Protocol. This will allow client robot programs to join any other teams world server programs that are running on the same network.
+
+Brownfields Development
+

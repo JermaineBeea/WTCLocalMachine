@@ -1,0 +1,333 @@
+Introduction to Web Development
+Web development is about writing code that executes in a browser. It is client-side application development that uses three different languages:
+
+Hyper-Text Markup Language (HTML)
+is used for describing the structure and content of a web page.
+
+Cascading Style Sheets (CSS)
+is used for specifying the appearance and layout of a web page. Note that layout (using CSS) is different from structure (using HTML). Structure refers to the semantic organisation of the content. For example, the meaning and use of heading levels, paragraphs, lists etc. are honored. Layout, on the other hand, refers to the where on the web page content will be placed. For example, a list that represents an index of headings can be placed to the left or right of the main content.
+
+JavaScript (JS)
+is used for adding dynamic behaviour to a web page and calling HTTP APIs for content. For example, when there is some interaction on a web page such as filling in a form or clicking on a heading, then specific actions must be taken.
+
+In this module, we focus on the fundamentals of each of these languages. It is tempting to introduce one of the many popular frameworks. However, today’s frameworks will eventually (and probably sooner rather than later!) be replaced by others. Therefore, knowing the fundamentals spans all frameworks — past, present and future. This does not mean that you should not use a framework; but always reach for the fundamentals when building for the web.
+
+Note	
+The rest of this section is merely a quick overview that shows the role of HTML, CSS and JS in web development. Do try to read the code and form an opinion of what it does. However, don’t stress if you don’t completely understand it. The next few sections will take you into the detailed learning of each language and how they work together.
+
+Understanding Web Servers
+You have already programmed both the server and the client sides of the HTTP protocol.
+
+So it is unsurprising that a web server is a program that honors the server side of the HTTP protocol. The simplest web server just reads the content of a file from a configured directory and returns the content as the body of the response, setting the appropriate content-type header.
+
+The browser is a sophisticated program that honors the client side of the HTTP protocol. It issues HTTP requests and receives the HTTP responses. The browser then parses the HTTP response and renders the body based on the content-type specified in the header. For example, if the body is HTML, it will render it based on the default HTML configuration and apply CSS rules. Another example is if the body is a PNG image, it will render the image in the page appropriately. If it cannot handle a content type, the browser is programmed to ask the user how to handle it — usually save the content as a file.
+
+web server
+A Simple HTML Document
+We can recreate the above explanation using a small HTML file and Python’s built in simple.http server.
+
+Create a new directory and add a file index.html with the following content.
+
+<!DOCTYPE html>	
+<html>	
+
+    <head>	
+        <title>Hello, hello</title>	
+    </head>	
+
+    <body> 
+        <h1>Hello, world</h1> 
+
+        <p>Using any of the following languages write a program	
+           that prints out <em>Hello, world</em> 
+           to the console</p> 
+
+        <ul> 
+	    <li>Java</li> 
+	    <li>Ruby</li>
+	    <li>Python</li>
+        </ul> 
+    </body> 
+</html> 
+This single line specifies implicitly that the file is using HTML version 5.
+<html> is the root of the document and contains exactly two parts: the <head> and <body>.
+The head specifies the metadata for the document and contains no visual content except for the document <title>.
+The <title> of the document is a metadata key. This is the text that appears in the browser window title. (But not all browsers have a window!) Notice how all values and content starts with an opening <tag> and ends with a corresponding closing </tag>.
+This is the end of the head.
+The body has the content that will be displayed in the browser page.
+This content is specified as a heading at level 1. Headings can have other levels too, such as <h2>, <h3> etc. Higher numbered headings are subheadings of the previous heading level. However, this rule is not enforced. It is up to the author to honor the semantic structure of the tags in documents.
+This text is formatted as a simple paragraph. The line breaks are irrelevant because the browser will render the content of a paragraph and wrap text to size the window.
+The <em> tag is used to indicate emphasis. By default, emphasis is rendered as italic text, but this can be changed using CSS styles.
+The end of a tag can be placed anywhere, though the usual care should be taken to write well-structured code that is easy to read.
+The <ul> tag is used to start an unordered list. The list, by default, is rendered with bullet point symbols.
+Each item in the list is enclosed in <li> "list item" tags.
+The end of the unordered list.
+The body ends here.
+And this marks the end of the html document.
+A Simple Web Server
+Now open a terminal and change to the directory that you just created. Then run the following command.
+
+$ python3 -m http.server 9000
+This starts the Python simple http server and tells it to listen for HTTP requests on port 9000, serving files from the current directory.
+
+Then open your browser and navigate to http://localhost:9000/index.html. You should see the following web page.
+
+browser example
+It’s not spectacular, but it is significant. Notice the title in the tab heading is the title specified in the <head> section of the HTML document. Also take note of the formatting of the content for the <h1>, <p>, <em> and <ul>, <li> tags.
+
+Content and Structure with HTML
+Most important, is that the HTML document is a tree data structure.
+
+web page structure
+This tree structure has a special name — the Document Object Model (DOM). Soon, you will write JavaScript programs that will dynamically alter the DOM, creating the effect of dynamic page updates in the browser.
+
+The DOM also comes into play when we need to style the document with CSS.
+
+Let’s do both to get a taste of CSS and JS, starting with CSS.
+
+Styling with CSS
+In the directory that contains index.html, create a subdirectory css and an empty file styles-1.css. Edit styles-1.css to add the following CSS code.
+
+/*
+ * Style the body of the document to have margin of 20 pixels on the left.
+ * All content will be shifted by 20px from the left.
+ */
+body {				
+  margin-left: 20px;	
+}
+
+/* Style the level 1 headings to use the sans-serif font configured in the browser.
+ * Also, make the colour navy blue.
+ */
+h1 {		
+  font-family: sans-serif;  	
+  color: navy;		
+}
+
+/*
+ * Paragraph content should be rendered with a proportionally larger font size
+ */
+p {						
+  font-size: larger;
+}
+
+/*
+ * The unordered list should have a padding of 10 pixels above and below it.
+ * Also, limit the width of the list to be 30% of the browser window width.
+ * Then add a border around the entire list that is 1px wide, solid line and grey in color.
+ */
+ul {		
+  padding-top: 10px;	
+  padding-bottom: 10px;	
+  width: 30%;	
+  border: 1px solid grey;
+}
+
+/*
+ * Each list item should have a margin of 10px all around it.
+ */
+ul li {			
+  margin: 10px;
+}
+
+/*
+ * Make the emphasis text bold and a background color that is light yellow (RGB hexadecimal value #ffffe0).
+ */
+em {		
+  background-color: #ffffe0;
+  font-weight: bold;	
+  font-family: sans-serif;			
+}
+Now modify index.html to include the CSS file.
+
+<!DOCTYPE html>
+<html>			
+    <head>							
+        <title>Hello, hello</title>
+        <link rel="stylesheet" href="css/styles-1.css"/>				
+    </head>						
+    <body>					
+        <h1>Hello, world</h1>	
+        <p>Using any of the following languages 	
+            write a program that prints out <em>Hello, world</em> 
+             to the console</p>				
+
+        <ul>					
+            <li>Java</li>		
+	    <li>Ruby</li>
+	    <li>Python</li>
+        </ul>			
+    </body>		
+</html>							
+This tells the browser to make another HTTP request for the file specified in href and treat the contents as CSS. If you open the browser developer tools and inspect the network requests, you will notice that two requests are made - one for index.html and another for styles-1.css.
+All of the major web browsers include a comprehensive set of Developer Tools that allow you to inspect the DOM structure and contents, the CSS style rules in effect on every element in the page, the network requests and responses that have gone back and forth between the browser and server, debug JavaScript, and many more things besides. The tools allow you to change things (content, HTML, CSS) on the fly and instantly see the result without having to go through a tedious and time-consuming edit-save-refresh cycle…​ very useful for quickly trying things out to see how they’ll work before making changes to the source files.
+
+Do spend some time getting familiar with your browser’s Dev Tools. It’s time well invested.
+
+Reload the page in your browser and notice how the style of the content has changed.
+
+browser example css1
+Now create another CSS file styles-2.css with the following CSS code.
+
+/*
+ * Setting the style for the body means that all text content 
+ * will default to the specified style.
+ */
+body {				
+  /* All text will be 20px from the left */
+  margin-left: 20px;	
+  
+  /* Make the background a dark grey */
+  background-color: #282a35;
+
+  /* Change all text to be monospaced font by default */
+  font-family: monospace;
+
+  /* Make the font color a shade of green */
+  color: #84c754;
+}
+
+/* 
+ * Style the unordered list 
+ */
+ul {		
+  /* Disable the bullet point markers on the list items */
+  list-style-type: none;
+
+  /* Remove any existing margin and padding space */
+  margin: 0;
+  padding: 0;
+
+  /* Force anything that comes after the list to be below it */
+  overflow:hidden;
+}
+
+/* 
+ * Style each list item of every unordered list 
+ */
+ul li {
+  /* position left horizontally (instead of vertically one below the other) */
+  float: left;  	
+
+  /* pad 10 pixels all around the text */
+  padding: 10px;	
+
+  /* Increase the font size by 20% relative to the normal size */
+  font-size: 120%;
+  
+  /* make the font colour white */
+  color: white;
+}
+
+/* 
+ * Declare the style when the mouse is hovered over a list item 
+ */
+li:hover {
+  /* Change the font colour to black */
+  color: black;
+
+  /* And change the background colour to a shade of green */
+  background-color: #84c754;
+}
+Then modify index.html to use styles-2.css and reload the file in your browser. You should be able to figure out the line of code to change.
+
+Reload the page and notice the dramatic change, including that the list is now rendered horizontally. Hover your mouse-cursor over an item in the list and observe what happens.
+
+browser example css2
+This quick example of CSS shows that we can change the layout and style by specifying style rules using CSS. Apart from specifying the CSS file to use, the HTML body (the main content) was not changed at all.
+
+Note	You will later see that it is possible to embed CSS in your HTML content. This is generally discouraged because it leads to complex code with a lot of repetition.
+Behaviour with JavaScript
+Now let’s focus on interaction with the web page using JavaScript. In this example, we want to pop up a message with the text of the list element that was clicked.
+
+Modify index.html to include a JavaScript file, and give the unordered list an identity value.
+
+<!DOCTYPE html>
+<html>			
+    <head>							
+        <title>Hello, hello</title>
+        <link rel="stylesheet" href="css/styles-2.css"/>	
+	    <script src="js/simple.js" defer></script>			
+    </head>						
+    <body>					
+        <h1>Hello, world</h1>	
+        <p>Using any of the following languages 	
+            write a program that prints out <em>Hello, world</em> 
+             to the console</p>				
+
+	<ul id="languages">					
+            <li>Java</li>		
+	    <li>Ruby</li>
+	    <li>Python</li>
+        </ul>			
+    </body>		
+</html>							
+This tells the browser to make another HTTP request for the file specified in src attribute of the <script> tag. Notice the defer attribute: this tells the browser to only interpret the script after it has completed loading the entire page. Browsers build up the DOM from top to bottom, in the order that code appears in the HTTP response. If you don’t specify defer then the script will be executed before the body is loaded. There are other ways to achieve the same outcome such as adding the <script> tag as the last line of the <body>. You will cover this in detail later.
+We need a way of finding this specific list in the DOM, so we give it an identity. We will reference id="languages" in the JavaScript below.
+Now create another subdirectory ./js/ and add a file named simple.js with the following content.
+
+var ul = document.getElementById("languages");		
+
+ul.onclick = function(event) {				
+  var li = event.target;				
+  alert(li.innerHTML);					
+}  
+Remember that HTML pages are documents modeled as a tree known as the DOM — the Document Object Model. The JavaScript runtime in the browser has a default object called document that gives you access to the DOM. Here, we ask the DOM to give us the object with the id languages which is the unordered list in the HTML.
+This dynamically adds code for the click event on the unordered list. The onclick property of the object ul is actually a function or lambda.
+The event is the argument passed into the function. It contains information about the click event. This line asks the event object to return the DOM object that was the target of the click event. In this case, the target will be one of the list items.
+alert() is a JavaScript browser function that will display a modal pop-up. li.innerHTML is a property that returns the HTML that is inside the <li> </li> tag. In this case, the inner HTML is just plain text being the name of a programming language.
+Reload the page in your browser and click on a list item. It should display a dialog box as shown below.
+
+browser example js1
+Warning	
+The JavaScript and HTML code above may not work across all browsers. Sadly, browsers are built differently and the way they are coded to support JavaScript, HTML and CSS features vary. It’s actually incredibly annoying and a lot of effort has to go into making code cross-browser compatible.
+
+In the code above, you may run into difference with the following:
+
+defer might not be supported by older browsers.
+
+window.event.target is not supported by older versions of Internet Explorer (IE). Instead, older IE JavaScript runtimes use event.srcElement.
+
+It is also possible to update the DOM with JavaScript. In the example that follows we will change the contents of an HTML element based on which language in the list was clicked.
+
+Modify index.html as shown below.
+
+<!DOCTYPE html>
+<html>			
+    <head>							
+        <title>Hello, hello</title>
+        <link rel="stylesheet" href="css/styles-2.css"/>	
+	<script src="js/update.js" defer></script>			
+    </head>						
+    <body>					
+        <h1>Hello, world</h1>	
+        <p>Using any of the following languages 	
+            write a program that prints out <em>Hello, world</em> 
+             to the console</p>				
+
+	<ul id="languages">			
+            <li>Java</li>		
+	    <li>Ruby</li>
+	    <li>Python</li>
+        </ul>			
+	<p id="selection"></p>						
+    </body>		
+</html>							
+Load a different JavaScript file.
+Add another element that will be updated using JavaScript.
+Now add a new file js/update.js with the following code.
+
+var ul = document.getElementById("languages");
+
+ul.onclick = function(event) {		
+  var language = event.target.innerHTML;				
+  var selection = document.getElementById("selection");			
+  selection.innerHTML = "You chose " + language;			
+}  
+Get the text of the list item that was clicked.
+Get the paragraph element object that we want to update.
+Update the inner HTML of the paragraph element.
+Reload the browser and click on the items in the list.
+
+browser example js2
+

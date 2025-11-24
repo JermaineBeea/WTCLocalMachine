@@ -1,0 +1,67 @@
+Brownfields Development
+What do we mean by Brownfields?
+Brownfields development is programming in an existing codebase to change the design of the system or add new functionality. Sometimes, it involves removing functionality, which is usually a lot harder than just deleting a few files. Greenfields development, in contrast, is writing code from scratch — it is for a system that does not yet exist.
+
+In your career, you are far more likely to be immersed in brownfields software development as part of a team. In this module, we will be simulating (as best as we can) the experience of working in a team on an existing code base.
+
+What to expect
+This module is different from previous modules in a few ways.
+
+Teams
+You will always be working in a team
+
+You might be required to change teams during the semester.
+
+Iterations
+The iterations are designed to simulate, as best we can, what it is like to work on a real-world software delivery team.
+
+Each iteration is 2 weeks in duration.
+
+Each iteration will have a set of goals to accomplish. Any goal that is not achieved means that the iteration is a failure. The goals that were missed will have to be carried over to the next iteration.
+
+At the end of the iteration, you will showcase your working software to another team.
+
+At the end of each iteration, you will review and rate each other on the project.
+
+The team is expected to have retrospective at the end of each iteration.
+
+Individual contribution
+Everybody on the team is expected to make a reasonable contribution of code, relative to others, towards meeting the goals of the iteration. We rank individual contribution based on an internal algorithm from git logs, and this is tracked over multiple iterations.
+
+Note	
+Ranking individual contribution using a metric of lines of code is the only deviation from a real-world simulation. In practice, measuring developer productivity, value to team, etc. using lines of code is strongly discouraged.
+
+From a learning point of view, you should be writing code daily as part of gaining practice. Therefore, the goals of the iterations are set up for each person to have equal opportunity to contribute code.
+
+Performance and Progress
+Your progress in this module is measured by:
+
+your own code contribution, and
+
+the entire team achieving all goals of an iteration.
+
+So, if you contributed code and the team does not meet the goals, then you have not made progress in the iteration, and neither has the rest of the team. If the team misses a goal, then the team has to carry that goal over to the next iteration. As you can imagine, consistently falling short makes it progressively harder. Though it is possible to catch-up with discipline, careful planning and, most importantly, team work.
+
+Responsibility
+Ownership of success and failure is that of the entire team; and every person on the teams is responsible and accountable.
+
+In real-world software projects, a failure to complete any work committed to by the team for an iteration, means that the iteration was a failure. A product missing even one feature is a substandard product at best, and, at worst, not a product at all. It is then the responsibility of the entire team to bring the product development back on track.
+
+The Codebase
+You will work on a version of the Robot World codebase from the Object Oriented Programming module.
+
+In normal practice, one of the difficulties of brownfields development is needing to learning about and understand the domain of the codebase. You’re in the lucky position of already being familiar with Robot World, so you can give your full attention to the programming practices. As we progress through the module, we will introduce new functionality that you’ll be required to implement.
+
+Important	
+Remember, this is about programming with the existing code. It is not about deleting entire files, or replacing large chunks of code. It’s going to be tempting to delete large chunks of code at a time. Doing this negates the value of this module.
+
+As you can imagine, it’s quite easy to detect large changes in the git logs, and so we can easily identify the use of contra-indicated techniques. Our advice is to persevere: be focused, be disciplined, and you will level-up to being a high performing software developer.
+
+Remember
+Work as a team.
+
+Take lots of small steps, frequently — especially with code changes!
+
+Merge small chunks of working code, and merge them frequently — at least daily!
+
+Teams that maintain a highest levels of communication among team members tend to produce the most successful working codebases.

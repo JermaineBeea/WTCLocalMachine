@@ -1,0 +1,74 @@
+Client Side UI for the Web
+In this module you will develop the client-side user interface running in browser that interacts over HTTP with an API running on the network. We assume that you are familiar with HTML, CSS and JavaScript (JS).
+
+Particularly for JS, you should be familiar with:
+
+In particular, you will need to know how to use JavaScript to:
+
+manipulate the DOM, and
+
+send and retrieve data using the XMLHttpRequest object or the Fetch API.
+
+Your Learning Path
+In this iteration we’ll cover:
+
+Writing a single page web application from first principles.
+
+Single Page Applications
+
+Using other JS libraries (not frameworks) to make life a bit easier.
+
+What you need to submit:
+
+An individual exercise to help you practice your HTML, CSS and JS and cover some key aspects of single page apps.
+
+To get started, fork the initial exercise repository at https://gitlab.wethinkco.de/starters/web-development/single-page-application
+
+Remember to update the .lms/exercises.toml file with the correct activity_id:
+
+_version = 0.1
+
+[web-ex-weshare-spa]
+activity_id = "web-ex-weshare-spa"
+Single page web apps
+Go to your GMail page and pay attention to the URL in the browser as you click around. Notice that the app URL is always the same, such as https://mail.google.com/mail/u/0/#.
+
+When the app loads, it takes you directly to the inbox and notice the suffix of the URL, after the #, e.g.https://mail. google.com/mail/u/0/#inbox.
+
+Then, when you click on an email, only the suffix changes - https://mail.google.com/mail/u/0/#inbox/FMfcgzGqQcsLzBPmlpnVBLMWkvdqpwhM.
+
+If you open the brower’s developer tools and looked at the network data, you will see a lot of HTTP requests sent for data to be shimmied into the page. What you witnessed is a single page app in action.
+
+In summary,
+
+we did not load a new page because the main app URL did not change (it’s still an HTTP GET https://mail.google.com/mail/u/0) but the contents changed.
+
+we stayed on the same page and dynamically updated the parts of the page.
+
+What is a single page application?
+A single-page application (SPA) is a web application or website that interacts with the user by dynamically rewriting the current web page with new data from the web server, instead of the default method of a web browser loading entire new pages. The goal is faster transitions that make the website feel more like a native app.
+
+In a SPA, a page refresh never occurs; instead, all necessary HTML, JavaScript, and CSS code is either retrieved by the browser with a single page load, or the appropriate resources are dynamically loaded and added to the page as necessary, usually in response to user actions.
+
+— Wikipedia, Single-page application
+The different parts of a SPA
+From our basic understanding of a SPA, we can break down the app into a few fundamental parts. Looking at it from the perspective of the app, running in the browser, it must achieve be able to do the following.
+
+Retrieve a single static page from a web server and execute a javascript script.
+
+Fetch default data to be displayed on the page. This must make an HTTP GET to a server and fetch some data.
+
+Update a part of the web page with the data that was retrieved, using appropriate HTML and CSS.
+
+Intercept a form submission by capturing the form submission event, then invoke and API call with form data, and process the result of the API call.
+
+Capture other user interaction events on the page such as clicking on a link, clicking a button, opening a menu panel, etc and dynamically update parts of the page based on what was clicked, sometimes fetching data from an API.
+
+Note	We are deliberately leaving out anything that deals with authentication, authorisation, cross site scripting and cross origin resource sharing so that we focus on the "dynamic" nature of an SPA.
+Over the next few sections, we will implement each part of the SPA independently, gradually building up to a full SPA. Do NOT skip ahead because subsequent steps make use of code from prior steps.
+
+Exercise: Putting it All Together
+1. Load the App Page
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

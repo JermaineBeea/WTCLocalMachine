@@ -1,0 +1,37 @@
+Acceptance Testing
+Iteration goals
+Set up a taskboard for the backlog for Robot World.
+Use Gitlab to set up a taskboard of all the requirements for Robot World. Work through the Backlog topic which will get you started. Note that the backlog will contain features (also known as stories) for work that will be done in future iterations. Just a few items on the backlog will be tackled in this iteration, as explained in the next goal.
+
+Refactor the existing Robot World server to conform to a set of Acceptance Tests.
+Implement automated tests that validate some of the functionality of your server. These are called acceptance (or functional) tests, as they test whether a software component conforms to a specification. In this case, the software component is the Robot World server, and the specification is the Robot World protocol. Work through the Acceptance Tests topic to accomplish this goal.
+
+Create a build script that compiles the code base, runs tests and package deployable binaries.
+You might have used a combination of IDE commands and perhaps some command line maven commands to build your project and run the tests. We actually need an easy, repeatable way to do compile code, run all tests and create the artifacts that can be deployed. This is achieved by using build scripts that are executed by a build process or build pipeline. In the Build Scripts topic, you will find details on how to create a build script. In a next iteration we will look at how to run the build scripts using a build pipeline that automatically runs when code is committed to a git repository.
+
+Analyse the codebase and identify the top 3 hotspots.
+You will use a tool called CodeScene to analyse your codebase. Over the entire module, you will need to pay attention to the quality of your code. So, this first analysis is the baseline of the quality of your code. To get you started, we have prepared this video to introduce you to CodeScene and code analysis. Work through the Code Analysis for details of this goal.
+
+Individual contribution
+Every team member must implement at least one acceptance test. This includes changes to the server so that the test passes. At the same time, the changes to the server should not cause other acceptance tests to fail. If there are failures because of your individual contribution, you will need to work as a team to get all tests passing.
+
+Getting started
+Here are some guidelines to get you going with your first iteration.
+
+Do not start coding.
+
+Read through all goals for the iteration.
+
+Run a planning session for the iteration.
+
+Make sure everyone on the team understands the goals and the work to be done
+
+Make sure that the taskboard reflects your understanding of the goals and work to be done.
+
+Now that you understand the goals and the scope of the work you need to get through, it’s time to start coding.
+
+Protocol
+The Backlog
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

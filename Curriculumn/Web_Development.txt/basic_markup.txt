@@ -1,0 +1,73 @@
+Basic Page Markup: HTML
+In this section, you will work through the parts of HTML — the HyperText Markup Language — that you are most likely to encounter in building web applications for business systems. This is not an exhaustive study of HTML. However, with the knowledge gained in this section you will easily be able to learn the other parts of HTML as and when you need them in your career.
+
+Note	Do not worry about memorising the different elements and attributes of HTML. Rely on a comprehensive reference next to you as you code.
+In this section, you should work through the material in the order presented. There are excellent tutorials and learning material on the internet and you will be pointed to those that we found easy to use and understand. However, during your learning, do share useful material that you have found with your peers.
+
+Important	
+Do NOT simply read through this section. Actually code everything that is discussed and referenced. HTML, and browsers in particular, have many quirks, and you need experience weird issues too.
+
+Some of the links to material on the internet have quizzes and exercises. Do complete them. This will reinforce your learning.
+
+In the referenced content, you can use Python’s simple.http web server to run your website on your local machine. The content may suggest alternatives, however this method is simple enough and you already have Python on your development computer.
+
+HTML Basics
+Suggested Time: 8 - 16 hours of reading and exercises
+
+Getting started with HTML
+Work through this short introduction to get a high level understanding of HTML.
+
+HTML Metadata
+There is a great exercise at the end of this section that you should do. Though, don’t worry too much if you don’t understand the CSS and JS included in the example. You will be able to understand it by the end of this module.
+
+Text Fundamentals
+In this section, pay careful attention to structural hierarchy and semantic correctness of HTML documents. You are likely to encounter a lot of HTML that is neither structurally nor semantically correct. As professional developers are our responsibility is to make such code better. Beyond mere philosophical correctness, semantic and structurally sound HTML files are lot easier to work with and program against. Also, make sure that you complete the self-assessment too.
+
+Creating Hyperlinks
+Hyperlinks are the secret sauce of web pages. They allow us to link pages to each other, regardless of which website is hosting the page. Work through this section carefully because you will use hyperlinks a lot.
+
+Document and website structure
+This section has a wonderful write-up about planning, designing and implementing a website. Pay attention to the rough sketches approach to design and planning and try to do the same when you get to the exercise.
+
+Debugging tools
+This section familiarises you with the developer tools in your browser. You have used it a bit already and this section will show you how to use it more effectively. You also learn about validating your HTML too.
+
+Self-Assessment: Structuring a page
+Complete this self-assessment to reinforce your learning so far. Note that although this is not for submission, skipping it may well hinder your progress later.
+
+OPTIONAL: Advanced Text Formatting
+This section is optional and you can come back to it later in this module or when you need to understand how to do more advanced formatting. If you choose to do it, then also complete the additional self-assessment too.
+
+Embedding Content
+Suggested Time: 4 - 8 hours of reading and exercises
+
+Basic Images
+This section walks you through including images in a web page. It’s fairly straight forward and a quick read that ends with a useful self-assessment.
+
+Responsive Images
+Responsive websites adjust their layout to suit the size of the screen on the device from which the site is accessed; such as a mobile phone. One of the challenges is getting images to render satisfactorily on screens of different sizes. This section shows a few ways to solve this.
+
+OPTIONAL: Vector Graphics, Audio and Video
+These media formats are less commonly encountered in business focused web applications. As such, you can treat this as optional and complete it if it interests you or you feel you need to study this now. Work through vector graphics and video and audio content.
+
+AVOID: <iframe>, <object>, <embed>
+These are HTML technologies on the way out. Though, you are likely to encounter them in older codebases, and it is important that you are able to recognise and work with them. It is sufficient to simply read through this section.
+
+SELF-ASSESSMENT: Splash Page
+Test yourself by completing this self-assessment. Remember, this is not for submission.
+
+Tables
+Suggested Time: 4 - 8 hours of reading and exercises
+
+Basics
+Tables have a gained a bad reputation in the web development community because they were abused to layout websites. With the introduction of semantic elements such as headers, footers and more to HTML, tables should be used purely for visualising data values. HTML table code can quickly unravel because it is quite verbose and can contain deeply nested elements. Take care to lay out your code carefully so that it is easy to read and modify. Also, use a validator to ensure that there are no HTML errors.
+
+Advanced
+This section introduces additional semantic elements related to tables. Do work through it and familiarise yourself with it.
+
+SELF-ASSESSMENT: Structuring data
+Finally, test yourself with this self-assessment. Remember, it’s not for submission, but skip it at your own peril.
+
+Fundamental Web Technologies
+Making Web Pages Pretty: Cascading Style Sheets (CSS)
+

@@ -1,0 +1,648 @@
+Week 4: Data architecture and ingestion
+This week we will unpack data ingestion and data architecture, focusing on their crucial roles in data engineering. As we learned in week 1, data ingestion involves the processes and techniques used to collect and import data from various sources into a central repository for analysis and storage. Efficient data ingestion is therefore crucial for ensuring data is readily available for downstream processing and analytics. Data architecture, on the other hand, refers to the design and organisation of data systems, defining how data is collected, stored, integrated and managed across an organisation. Together, these elements enable organisations to build scalable, efficient and reliable data pipelines that support comprehensive data analysis and decision-making. We will delve into data warehousing and data lakes, examining their roles in modern data architectures. Additionally, we will take a deeper look at the paradigms of ingestion, methods of ingestion and APIs.
+
+Learning outcomes:
+
+A student will understand the value and usage of data warehouses and data lakes.
+
+A student will be able to identify and differentiate between data warehouses and data lakes.
+
+A student will understand the three main paradigms of data ingestion.
+
+A student will be able to identify when to implement the correct method of data ingestion.
+
+A student will understand what APIs are and how to use them.
+
+Daily guide:
+
+Content
+
+Deliverable
+
+Monday
+
+4.1 Data architecture
+
+Google Qwiklab
+
+Tuesday
+
+4.1 Data architecture continued4.2 Paradigms of ingestion
+
+Datacamp: Data Warehousing Concept, chapter 1
+
+Wednesday
+
+4.3 Methods of ingestion4.4 Application programming interfaces (APIs)
+
+Online tutorials (x2)
+
+Thursday
+
+4.4 APIs continued
+
+Finish online tutorialsPractical
+
+4.1 Data architecture
+Data architecture is the foundational framework that dictates how data is collected, stored, managed and utilised in an organisation. Within this structure, data warehousing and data lakes play pivotal roles, each serving distinct purposes and offering unique benefits. In this section, we will explore the characteristics, use cases and advantages of data warehousing and data lakes, providing a comprehensive understanding of their roles in modern data management.
+
+4.1.1 Data lakes
+A data lake is a centralised repository that allows for the storage of vast amounts of structured, semi-structured and unstructured data in its native format. Unlike traditional data warehouses, which require data to be processed and structured before storage, data lakes retain raw data until it is needed for analysis. This flexibility enables organisations to store data at scale without predefined schema requirements which facilitates diverse analytics and data-driven insights across the enterprise. Some key features and benefits of data lakes are outlined in the table below:
+
+Scalability
+
+Data lakes can scale horizontally to accommodate large volumes of data, ensuring capacity for growing data needs.
+
+Storage flexibility
+
+Support for structured, semi-structured and unstructured data formats, enabling versatile data storage options.
+
+Cost-effectiveness
+
+Typically built on commodity hardware or cloud storage, reducing infrastructure costs significantly.
+
+Schema-on-read
+
+Data is stored in its native format and structured on-demand for analysis, allowing flexibility in data usage.
+
+Advanced analytics
+
+Integration with big data processing frameworks like Apache Spark and Hadoop enables complex analytics, machine learning and real-time processing.
+
+Data lakes empower organisations to leverage their data assets fully, facilitating deeper insights and innovation across various domains from marketing analytics to IoT.[1] applications.
+
+img 18
+
+Technologies that support data lakes
+Amazon S3
+
+The cloud-based object storage service that can function as a data lake. It supports scalable storage for structured, semi-structured and unstructured data, allowing organisations to store and analyse vast amounts of data efficiently.
+
+Google Cloud Storage
+
+GCS offers a robust object storage solution that can serve as a data lake. It provides scalable storage with features like geo-redundancy and lifecycle management, supporting diverse data types and analytics workloads.
+
+Azure Data Lake Storage
+
+Microsoft Azure offers Azure Data Lake Storage, which is designed specifically to handle large-scale analytics and big data processing. It integrates seamlessly with Azure’s data analytics services, providing scalable storage and analytics capabilities.
+
+Hadoop Distributed File System (HDFS)
+
+HDFS forms the core of Apache Hadoop, a widely used platform for big data processing. It stores data across multiple nodes in a Hadoop cluster and supports various data formats, making it suitable for building data lakes.
+
+These examples illustrate how organisations can leverage different platforms and technologies to implement data lakes tailored to their specific data management and analytics needs.
+
+Netflix and Amazon S3
+
+Netflix utilises Amazon S3 as a data lake to store and manage massive amounts of raw and processed data, including video files, logs and user activity data. This data is then used to power Netflix’s recommendation engine, analytics and AI-driven personalisation features. By leveraging Amazon S3, Netflix can efficiently scale its data storage and processing needs, ensuring high availability and durability across its global operations. [Source]
+
+4.1.2 Data warehousing
+Data warehousing is a central component of modern data architecture, designed to store large volumes of structured data from various sources for reporting and analysis. A data warehouse consolidates data from disparate systems into a single repository, allowing for complex queries and data analytics. Some key features and benefits of data warehousing include:
+
+Centralised repository
+
+Data warehouses serve as centralised repositories for structured and sometimes semi-structured data from various sources within an organisation.
+
+Historical data storage
+
+Data warehouses excel in storing historical data which facilitates trend analysis, change tracking and long-term strategic insights that are crucial for organisational planning and performance evaluation.
+
+Schema-on-write
+
+A schema-on-write approach is typically used, where data is structured and organised before being ingested into the warehouse, ensuring consistency and ease of querying.
+
+Business intelligence (BI) tools integration
+
+They integrate with BI tools and analytics platforms, enabling business users to perform ad-hoc analysis, generate reports and derive insights from data.
+
+Support for complex queries
+
+Data warehouses are optimised for complex analytical queries and reporting, providing efficient aggregation, filtering and joining of data across large datasets.
+
+Scalability
+
+Modern data warehouses are designed to scale horizontally and vertically to accommodate growing data volumes and increasing query complexity.
+
+Data governance and security
+
+They include features for data governance, access control, and security mechanisms to ensure data integrity and compliance with regulatory requirements.
+
+In summary, data warehousing provides a structured and efficient way to manage large volumes of historical and integrated data, supporting comprehensive data analysis and business intelligence initiatives. Data warehouses essentially include a central repository where data is collected, transformed and stored in a structured format. They use the ETL process to clean and integrate data before storing it. They also include tools for querying, reporting and data analysis, allowing users to extract insights and generate reports efficiently.
+
+img 19
+
+Technologies that support data warehouses
+Google BigQuery
+
+A serverless, highly scalable data warehouse that enables efficient SQL queries using the processing power of Google’s infrastructure. BigQuery uses a columnar storage format and tree architecture for queries, which allows for high-speed data retrieval and analysis. It supports real-time data ingestion and integration with other Google Cloud services, making it ideal for dynamic data environments.
+Amazon Redshift
+
+Amazon Redshift is a fully managed data warehouse service that allows users to analyse data using SQL and BI tools. It is designed to handle petabyte-scale data, offering high performance and scalability. Redshift uses a columnar storage format, data compression and parallel query execution to optimise performance. The architecture includes leader nodes for managing client connections and query planning, and compute nodes for executing queries and storing data.
+
+Snowflake
+
+Snowflake is a cloud-based data warehousing solution that offers a unique architecture separating storage and compute, enabling independent scaling of each. It uses a multi-cluster shared data architecture, allowing multiple virtual warehouses to access the same data simultaneously.
+
+4.1.3 Data warehouses vs data lakes
+Understanding the differences between data warehouses and data lakes is crucial when selecting your data architecture approach as a data engineer. Both data lakes and warehouses have their own strengths and trade-offs, making each more suitable for specific use cases. Often, a data lake might be used early in a data pipeline to ingest and store raw, diverse data types, while a data warehouse could be employed later in the pipeline for structured analysis and reporting. The table and diagram below highlight these essential distinctions, helping you grasp how these systems can be leveraged effectively in practice. Keep in mind that the choice between them often depends on the nature of the data, the intended use cases and the required analytical capabilities. Depending on the use case, it may also be beneficial to have both.
+
+Feature
+
+Data lake
+
+Data warehouse
+
+Data structure
+
+Stores raw, unstructured and semi-structured data in its original format, usually as blobs or files. Retain all data in its native format for flexible analysis.
+
+Stores structured data optimised for SQL-based querying. Data is processed, organised and transformed before loading.
+
+Processing approach
+
+Uses real-time transformation. Adapts to changes easily, supporting all data types and users.
+
+Relies on predefined schemas and SQL queries for structured analysis. Typically loaded only after a use case is defined.
+
+Analytical flexibility
+
+Supports exploratory analytics and machine learning on diverse, raw data types. Ideal for capturing every aspect of your business operation.
+
+Excels in structured querying and business intelligence. Provides faster insights with current and historical data for reporting.
+
+Optimal use
+
+Ideal for agile, real-time analysis of varied and unstructured data sources. Tends to be application-specific.
+
+Suitable for centralised, structured analytics and reporting requirements, often in e-commerce and retail contexts. Tends to have a consistent schema shared across all applications.
+
+Cost efficiency
+
+More cost-effective for storing large volumes of data in its original form.
+
+Generally more expensive due to processing and optimisation for querying. Often incur higher maintenance and monitoring costs.
+
+Performance
+
+May require more processing time for complex queries due to unstructured data.
+
+Optimised for performance, with faster query results for structured data.
+
+Security and governance
+
+More challenging to manage security and governance due to diverse data types and formats.
+
+Mature security and governance controls with structured data and consistent schema.
+
+img 20
+
+Explore data lakes and warehouses by engaging with the following resources
+
+BigQuery: Qwik Start Console
+
+30 minutes, Free
+
+https://app.datacamp.com/learn/courses/data-warehousing-concepts?utm_source=google&utm_medium=paid_search&utm_campaignid=1455363063&utm_adgroupid=147761326706&utm_device=c&utm_keyword=&utm_matchtype=&utm_network=g&utm_adpostion=&utm_creative=716242057877&utm_targetid=dsa-2220136287493&utm_loc_interest_ms=&utm_loc_physical_ms=1028763&utm_content=dsagenericcoursestheory&utm_campaign=220808_1-seadsa~generic_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na-oct24&gad_source=1&gclid=CjwKCAjwmaO4BhAhEiwA5p4YL9AE2-xdt4v8gYwtc4jAH8-i2p7LJtlxheFBtlAglC5IDaTrDiLauhoCnREQAvD_BwE[Datacamp: Data Warehousing Concepts]
+
+Work through chapter 1: Data Warehouse Basics
+
+NOTE: Create a free account to gain access to the first chapter of various relevant courses.
+
+4.1.4 Using data lakes and data warehouses
+Using a data lake to enhance marketing strategies in retail
+A retail company operates an e-commerce platform and wants to enhance its marketing strategies and customer personalization efforts. They decide to implement a data lake using Amazon S3 as the storage solution and Apache Spark for data processing and analytics. The following use case demonstrates how a data lake can serve as a central repository for diverse data types, enabling advanced analytics and personalised marketing initiatives that drive business success in the digital age. A detailed view of the process that was followed to achieve this can be seen in the diagram below:
+
+img 21
+
+In this use case, a data lake allows the company to collect, store and process large volumes of diverse data types in real-time. This enables the integration and enrichment of data from multiple sources, providing comprehensive customer profiles and valuable insights through advanced analytics and machine learning. By leveraging these insights, the company can implement personalised marketing strategies, optimise campaigns and ultimately improve customer satisfaction, retention rates and sales conversion rates. This will, in turn, lead to higher return on investment and revenue growth.
+
+Integrating Data Lakes and Warehouses for E-commerce Analytics
+A retail company running a large-scale e-commerce platform aims to optimise its operations, enhance customer experiences and improve decision-making. To achieve this, they implement a hybrid data architecture using Google Cloud Storage (GCS) as the data lake and BigQuery (BQ) as the data warehouse. This setup allows them to handle both raw and structured data efficiently, supporting advanced analytics and real-time decision-making across the organisation. A detailed outline of the process can be seen below:
+
+img 22
+
+This use case demonstrates how a company can effectively use a data lake for raw data ingestion and storage while relying on a data warehouse for structured analysis and reporting. The integration of these two systems within a data pipeline enables the organisation to harness the strengths of both approaches, driving meaningful business outcomes.
+
+4.2 Paradigms of ingestion
+A paradigm of ingestion refers to a fundamental approach or methodology used to collect, process and store data from various sources into a target destination (sink). It encompasses the overarching principles and techniques employed to manage the flow of data within a data pipeline, including extraction, transformation and loading processes. Up until now we have only addressed more conventional ETL pipelines. There are however three main paradigms of data ingestion, namely, ETL (extract, transform, load), EL (extract, load), and ELT (extract, load, transform). We will take a brief look at each paradigm and discuss their advantages and disadvantages.
+
+ETL (extract, transform, load)
+img 23
+
+ETL ensures data is clean and structured before loading into the destination system, making it ideal for data warehousing and BI applications. It can however be time-consuming and resource-intensive, leading to potential delays in data availability.
+
+EL (extract, load)
+img 24
+
+EL provides a rapid and straightforward method to load raw data into a central repository, making it suitable for situations requiring quick data consolidation. A shortcoming worth mentioning is the fact that EL lacks data transformation, which may necessitate additional processing downstream to make the data useful.
+
+ELT (extract, load, transform)
+img 25
+
+ELT leverages the processing power of modern data warehouses to perform transformations after loading, enabling faster data ingestion and real-time analytics. This paradigm can however be complex to manage, requiring robust data processing capabilities in the target system to handle transformations efficiently.
+
+4.3 Methods of data ingestion
+Methods of ingestion refer to the various approaches and techniques used to collect, process and store data from the source into a sink, such as a data warehouse, data lake or analytical database. These methods play a crucial role in managing the flow of data within an organisation, enabling efficient data processing, analysis and decision-making. Key methods of ingestion include batch ingestion, stream ingestion and hybrid approaches that combine elements of both batch and stream processing to meet specific data ingestion requirements. Each method offers distinct advantages and is suited for different use cases, depending on factors such as data volume, latency requirements, processing complexity, cost and real-time analytics needs. Understanding the characteristics and capabilities of each ingestion method is essential for designing effective data pipelines and ensuring the timely and reliable delivery of data for business insights and decision-making.
+
+Batch ingestion
+Batch ingestion involves processing and transferring large volumes of data in predefined, periodic batches . Data is collected from sources over a specified period, stored temporarily, processed in batches and then loaded into the sink. This method entails collecting and processing data at fixed intervals, such as hourly, daily or weekly batches, allowing for efficient resource utilisation, especially for large-scale data processing tasks. Batch processing is suitable for scenarios where data latency is not critical, such as historical analysis, reporting and data warehousing. It is suitable for use cases where business decisions are made based on the data, but where these are not required to be made in real time. Retail companies often use batch ingestion to generate daily sales reports by processing transaction data in predefined intervals, such as at the end of each day.
+
+Typical tools used for batch ingestion include Apache Hadoop, which offers various ecosystem tools like MapReduce, Hive, and Pig, as well as Apache Spark and Apache Flink for distributed computing and processing tasks. Additionally, commercial ETL tools like Talend, Informatica, and IBM DataStage are commonly employed for batch ingestion pipelines. Take some time to explore the selection of tools available for batch ingestion.
+
+Batch ingestion in e-commerce
+
+An e-commerce company collects sales transactions every hour and processes them in hourly batches to update sales analytics dashboards, providing timely insights while balancing resource usage and processing efficiency.
+
+Stream ingestion
+Stream ingestion involves processing data in real-time as it is generated or received . Data is continuously ingested, processed and analysed in near real-time, enabling rapid insights and decision-making. Stream processing systems are designed to handle high-velocity data streams and support features such as windowing, event-time processing and state management. Stream processing is suitable for use cases requiring real-time analytics, monitoring, alerting and event-driven applications. Common tools for stream ingestion include Apache Kafka, which is a distributed streaming platform, as well as Apache Flink and Apache Storm for real-time data processing at scale. Managed services like Amazon Kinesis by AWS are also popular choices for ingesting, processing and analysing real-time data streams.
+
+Stream ingestion in finance
+
+A financial institution monitors transactions in real-time, streaming data continuously to detect and flag suspicious activity immediately, allowing for prompt intervention and enhanced security.
+
+Hybrid data ingestion
+The hybrid data ingestion approach seamlessly integrates both batch and stream methodologies, offering organisations a versatile solution to tackle diverse data ingestion and processing demands. It harmonises the structured, scheduled processing of batch ingestion with the real-time responsiveness of stream processing, providing a comprehensive framework for data management. This approach grants organisations the nimbleness to handle both historical data analysis and immediate insights gleaned from live data streams, fostering adaptability in the face of fluctuating data dynamics. Leveraging an amalgamation of batch and stream tools such as Apache Kafka and Apache Spark, organisations can orchestrate their data workflows with finesse, optimising resource utilisation and enhancing decision-making capabilities. In a retail setting, a hybrid ingestion approach could enable the analysis of both real-time customer transactions and historical sales data, informing dynamic pricing strategies and personalised marketing campaigns.
+
+Hybrid ingestion in e-commerce
+
+An e-commerce platform processes customer orders using batch ingestion to update inventory and sales reports daily when shops replenish their stock, while also using stream ingestion to track user interactions and instantly update personalised recommendations when a customer places an order.
+
+4.4 Application programming interfaces (APIs)
+An API, or Application Programming Interface, is a set of rules and tools that allow different software applications to communicate with each other. Think of an API as a bridge that connects two programs, enabling them to share data and functionality. For example, when you use a mobile app to check the weather, the app uses an API to request data from a weather service. The API sends this request to the weather service’s server, which then returns the data back through the API, and the app displays the weather forecast. A similar example can be seen in the diagram below:
+
+img 26
+
+img 27
+
+APIs are essential as they allow different systems and applications to work together seamlessly. They enable the integration of various services, making it possible for developers to build more complex and feature-rich applications. For instance, APIs allow you to embed Google Maps on a website, integrate payment systems like PayPal into an online store or pull in social media feeds from platforms like X.
+
+To understand how an API works, let’s break it down into two simple steps:
+
+Client Request :
+
+The client (usually a software application like a mobile app or a website) makes a request to the server. This request is often made using HTTP methods such as GET, POST, PUT or DELETE. We will have a closer look at HTTP methods soon.
+
+Server Response :
+
+The server receives the request, processes it, and then sends back a response. This response could be data, confirmation of an action or an error message.
+
+The data exchanged between the client and the server is typically in a structured format like JSON or XML .
+
+To effectively work with APIs, it’s important to understand some key concepts that define how APIs operate and communicate between clients and servers. Below are some core terms that you should understand:
+
+img 28
+
+Common HTTP methods
+In the table below you will find some of the most commonly used HTTP methods. When extracting data from various sources using APIs, you often use these methods to interact with the API endpoints and perform specific actions:
+
+GET
+
+Used to retrieve data from a specified resource. In data ingestion, you may use GET requests to fetch data from external sources, such as databases, web services, or cloud platforms.
+
+PUT
+
+While less common in data ingestion, PUT requests can be used to create or update existing resources on the server. This could be relevant if you need to modify data before ingesting it into your system.
+
+POST
+
+Widely used in data ingestion, POST requests are employed to submit new data to the server for processing. This method is often used to send data from client applications to server endpoints for ingestion.
+
+DELETE
+
+Although less common in data ingestion scenarios, DELETE requests can be used to remove resources from the server. This may be relevant if you need to delete outdated or redundant data from your system during the ingestion process.
+
+In the example below you will find HTTP methods that a veterinary practice may typically use to manage pet data:
+
+img 29
+
+Let us have a closer look at each HTTP method in the context of this example:
+
+GET
+
+This read-only operation retrieves the details of a pet using its unique ID. For example, the system fetches a pet’s medical history or general information, such as name and species, when a client requests it.
+
+PUT
+
+If a pet’s status changes, such as being marked as 'healthy' after treatment, PUT can update the pet’s record. Additionally, if a new pet is added to the system, PUT can create a new record if the pet does not already exist.
+
+DELETE
+
+This operation removes a pet’s record from the system using its unique ID. For instance, if a pet was incorrectly added to the system, DELETE can remove its profile.
+
+POST
+
+POST is often used to submit new data to the server. In this case, it is used to upload images, such as a photo of the pet. POST is however not limited to images. It is generally for sending any kind of data back to the server, such as creating new entries or submitting forms.
+
+Understanding these HTTP methods is crucial for designing robust data ingestion pipelines that efficiently retrieve, modify, and store data from various sources using APIs. Each method serves a specific purpose in the ingestion workflow, enabling seamless interaction with external systems and facilitating the transfer of data into your application or database.
+
+PUT vs POST
+You may have noticed in the veterinary clinic example above that both PUT and POST are used to submit data. While both HTTP methods can be used for sending data to a server, they differ in their purpose and behaviour. PUT is primarily used for updating an existing resource or creating one if it doesn’t already exist, while POST is used to submit data to create a new resource, often leading to changes in the server’s state. A key distinction is that PUT is idempotent, meaning repeating the same request results in the same outcome, whereas POST is not. Making the same POST request multiple times could create multiple resources because each POST request is intended to perform an action that may result in a new or different resource being created with each execution. An example of this can be seen in the table below.
+
+The following table outlines the differences between PUT and POST:
+
+Feature
+
+PUT
+
+POST
+
+Purpose
+
+Update or create a specific resource
+
+Create a new resource or submit data
+
+Idempotency
+
+Idempotent, same request = same result
+
+Not idempotent, same request = new result
+
+URL
+
+Client specifies the resource URL
+
+Server decides where the new resource is created
+
+Example
+
+`/items/123`Updates the specific item with ID 123 or creates it if it doesn’t exist
+
+`/items`Creates a new item, server assigns it an ID and returns its location
+
+To summarise, PUT is used when you are interacting with a known resource and POST when the server handles where and how the resource is created.
+
+Status codes
+Status codes are three-digit numbers returned by a server in response to an API call. They provide essential feedback about the outcome of the request, helping both the client and developer understand what happened. Status codes convey information such as whether a request was successful, if there was a client error or if the server encountered an issue. Understanding status codes is crucial for troubleshooting, debugging and ensuring smooth communication between clients and servers in any API interaction.
+
+Some common status codes that data engineers often encounter include:
+
+Status code
+
+Category
+
+Description
+
+200 OK
+
+Success
+
+The request was successful, and the server returned the requested data.
+
+201 Created
+
+Success
+
+The request was successful, and a new resource was created as a result.
+
+400 Bad request
+
+Client error
+
+The server cannot process the request due to a client error.
+
+401 Unauthorised
+
+Client error
+
+Authentication is required, and the provided credentials are missing or invalid.
+
+403 Forbidden
+
+Client error
+
+The client does not have permission to access the requested resource.
+
+404 Not found
+
+Client error
+
+The requested resource could not be found on the server.
+
+500 Internal server error
+
+Server error
+
+The server encountered an unexpected condition that prevented it from fulfilling the request.
+
+503 Service unavailable
+
+Server error
+
+The server is currently unable to handle the request, often due to overload or maintenance.
+
+Status codes are critical for API interactions because they provide immediate feedback on the success or failure of a request. By interpreting these codes, developers can quickly identify issues, make necessary corrections and ensure that applications behave as expected. This leads to more reliable and efficient communication between different systems.
+
+Types of APIs
+There are various types of APIs, each designed to meet different needs and use cases in software development. Understanding these types helps you choose the right API for your specific project.
+
+REST APIs (Representational State Transfer) :
+
+The most common type of API.
+
+Uses standard HTTP methods and is typically stateless, meaning each request from the client to the server must contain all the information needed to understand and process the request.
+
+img 30
+
+Management of product inventory
+
+A REST API allows a client to retrieve a list of products using a GET request, update product details with a PUT request to /products/123 , or create a new product with a POST request to /products . This enables seamless communication between the frontend interface and the backend database.
+
+SOAP APIs (Simple Object Access Protocol) :
+
+A protocol-based API that uses XML to communicate between the client and server.
+
+Known for being more rigid and requiring strict standards. Often used in enterprise environments.
+
+img 31
+
+Financial transaction processing
+
+A SOAP API allows a client to send a request to initiate a money transfer, verify account details or retrieve transaction history. It ensures reliable, standardised communication between different systems while maintaining strict security protocols.
+
+GraphQL APIs :
+
+A newer type of API that allows clients to request exactly the data they need, no more and no less.
+
+Provides more flexibility than REST and is useful when working with complex data.
+
+img 32
+
+In the diagram, a mobile client is fetching only the songs and musicians that they want using a graphQL query [source].
+
+Social media data retrieval
+
+A graphQL API allows a client to request specific user information, such as a profile picture and recent posts, all in a single query. This flexibility reduces the number of requests and allows clients to retrieve exactly the data they need.
+
+Webhooks :
+
+Unlike traditional APIs where the client makes requests, webhooks allow the server to send data to the client when a specific event occurs.
+
+Often used for real-time updates, like receiving notifications when someone mentions you on social media.
+
+img 33
+
+In the diagram above, application A registers a user operation as an event. The event triggers and sends a HTTP POST request to application B. The webhook endpoint (public API) receives the POST request. Application B completes the request and messages application A to indicate that the task is complete.
+
+Real-time message notifications
+
+When a user receives a new message, a webhook triggers an HTTP POST request to a specified URL, immediately notifying the client’s server of the new message. This allows the application to update the user interface or perform other actions in response to the event in real time.
+
+Read from an API
+Reading from an API involves sending HTTP requests to specific endpoints provided by the API and handling the responses returned by the server. Here’s a general overview of the steps involved in reading from an API:
+
+Identify the API endpoint:
+
+Determine the URL endpoint of the API you want to access. This endpoint represents the specific resource or functionality you wish to interact with.
+
+Choose the HTTP method:
+
+Determine the appropriate HTTP method to use for your request based on the API documentation. Common HTTP methods already mentioned in this section include GET (for retrieving data), POST (for submitting data), PUT (for updating data), and DELETE (for deleting data).
+
+Construct the request:
+
+Construct an HTTP request to send to the API endpoint. This typically involves specifying the HTTP method, headers (such as authentication tokens or content type), and any parameters or data required by the endpoint.
+
+Send the request:
+
+Use a library or tool to send the HTTP request to the API endpoint. Popular choices for making HTTP requests in python include requests , urllib and http.client .
+
+Handle the response:
+
+Once the request is sent, the server will respond with data or an error message. Handle the response by parsing the data (if applicable) and extracting the relevant information from the response body. Depending on the API, responses may be in various formats such as JSON, XML, or plaintext.
+
+Process the data:
+
+Process the data returned by the API according to your requirements. This may involve extracting specific fields, transforming the data into a different format, or storing it in a database or file.
+
+Error handling:
+
+Implement error handling to handle cases where the API request fails or returns unexpected results. This ensures robustness and reliability in your data ingestion process.
+
+Example 1: urllib in python
+
+In python, urllib is a module that provides a collection of functions for working with URLs, making HTTP requests, and handling responses. When referring to "query endpoint" in the context of urllib , it means using urllib to interact with an API endpoint by sending HTTP requests, such as GET or POST requests, to retrieve data or perform operations on a remote server. This involves constructing the URL of the API endpoint and using urllib functions to make requests to that endpoint, which can include querying for data or submitting data to the server. Essentially, it involves using urllib to communicate with the specified endpoint to exchange data with the server.
+
+Below is a basic example demonstrating how to use urllib in Python to query an API endpoint using a GET request:img 35
+
+In this example:* We import the urllib.request module to make HTTP requests.* We define the URL of the API endpoint we want to query ( api_url ).* We use urllib.request.urlopen() to send a GET request to the API endpoint and retrieve the response.* We read the response data using .read() , decode it from bytes to a UTF-8 string, and store it in response_data .* Assuming the response data is in JSON format, we use json.loads() to parse the JSON data into a python dictionary ( json_data ).* Finally, we print the parsed JSON data.
+
+The example above demonstrates a simple use case of urllib for querying an API endpoint and handling the response data. Depending on the specific API and its requirements, you may need to include additional headers, parameters, or handle authentication.
+
+Example 2: Limit and pagination
+
+The following example demonstrates reading from an API using python, and utilising limit and pagination. * Limit controls the maximum number of results returned per request.* Pagination enables navigation through multiple pages of results when dealing with large datasets from APIs.
+
+img 38img 39
+
+In this example:* We define the API endpoint URL ( api_url ) and set up parameters for the API request ( params ). The ' limit ' parameter specifies the maximum number of records to retrieve per page, and the ' page ' parameter indicates the current page number for pagination.* We send a GET request to the API endpoint using the requests.get() function, passing the endpoint URL and parameters as arguments.* Upon receiving a successful response ( status code 200 ), we parse the JSON response data into a python dictionary ( data ).* We process the retrieved data by iterating over the ' records ' in the response and performing some action on each record.* We check if there are more pages available for pagination by comparing the total number of pages ( data['total_pages'] ) with the current page number ( params['page'] ). If more pages are available, we print a message suggesting pagination.* Error handling is implemented to handle cases where the API request fails or returns unexpected results.
+
+The second example demonstrates how to use parameters like limit and pagination to control the amount of data retrieved from an API and navigate through multiple pages of results.
+
+Best practices: Create your own API
+When creating your own API, there are several essential components and considerations to ensure its functionality, usability and scalability. Before you begin with creating your own API, consider the following:
+
+Define the purpose and scope
+
+Clearly articulate the API’s objectives, including the types of data or services it will offer, its target audience and specific use cases it will address.
+
+Design and documentation
+
+Design API endpoints, request/response formats and data schemas. Provide comprehensive documentation including endpoint descriptions, request parameters, response formats and usage examples.
+
+Authentication and authorisation
+
+Secure the API using authentication methods such as API keys or OAuth tokens and establish authorisation rules to control access to resources and actions.
+
+Testing and error handling
+
+Rigorously test API endpoints to ensure they function correctly under various conditions. Implement robust error handling with meaningful messages and consistent error formats.
+
+Performance and security
+
+Optimise performance by minimising response times and implementing caching. Ensure security by protecting against common threats, using encryption and adhering to best practices for secure data transmission and storage.
+
+By considering these essentials when creating your own API, you can develop a robust, well-documented, and reliable API that meets the needs of your users and stakeholders while adhering to industry best practices.
+
+Test your knowledge about APIs by working through the following tutorials
+
+* Python REST APIs with Flask, Connexion and Swagger* How to create a horoscope API with Beautiful Soup and Flask
+
+Week 4 practical
+Practical for submission here
+
+Fork the Jupyter notebook from Gitlab so that you have your own Gitlab repo with the starter code. Complete the notebook (instruction in the notebook file) so that the pipeline runs end-to-end and produces the required output.csv file. Submit the code by pushing back to the GitLab repository.
+
+Note	Ensure your notebook produces the required output.csv file, as the auto-grading will run tests against this file. You will also see the starter code contains a .lms/exercises.toml file. Do not edit or remove this directory or file, as this is how the LMS knows to which project to connect the submission.
+Week 4 consolidation
+Self-assessment
+Before closing off the week by completing the week 4 quiz, let’s revisit the learning outcomes for this week by asking ourselves the following questions:
+
+Do I understand what APIs are and how to use them?
+
+Am I able to understand the value and usage of data warehouses and data lakes?
+
+Am I able to identify and differentiate between data warehouses and data lakes?
+
+Do I understand the three main paradigms of data ingestion?
+
+Am I able to identify when to implement the correct method of data ingestion?
+
+If you are not confident that you can answer ‘yes’ to the above questions, revisit the necessary content from this week and consult the additional resources below to strengthen your understanding.
+
+Additional resources
+
+Videos
+
+* APIs explained: real world examples* Data warehouse vs data lake cheatsheet* APIs for beginners* Data warehouse vs Data lake
+
+Reading
+
+* How to use an API* Databases vs Data Warehouses vs Data Lakes* Data warehouse vs data lake
+
+Revision
+
+* Python and REST APIs
+
+Weeks 2 to 4 Assessment
+Spend some time consolidating all the new knowledge you have acquired before completing the assessment, to be conducted by the SP team. The quiz is based on all the content covered in from week 2 to week 4.
+
+Completion check
+Ensure that you have completed all the compulsory deliverables for this week.
+
+Deliverable:
+
+Expectation:
+
+Google Qwiklabs:
+
+- BigQuery: Qwik Start Console
+
+Complete online lab
+
+https://app.datacamp.com/learn/courses/data-warehousing-concepts?utm_source=google&utm_medium=paid_search&utm_campaignid=1455363063&utm_adgroupid=147761326706&utm_device=c&utm_keyword=&utm_matchtype=&utm_network=g&utm_adpostion=&utm_creative=716242057877&utm_targetid=dsa-2220136287493&utm_loc_interest_ms=&utm_loc_physical_ms=1028763&utm_content=dsagenericcoursestheory&utm_campaign=220808_1-seadsa~generic_2-b2c_3-row-p2_4-prc_5-na_6-na_7-le_8-pdsh-go_9-nb-e_10-na_11-na-oct24&gad_source=1&gclid=CjwKCAjwmaO4BhAhEiwA5p4YL9AE2-xdt4v8gYwtc4jAH8-i2p7LJtlxheFBtlAglC5IDaTrDiLauhoCnREQAvD_BwE[Datacamp: Data Warehousing Concepts]
+
+Complete chapter 1
+
+APIs - online tutorials:
+
+- Python REST APIs with Flask, Connexion and Swagger
+
+- How to create a horoscope API with Beautiful Soup and Flask
+
+Work through each tutorial
+
+Week 4 exercise
+
+Submit notebook to gitlab for grading
+
+Assessment
+
+To be delivered by SP Team
+
+1. IoT (Internet of Things) refers to a network of interconnected devices and sensors that collect, exchange, and analyse data over the internet to enhance automation and efficiency across various applications.
+Week 3: Database management systems
+Week 5: Data processing
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

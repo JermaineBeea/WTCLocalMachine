@@ -1,0 +1,126 @@
+Programming Web Pages: Javascript
+JavaScript, as a programming language, looks very familiar to other curly-bracket languages (e.g. Java). Yet, there are a few stark differences (and quirks):
+
+It is a dynamically typed language (just like Python)
+
+It supports objects (just like Python, Java, etc.) but uses a prototype based inheritance. This turns your traditional understanding of this or self upside down. Don’t get anxious because you will learn about it and its power as you get better at JavaScript.
+
+There is equality a == b and then there is strict equality a === b. The former does type coercion before testing for equality and the latter treats both sides as being of the same type. Knowing about Javascript’s sameness rules will reduce frustration.
+
+There are some strange constants, more than just null. There is undefined, NaN (not a number), and Infinity (and -Infinity and +Infinity).
+
+Because you have learned how to program with a few languages already, you should find a most of JavaScript familiar and easy to understand. In the sections below, you will dive into parts that are useful to web development. If you are struggling to understand parts of the language, then quickly look up the parts that you don’t understand and move one.
+
+Note	JavaScript can also be used for server side development using node.js. In this module, the focus is purely on client-side web applications.
+JavaScript References
+There are lots of good JavaScript references on the internet. Here are two that you can use. And share others that you find with your peers.
+
+Mozilla Developer Network JavaScript Reference is a a comprehensive reference guide.
+
+JavaScript Cheatsheet is a compact single page summary that is good for quick lookups.
+
+A Simple Web App
+Suggested Time: 8 hours
+
+What is JavaScript?
+This is a quick read that explains what JavaScript is and what kind of programming you can do with it. It also gives a useful explanation of how JavaScript runs in a browser.
+
+Guess the number
+In this section, you walk through writing a simple guess the number game. Importantly, you will experience how to work with the DOM. At this stage, no CSS comes into play because the focus is on JS and the DOM.
+
+Troubleshooting JS
+You are introduced to dealing with JS errors and how to use the browser developer tools with JS code.
+
+SELF-ASSESSMENT
+It may seem quick to dive right into a self-assessment after such a short example. But you have a lot of programming experience already, and you should be able to work you way through solving the problem, while figuring out how JS does strings, arrays, loops and numbers. Remember, this is not for submission.
+
+Functions and Methods
+Before you dive into the object-oriented aspects of JS, you should also familiarise yourself with functions. Functions are kind-of like objects too because they are actually higher-order functions. This means that you can pass functions around like data; as parameters, return values and bind them to variables.
+
+Events
+Web applications is client-side programming with the browser being the run-time environment and the HTML DOM being the surface of the user interface. It should not be surprising that the user interaction are modeled as events. In this section, you learn about web page user interaction and browser events and how to program behaviour when the events occur.
+
+SELF-ASSESSMENT
+Test yourself by writing a web-app that displays images from a row of thumbnails. This is not for submission.
+
+Object Oriented JS
+Suggested Time: 8 to 16 hours
+
+You have already been practicing object oriented programming in Java and you are already familiar with concepts of encapsulation, composition and inheritance. JS also supports object-oriented programmning. However, syntactically it may appear a little odd because all objects in JS seem to be merely map data structures where the values are either data or functions. That’s not too difficult to understand conceptually. The most confusing part is unlearning what you know about inheritance in a language like Java and wrapping your head around JS’s prototype based inheritance.
+
+There are so many subtleties and concepts tucked inside JS that it is important that you cover every section of Introducing JavaScript objects. Do not be tempted to skip over any part. Work through each section carefully. Here are quick links to each section.
+
+Basics
+This introduces you to objects from a JS perspective, and shows you the syntax for working with objects.
+
+Object Oriented JS
+This covers some the basic concepts of object orientation. Use it as a refresher but pay very careful attention to how object orientation is implemented in JS. That is not obvious.
+
+Object Prototypes
+Here’s the weird part that actually is JS’s superpower. Don’t skim over this. You will encounter a lot of code that relies on prototypes.
+
+Inheritance
+Know that you know a bit about prototypes, the inheritance mechanics of JS will make a lot more sense.
+
+JSON
+You are already familiar with JSON and so this should already be familiar to you. Use this section as a quick refresher.
+
+Practicing OOJS
+This section applies what you have learned so far to create a fun web app that bounces balls around the page. It’s not your typical business style web app, but it demonstrates OOJS appropriately. You will need to do this step-by-step because it is used in the self-assessment coming next.
+
+SELF-ASSESSMENT
+In this self-assessment, you add new features to the bouncing balls web app. Remember, this is not for submission.
+
+Accessing Web APIs
+Suggested Time: 8 to 16 hours
+
+You are already familiar with web APIs and have written quite a bit of code that calls Web APIs in various languages. This section shows you how to call web APIs using JS inside a browser.
+
+API Refresher
+This section should be a quick refresher of Web APIs. Also, there is some code and explanations of the browser context in which the JS code runs that calls an external API.
+
+Manipulating the DOM
+When an API is called, we almost certainly want to update the web page with data from API call, or a transform the DOM based on the result. This section walks through the more common ways of updating the DOM. Think of this as the pre-requisite to making JS API calls.
+
+AJAX
+Fetching data from an external web API was originally called AJAX - Asynchronous JavaScript and XML because the code used the JS object XMLHttpRequest. The term Ajax is still commonly used, though. In more recent times, the Fetch API is gaining use. However, you will encounter AJAX code a lot and so it is important to know how to do both.
+
+Using 3rd Party APIs
+This section introduces a common approach to working with third party APIs, including a few commonly used APIs on the internet such as Google Maps, etc. This is a simple section if you paid attention to the previous two sections.
+
+Understanding Cookies
+Cookies are small pieces of data that a server sends for session management (logins, shopping carts, game scores, etc), personal preferences (e.g. themes), and tracking (recording user behaviour). By far, the abuse of cookies for tracking user behaviour has given cookies a bad reputation, to the point that laws such as GDPR in Europe have been enforced to protect the privacy of personal data arising from such abuse. It is important to understand cookies because they are still heavily used.
+
+Client-side Storage
+The WebStorage API and IndexDB API offer a good alternative to cookies. This is a relatively long section so make sure you go through it thoroughly.
+
+Note	There is no self-assessment for this section. You will get to practice this knowledge in the exercise submission.
+Asynchronous JS
+Suggested Time: 8 to 16 hours
+
+This section introduces you to asynchronous programming using JS. Over the years, asynchronous programming was implemented using different techniques that were appropriate at that time. It is important that you are familiar with these different approaches because you will encounter older code bases that adopted those techniques.
+
+Asynchronous Programming Concepts
+This section is an overview of asynchronous programming as a concept. Generally speaking, it can be a challenging concept to understand. So, take care to not skim over it lightly.
+
+Async with JS
+This section is quick walkthrough the different ways in which async code is implemented with JS. Treat this as an introduction because the following sections go into the details that you need.
+
+Timeouts and Intervals
+Timeouts are probably the first implementation of async programming. This section explains this technique in detail and highlights the problems with it. It’s generally avoided but it is important to be aware of it because you may encounter such code or be asked about it in job interviews.
+
+Promises
+Promises is a popular technique and once you wrap you head around the concept, it is produces quite well-read code. Beyond JS, you will encounter promises in other mainstream languages.
+
+Async/await
+You encountered async/await when programming with Dart and Flutter. While this approach is currently preferred, older browsers don’t support this.
+
+Choosing the right approach
+This section wraps up the different techniques and gives pointers on which approach to use under specific contexts.
+
+Note	There is no self-assessment for this section but you will be using async programming with JS in the exercise for submission and the team project.
+Making Web Pages Pretty: Cascading Style Sheets (CSS)
+Web Applications
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

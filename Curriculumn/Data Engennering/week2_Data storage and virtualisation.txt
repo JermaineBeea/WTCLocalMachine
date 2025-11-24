@@ -1,0 +1,595 @@
+Week 2: Data storage and virtualisation
+Data storage systems refer to the various technologies and infrastructures used to store, manage, and retrieve digital data. These systems can range from physical devices like hard drives and solid-state drives to cloud-based solutions and data warehouses. The primary function of data storage systems is to securely and efficiently store data in a way that ensures easy access, retrieval, and management, supporting the needs of applications and users across different environments. This week, we will explore computing hardware, data storage and transfer methods, common data formats, and various types of distributed file systems, including those used in cloud environments, to understand their significance and applications in modern data management.
+
+Learning outcomes:
+
+A student will be able to differentiate between different storage media, and identify them based on data transfer rates.
+
+A student will be able to convert between different storage units, as well as between different data transfer rates.
+
+A student will be able to identify different storage formats, and understand how they relate to different storage systems.
+
+A student will have a good understanding of distributed file systems as a storage medium, as well as knowledge of how those systems map to different cloud providers.
+
+Lastly, a student will be able to create Docker containers and understand operating system virtualisation.
+
+Daily guide:
+
+Content
+
+Deliverable
+
+Monday
+
+2.1 Computing hardware2.2 Data storage and transfer
+
+Transfer speed exercise
+
+Tuesday
+
+2.3 Common data formats2.4 Distributed file systems
+
+Google Qwiklabs
+
+Wednesday
+
+2.4 Distributed file systems continued
+
+Cloud storage practical
+
+Thursday
+
+2.5 Operating system virtualisation
+
+Docker tutorial
+
+Friday
+
+Consolidation
+
+Quiz
+
+2.1 Computing Hardware
+The storing of data in systems (e.g. databases) requires physical storage devices. The quantity of information stored and the speed at which we can read or write it, relies on the type of physical storage used by the system (e.g. hard disks). Additionally, these read and write speeds are also affected by the processing power available to the system hosting the data, i.e. the more powerful the central processing unit (CPU) is, the more instructions.[1] and data may be processed by that system in a certain period of time. Lastly, the speed at which you can access data on a remote system – a computer that you need to access via a network from your own host — may also be affected by network speed.
+
+Consequently, understanding the physical computing components and their performance characteristics is essential to storing, accessing, processing and transferring data.
+
+Consider the standard conceptual components of a modern computer in the image below (GCSE). Your CPU will process instructions and data received from input devices, store data currently in use by the system in primary storage (high speed and costly memory), and read and write data stored for later or longer term use in secondary storage (cheaper, less performant storage).
+
+img 5
+
+The CPU, primary storage and secondary storage are the most important components for data engineering workloads. Modern computers allow for multi-core processors (multiple CPUs on a single chip) and it is common for a laptop computer to have two or four such cores on a single chip.[2]. The more cores available, the more work can be done in parallel. Primary storage is memory that is directly accessible to the CPU. The CPU continuously reads instructions stored there and executes them as required. The most important primary memory for this course is random access memory (RAM). This memory is volatile and does not retain information if a computer is restarted. Lastly, secondary storage is important as it underpins the databases and file systems. This type of storage is not directly accessible by the CPU and access times are significantly slower. This storage includes hard disk drives (HDD) and solid state drives (SSD).
+
+How files are processed
+
+Loading a file from your laptop into a text editor (e.g. Notepad, Word) requires that file to be read from the disk (secondary storage), to RAM (primary storage) so that it may be presented to the user. Saving your edits means that what is in memory (RAM), is persisted/written back to the disk (secondary storage). Due to the temporary nature of RAM, if your editor freezes or your laptop restarts, your edits will be lost if not persisted to secondary storage.
+
+These notions extend to the computing hardware in use in the cloud. The image below depicts a blade server which may be used in a data centre. Each node may house two CPUs (with multiple cores per CPU), 8 RAM chips (DIMMs on the image), and allow disks to be added in the drive bays.
+
+img 6
+
+2.2 Data storage and transfer
+Understanding storage media and related concepts is crucial for effectively managing data storage systems. This section covers storage units (e.g. MB, GB, GiB), the types of storage media (HDDs, SSDs, RAM) and data transfer speeds (MB/s, Mbits/s), highlighting their impact on data transfer and system performance. Additionally, we will discuss computing fundamentals like vCPUs and RAM, which influence data processing efficiency.
+
+Storage units
+Data units measure digital information, with common units including bytes (B), kilobytes (KB), megabytes (MB), gigabytes (GB), and terabytes (TB). These units represent progressively larger quantities of data, helping to quantify and manage storage capacity and data transfer. You will find a brief description of the various storage units in the table below:
+
+Byte (B)
+
+A byte is a unit of data that consists of 8 bits.[3]. Bytes are used to represent characters, numbers, and other data in computer systems. They provide a basic unit of storage and processing in computing, with each byte capable of representing a range of values from 0 to 255.
+
+Kilobyte (KB)
+
+Approximately 1,000 bytes
+
+Megabyte (MB)
+
+Approximately 1 million bytes
+
+Gigabyte (GB)
+
+Approximately 1 billion bytes
+
+Gibibyte (GiB)
+
+Approximately 1.07 billion bytes. GiB is used in computing contexts where binary prefixes are standard, providing a more precise measurement than GB.
+
+Terabyte (TB)
+
+Approximately 1 trillion bytes
+
+Why Binary?
+
+“When we use the word bit, we’re using a contraction for b inary dig it , something that can hold a zero or one and nothing else. We organise bits into groups of eight, called bytes or octets, and we organise the octets into words, often of 32 or 64 bits. Everyone knows that. But why?” (https://k suweb.kennesaw.edu/faculty/rbrow211/papers/why_binary.html[Bob Brown] _)_Ultimately, digital computers need to be able to represent discrete values, and a binary circuit can do this very reliably. Additionally, the binary number system (base 2) can express any quantity that you may be able to express in the conventional decimal (base 10) system.
+
+Storage media
+Storage media (secondary storage) are the physical devices used to store data. There are three main types:
+
+Rotating Hard Drives (HDDs):
+
+Traditional storage devices that use spinning disks to read and write data. They are generally cheaper per gigabyte and offer large storage capacities but have slower read/write speeds compared to solid-state drives. (Wikipedia)
+
+Solid-State Drives (SSDs):
+
+Use flash memory to store data, offering much faster read/write speeds than HDDs. They are more expensive per gigabyte but are preferred for performance-critical applications. SSDs are increasingly replacing HDDs in laptops (not just for read/write performance, but also due to the fact that they suffer fewer mechanical failures as they have no moving parts). img 7
+
+Random Access Memory (RAM):
+
+Volatile memory used for temporary data storage while a computer is running. RAM is much faster than both HDDs and SSDs but is not suitable for long-term storage as it loses data when the power is turned off.
+
+Transfer rates
+Data transfer rates determine how quickly data can be moved from one place to another and are commonly measured in:
+
+* Kilobytes per second (KB/s)
+
+Measures data transfer speed in thousands of bytes per second. It is often used for lower speed data transfer scenarios.
+
+* Megabits per second (Mbits/s)
+
+Measures the amount of data transferred per second in megabits. Commonly used in network and internet speeds to denote the rate of data transmission over networks or broadband connections. Note that 1 byte = 8 bits, so 1 MB/s = 8 Mbits/s.
+
+Megabytes per second (MB/s)
+
+Measures the amount of data transferred per second in megabytes. Used to measure file transfer speeds, such as downloading files or transferring data between storage devices.
+
+* Gigabits per second (Gbps)
+
+Measures data transfer speed in billions of bits per second. This is common in networking to denote the capacity of high-speed internet connections and network hardware.
+
+* Gigabytes per second (GB/s)
+
+Measures data transfer speed in billions of bytes per second. This is used for very high-speed data transfers, such as those within high-performance computing environments.
+
+Terabits per second (Tbps)
+
+Measures data transfer speed in trillions of bits per second. It is used in the context of high-capacity network backbones and cutting-edge data transmission technologies.
+
+* Terabytes per second (TB/s)
+
+Measures data transfer speed in trillions of bytes per second. This is typically used in extremely high-speed computing and data centre contexts.
+
+These units provide a range of options to describe data transfer speeds in different contexts, from small-scale data transfers to high-performance computing and networking scenarios.
+
+Transfer speeds
+Transfer speeds are crucial when handling large datasets. For example you have a 1MB/s network line and need to transfer 5TB (terabytes) of data. To determine how long this will take you will need to perform the following calculation:
+
+1TB = 1024GB = 1024 x 1024MB = 1,048,576MB.5TB = 5 x 1,048,576MB = 5,242,880MB.At a transfer rate of 1MB/s, it would take 5,242,880 seconds to transfer 5TB.Converting seconds to days: 5,242,880 seconds ÷ 60 (seconds per minute) ÷ 60 (minutes per hour) ÷ 24 (hours per day) ≈ 60.7 days.
+
+Thus, it would take approximately 60.7 days to transfer 5TB of data over a 1MB/s network line. Understanding transfer speeds is crucial for estimating the time required to move large volumes of data across networks. In the example provided, it is clear that transfer rates may have a significant impact on data handling and operational timelines in computing environments.
+
+Read through the following resources before completing the exercise
+
+Resources
+
+* How to calculate data transfer rate* What is data transfer rate?
+
+Transfer speed exercise
+Complete the following exercise once you have read through the resources in the table above.
+
+The result of this exercise will not be used for your final grade.
+
+Once you have submitted your answers you will receive your result accompanied by the correct answers. Take some time to work through any incorrect answers.
+
+Completion of this exercise is compulsory.
+
+2.3 Common data formats
+In the world of data engineering, understanding the diverse array of data formats is essential for effective data management, processing, and analysis. Data can come in various forms, ranging from highly organised and predictable structures to semi-structured and unstructured information. By classifying data into different formats, we can better understand its characteristics, storage requirements, and processing capabilities.
+
+Structured data
+Structured data refers to information that is organised into a predefined format with a clear and consistent schema. This format is characterised by well-defined data types, fields, and relationships, making it highly predictable and easy to query. Examples of structured data include relational databases, spreadsheets, parquet and CSV (comma-separated values) files. Structured data is ideal for storing tabular data, such as customer records, financial transactions, and inventory lists, where each piece of information has a designated place and meaning.
+
+Structured Market Data
+
+A financial analyst downloads stock market data in CSV format, which includes columns for stock symbols, prices, and trading volumes, as can be seen on the right. This structured data can be easily imported into spreadsheet software for analysis and visualisation of market trends.
+
+Symbol,Price,VolumeAAPL,175.64,98234000MSFT,325.12,52467000GOOGL,2734.43,1342300AMZN,3344.94,3745100
+
+Semi-structured data
+Semi-structured data exhibits some organisational properties but lacks the strict schema and rigid structure of structured data. While semi-structured data may contain some level of organisation, such as key-value pairs or hierarchical structures, it allows for flexibility and variability in the representation of data. Common examples of semi-structured data formats include JSON (JavaScript Object Notation), XML (eXtensible Markup Language), and YAML (YAML Ain’t Markup Language). Semi-structured data is frequently used in scenarios where the schema may evolve over time or where certain attributes are optional or variable across different records.
+
+Semi-structured JSON
+
+A social media analyst collects JSON data from X’s (formerly Twitter) API, containing user posts with fields like timestamps, user IDs, and content. This semi-structured data is then parsed and analysed to identify trending topics and user engagement patterns. Consider the JSON data below. The first object details a user profile while the second outlines a tweet linked to the user profile in the first example. These examples include relevant fields and content that a social media analyst might parse and analyse to identify trending topics (e.g., hashtags like #movie, #review) and measure user engagement (e.g., retweet_count, favorite_count).
+
+//user profile{"id": 987654321,"name": "John Doe","screen_name": "johndoe","location": "Cape Town, South Africa","description": "Blogger, Youtuber and now just another Twitter user.","followers_count": 150,"friends_count": 100,"created_at": "Mon Jan 01 2020"}
+
+//tweet to user profile{"created_at": "Wed Jul 11 12:34:56 2024","id": 1234567890,"text": "Just watched an amazing movie! #movie #review","user": {"id": 987654321,"name": "John Doe","screen_name": "johndoe"},"retweet_count": 5,"favorite_count": 20,"hashtags": ["movie","review"]`}`
+
+Unstructured data
+Unstructured data refers to information that lacks a predefined schema or organisation and does not conform to a specific format. This type of data is typically text-based or multimedia files, and are devoid of any inherent structure or hierarchy. Examples of unstructured data include text documents, emails, multimedia files (e.g., images, audio, video), and social media posts. Unstructured data poses unique challenges for data management and analysis due to its inherent complexity and variability. However, advancements in natural language processing (NLP), machine learning, and text analytics have enabled organisations to extract valuable insights from unstructured data sources.
+
+Customer Service Data
+
+A company collects unstructured data from customer support emails, which include text, images, and attachments. This data is processed using natural language processing (NLP) tools to identify common issues and improve customer service responses.
+
+Data format comparison
+Data Format
+
+Characteristics
+
+Examples
+
+Structured
+
+Well-defined schema, organised
+
+Relational databases, CSV files, parquet files
+
+Semi-structured
+
+Flexible schema, some structure
+
+JSON, XML, YAML
+
+Unstructured
+
+No predefined schema, raw data
+
+Text documents, multimedia files
+
+Understanding the distinctions between structured, semi-structured, and unstructured data is fundamental for data engineers when designing data pipelines, selecting appropriate storage solutions, and implementing data processing algorithms.
+
+2.4 Distributed file systems
+Distributed file systems are a type of file system that spans multiple storage devices or servers and appears to users as a single, unified file system. These systems distribute data across multiple nodes in a network, allowing for scalable storage, improved performance, fault tolerance, and high availability. Distributed file systems abstract the complexities of managing distributed storage resources and provide transparent access to data, enabling efficient data storage, retrieval, and sharing across distributed environments. Examples include Amazon S3, Google Cloud Storage, Hadoop Distributed File System (HDFS), and Microsoft Azure Blob Storage.
+
+Common distributed file systems
+Hadoop Distributed File System (HDFS)
+Hadoop Distributed File System (HDFS) is a distributed file system designed to store large volumes of data across multiple machines in a Hadoop cluster.[4]. It provides the foundational storage layer for Hadoop, facilitating reliable data storage and efficient data processing. Key characteristics of HDFS include:
+
+Scalability
+
+HDFS scales horizontally, allowing organisations to store vast amounts of data by adding more commodity hardware to the cluster.
+
+Fault tolerance
+
+Data in HDFS is replicated across multiple nodes in the cluster, ensuring high availability and durability even in the event of node failures.
+
+Data locality
+
+HDFS emphasises data locality, where computation is performed near the data, reducing network congestion and improving performance.
+
+Integration with Hadoop ecosystem
+
+HDFS integrates seamlessly with other components of the Hadoop ecosystem, such as MapReduce, YARN, and Hive, enabling efficient data processing and analytics.
+
+Security
+
+HDFS provides mechanisms for data security, including access controls, authentication, and encryption, to protect data both at rest and in transit within the cluster.
+
+Overall, HDFS is ideal for applications requiring distributed storage and processing of large datasets, supporting diverse use cases from batch processing to real-time analytics in big data environments.
+
+Watch the following video to learn more about HDFS.
+
+Microsoft Azure Blob Storage
+Azure Blob Storage is a cloud-based object storage service from Microsoft designed to handle large volumes of unstructured data, such as text or binary data. It is suitable for various use cases, including backups, data lakes, and analytics. Characteristics of Microsoft Azure Blob Storage include:
+
+Scalability
+
+Azure Blob Storage scales effortlessly to accommodate vast amounts of data, supporting massive datasets and dynamically adjusting to growing needs without disruption.
+
+Durability
+
+Data in Azure Blob Storage is replicated across multiple geographically distributed data centres, offering high durability and availability. Various redundancy options, including LRS.[5], ZRS.[6], and GRS.[7], protect against data loss.
+
+Security
+
+Robust security is provided with encryption at rest and in transit, role-based access control (RBAC), and integration with Azure Active Directory. It also supports private endpoints and virtual network service endpoints for enhanced protection.
+
+Cost-effectiveness
+
+Azure Blob Storage offers tiered storage options (hot, cool, and archive) to optimise costs based on data access patterns, allowing organisations to manage expenses efficiently by selecting the appropriate tier for their needs.
+
+Watch the following video to learn more about Azure Blob Storage.
+
+Amazon S3
+Amazon S3 is a highly scalable, durable, and secure object storage service offered by Amazon Web Services (AWS). It is designed to store and retrieve any amount of data from anywhere on the web, making it an ideal choice for a wide range of use cases, from simple file storage to large-scale data analytics and archival. Characteristics of Amazon S3 include:
+
+Scalability
+
+S3 is designed to scale seamlessly to accommodate growing volumes of data, with virtually unlimited storage capacity.
+
+Durability
+
+Data stored in S3 is replicated across multiple geographically dispersed data centres, ensuring high durability and availability.
+
+Security
+
+S3 provides robust security features, including encryption, access control policies, and compliance certifications, to protect data at rest and in transit.
+
+Versatility
+
+S3 supports a variety of data types and access methods, including object storage, static website hosting, and integration with AWS services like Amazon EMR and Amazon Athena.
+
+Watch the following video to learn more about Amazon S3.
+
+Google Cloud Storage
+Google Cloud Storage (GCS) is a fully managed, scalable, and reliable object storage service offered by Google Cloud Platform (GCP). It provides durable and secure storage for a wide range of data types, with seamless integration with other GCP services for data processing, analytics, and machine learning. Characteristics of Google Cloud Storage include:
+
+Scalability
+
+GCS automatically scales to accommodate growing storage requirements, with no upfront provisioning or capacity planning required.
+
+Durability
+
+Data stored in GCS is redundantly replicated across multiple regions and availability zones, ensuring high durability and resilience to failures.
+
+Security
+
+GCS offers advanced security features, including encryption at rest and in transit, fine-grained access control with identity and access management (IAM), and audit logging for compliance.
+
+Integration
+
+GCS seamlessly integrates with other GCP services, such as BigQuery, Dataproc, and AI Platform, enabling data processing, analysis, and machine learning workflows.
+
+Watch the following video to learn more about GCS.
+
+Become acquainted with GCS and GCP by completing the following online labs:
+
+A Tour of Google Cloud Hands-on Labs
+
+45 minutes
+
+Free
+
+Cloud Storage: Qwik Start
+
+30 minutes
+
+1 credit
+
+Get started with Cloud Storage: challenge lab
+
+45 minutes
+
+1 credit
+
+CAP Theorem
+The CAP theorem, also known as Brewer’s theorem, is a fundamental principle in the field of distributed systems. For data engineers working with distributed file systems, understanding the CAP theorem is crucial for designing systems that meet the specific needs of their applications. According to the CAP theorem, a distributed system can only guarantee two out of the three properties at any given time:
+
+Consistency:
+
+Systems where all nodes see the same data at the same time. For example, if a data item is updated, all subsequent reads will return the updated value. This is crucial for applications requiring strict data accuracy and integrity, such as financial transactions.
+
+Availability:
+
+Systems that ensure that every request receives a response, even if the response is not the most recent data. This is vital for systems that must provide continuous service, such as online retail platforms or social media services.
+
+Partition tolerance:
+
+The system can continue to function despite network partitions, where communication between nodes is lost. This is essential for distributed systems that must remain operational across multiple geographic locations, such as global e-commerce sites or distributed databases.
+
+img 8
+
+Where only two out of the three properties are guaranteed, the following trade-offs exist:
+
+CP (consistency and partition tolerance): The system remains consistent and tolerant to partitions, but may sacrifice availability.
+
+AP (availability and partition tolerance): The system remains available and partition-tolerant, but may not always be consistent.
+
+CA (consistency and availability): The system is consistent and available, but cannot tolerate partitions.
+
+Trade-off in online shopping application
+
+In a distributed online shopping application, if a customer updates their account information, all servers must reflect this change immediately (Consistency). If a network partition occurs, the system can either prioritise Consistency and reject requests until all servers are synchronised, leading to downtime (loss of Availability) or allow requests to go through, resulting in some customers seeing outdated information (loss of Consistency). Thus, the CAP theorem illustrates that you cannot achieve Consistency, Availability, and Partition Tolerance simultaneously—trade-offs must be made based on the application’s requirements.
+
+The CAP theorem provides a framework for understanding the inherent trade-offs in distributed systems. For data engineers, this knowledge is essential for designing and implementing systems that meet the specific requirements of their applications, whether they prioritise consistency, availability, or partition tolerance. By carefully considering these trade-offs, engineers can build robust, scalable, and efficient distributed file systems.
+
+Cloud services and infrastructure
+Cloud services and infrastructure refer to the virtualized resources and capabilities provided over the internet by cloud computing providers. These services include computing power (virtual machines, containers), storage (object storage, databases), networking (virtual networks, load balancers), and other IT resources (security services, AI/ML services). Cloud infrastructure enables organisations to dynamically scale resources up or down based on demand, pay only for what they use (pay-as-you-go model), and access a wide range of managed services to support various business needs efficiently and cost-effectively.
+
+Cloud storage models
+Cloud storage models encompass various approaches to storing data in cloud environments, tailored to different needs and requirements:
+
+Object storage
+Object storage stores data as objects, each containing data (often in the form of files), metadata (attributes describing the data), and a unique identifier. This model is highly scalable and suitable for storing unstructured data, such as images, videos, and backups. Examples include Amazon S3, Google Cloud Storage, and Azure Blob Storage.
+
+Block storage
+Block storage divides data into blocks and stores each block as a separate entity with its own address. It’s typically used in environments requiring high-performance data access, such as databases and virtual machines. Block storage provides low-latency access and allows for efficient data management operations. Examples include Amazon EBS, Google Persistent Disks, and Azure Disk Storage.
+
+File storage
+File storage provides shared file systems accessible via standard protocols like NFS (Network File System) or SMB (Server Message Block). It’s suitable for applications that require shared access to files and directories, such as file shares for enterprise applications, content management systems, and developer environments. Examples include Amazon EFS, Google Cloud Filestore, and Azure Files.
+
+Each of these models offers distinct advantages depending on factors like performance requirements, scalability needs, cost considerations, and data access patterns, allowing organisations to choose the most suitable storage solution for their specific use cases in the cloud.
+
+Cloud deployment models
+The following cloud deployment models cater to diverse organisational needs, offering varying levels of control, scalability, flexibility, and cost-efficiency depending on the specific requirements and objectives of the organisation.
+
+Private cloud
+A private cloud refers to cloud infrastructure that is dedicated to a single organisation and is typically hosted either on-premises or by a third-party provider. It offers enhanced security, control, and customization compared to public clouds, making it suitable for organisations with stringent regulatory requirements or sensitive data. Private clouds can be managed internally or by a managed service provider, providing scalability and flexibility while maintaining dedicated resources for the organisation’s exclusive use.
+
+Private cloud infrastructure
+
+A company hosts its entire IT infrastructure on dedicated servers within its own data centre. The servers are managed and maintained by the company’s internal IT team, providing exclusive access and control over resources.
+
+Public cloud
+A public cloud refers to cloud services offered by third-party providers over the internet to multiple organisations or individuals. It operates on shared infrastructure, where resources like computing power, storage, and networking are shared among various users. Public clouds provide scalability, cost-efficiency through pay-as-you-go models, and accessibility to a wide range of services without the need for upfront infrastructure investments.
+
+Public cloud deployment
+
+A startup launches its e-commerce platform on AWS, utilising services like Amazon EC2 for compute instances, Amazon S3 for storage, and Amazon RDS for managed databases. This allows the startup to scale rapidly, pay only for the resources used, and focus on business growth without managing infrastructure.
+
+Multi-cloud
+Multi-cloud refers to an approach where an organisation uses services and resources from multiple cloud providers, either public, private, or both. It offers flexibility, redundancy, and the ability to choose best-of-breed solutions from different providers to meet specific business needs. Multi-cloud strategies may involve distributing workloads across different clouds for performance optimization, avoiding vendor lock-in, and enhancing disaster recovery capabilities.
+
+Multi-cloud strategy
+
+A company uses both AWS for its compute-intensive workloads and GCP for its data analytics and machine learning initiatives. By leveraging multiple cloud providers, the company avoids vendor lock-in, optimises costs, and selects the best services for each workload.
+
+Hybrid cloud
+A hybrid cloud integrates private and public cloud environments, allowing data and applications to be shared between them. It provides flexibility to run workloads in the most appropriate location based on factors like security, compliance, performance, and cost. Hybrid cloud architectures enable organisations to leverage existing investments in on-premises infrastructure while taking advantage of cloud scalability, enabling seamless workload migration and workload portability.
+
+Hybrid cloud approach
+
+A financial institution maintains sensitive customer data and critical applications in a private cloud hosted on-premises to comply with industry regulations and data sovereignty requirements. Simultaneously, it uses a public cloud like Microsoft Azure for scalable compute resources during peak periods or for testing and development environments.
+
+Week 2 practical activity
+Fork the Jupyter notebook from Gitlab so that you have your own Gitlab repo with the starter code. Complete the notebook (instruction in the notebook file) so that the pipeline runs end-to-end and produces the required output.csv file. Submit the code by pushing back to the GitLab repository.
+
+Note	Ensure your notebook produces the required output.csv file, as the auto-grading will run tests against this file. You will also see the starter code contains a .lms/exercises.toml file. Do not edit or remove this directory or file, as this is how the LMS knows to which project to connect the submission.
+Warning	You must fork the starter repo, which causes you to create your own repo on Gitlab to which you commit your solution. The original start repo is read-only, so you will not be able to commit back to it.
+2.5 Operating system (OS) virtualisation:
+In the realm of data engineering, understanding operating system (OS) virtualization is crucial for efficient resource management, scalability, and reproducibility of data engineering workflows. To recap, an operating system serves as the intermediary between computer hardware and user applications, providing essential functionalities such as process management, memory allocation, and file system access. It acts as a platform for executing software and managing hardware resources, enabling users to interact with computing devices effectively.
+
+OS virtualization is a technology that enables the creation of multiple isolated environments, known as containers, within a single physical server. Each container operates as an independent instance of the operating system, with its own file system, processes, and network configuration. OS virtualization relies on the host operating system’s kernel to manage and isolate these containers, allowing them to share resources while maintaining separation and security. This approach provides a lightweight and efficient means of deploying applications and services, enabling faster startup times and efficient resource utilisation compared to traditional virtualization methods.
+
+This section delves into the concepts of OS virtualization, exploring virtual machines (VMs), docker containers and java virtual machines (JVMs), along with their distinctions and use cases.
+
+Virtual machines (VM)
+Virtual machines emulate physical hardware, allowing multiple operating systems to run concurrently on a single physical machine. Each VM operates independently, with its own virtualized hardware resources, including CPU, memory, storage, and network interfaces. Hypervisor software, also known as a virtual machine monitor (VMM), is a specialised software that enables the creation and management of virtual machines (VMs) on a physical host machine, allowing multiple operating systems to run concurrently on the same hardware platform by abstracting and virtualizing the underlying hardware resources.
+
+Docker
+Docker is a lightweight, open-source platform for containerization, which provides a standardised way to package, distribute, and run applications within isolated environments called containers. Unlike VMs, containers share the host operating system’s kernel and resources, resulting in reduced overhead and faster startup times. Docker containers encapsulate application code, dependencies, and runtime environment, ensuring consistency across different computing environments and simplifying deployment and scaling workflows.
+
+Create your own docker container:
+Take your time to work through the following tutorial where you will learn everything you need to know in order to create your own docker container, and much more!
+
+In one of the examples, you will create your own docker image (catnip). Create an account on Dockerhub and ship the image (hint: docker push `` ) - submit the image tag (e.g. ‘yourname/catnip’) on the Google Form. You can test that your image tag is correct by running ` docker pull yourname/catnip ` - you should be able to pull the image.
+
+Completion of this tutorial is compulsory.
+
+Java virtual machines (JVM)
+The java virtual machine (JVM) is a crucial component of the java runtime environment (JRE) responsible for executing java bytecode. Java bytecode is an intermediate, platform-independent code generated by the Java compiler that allows Java programs to run on any device with a JVM. The JVM acts as an abstract computing machine, providing a runtime environment that enables Java applications to run consistently across different platforms and architectures. JVM interprets java bytecode instructions and translates them into machine-specific instructions, allowing java programs to be platform-independent. Additionally, JVM manages memory allocation, garbage collection.[8], and exception handling, ensuring robust and efficient execution of java applications. JVM implementations are available for various operating systems, making java one of the most portable programming languages.
+
+Additional resources
+
+* JVM architecture explained for beginners* How JVM works
+
+Comparison
+The following table outlines the key differences between VM, Docker, and JVM. Each technology serves specific purposes in software development and deployment, offering varying levels of abstraction and resource management tailored to different application needs and infrastructure requirements.
+
+Feature
+
+VM
+
+Docker
+
+JVM
+
+Isolation
+
+Provides full isolation, allowing multiple OS instances on one host.
+
+Uses OS-level virtualization, sharing the host OS kernel for lightweight isolation.
+
+Executes Java bytecode within a single OS instance, offering platform independence.
+
+Use Cases
+
+Strong isolation, legacy systems, resource-intensive workloads.
+
+Microservices, CI/CD pipelines, cloud-native applications.
+
+Platform-independent execution of Java applications.
+
+Resource Efficiency
+
+Requires dedicated resources for each VM instance, higher overhead.
+
+Lightweight, shares host resources, faster startup times, efficient resource utilisation.
+
+Efficient use of resources within the JVM environment.
+
+Deployment
+
+Slower deployment due to VM startup times and larger image sizes.
+
+Faster deployment with quicker startup times and smaller image sizes.
+
+Consistent deployment across different environments, platform independence.
+
+Flexibility
+
+Less flexible than containers, each VM requires specific configurations.
+
+Highly flexible, portable across different environments with consistent behaviour.
+
+Flexible platform independence, runs Java applications on any JVM-supported OS.
+
+Management
+
+Requires hypervisor for managing VM lifecycle, more complex management.
+
+Managed via container orchestration tools like Docker Swarm or Kubernetes, easier management.
+
+Managed through JVM implementations, offers tools for memory management and profiling.
+
+Overhead
+
+Higher overhead due to emulation of hardware and dedicated resources per VM.
+
+Lower overhead, shares host OS kernel, efficient use of resources.
+
+Moderate overhead, manages Java application resources effectively within the JVM.
+
+Week 2 consolidation
+Self-assessment
+Before closing off the week by completing the week 2 quiz, let’s revisit the learning outcomes for this week by asking ourselves the following questions:
+
+Am I able to differentiate between different storage media and identify them based on data transfer rates?
+
+Am I able to convert between different storage units and data transfer rates?
+
+Am I able to identify different storage formats and do I understand how they relate to different storage systems?
+
+Do I have a good understanding of distributed file systems as a storage medium, as well as knowledge of how these systems map to different cloud providers?
+
+Am I able to create Docker containers and do I understand operating system virtualisation?
+
+If you are not confident that you can answer ‘yes’ to the above questions, revisit the necessary content from this week and consult the additional resources below to strengthen your understanding.
+
+Additional resources
+
+Videos
+
+* Learn JSON in 10 minutes* Docker crash course for absolute beginners* CAP theorem* Structured, semi-structured and unstructured data
+
+Reading
+
+* Object storage vs block storage vs file storage* Store and retrieve a file with Amazon S3* Structured vs unstructured data* Cloud deployment models
+
+Revision
+
+* Free short course: Docker fundamentals* PyNative: Python JSON guided tutorial* Reading and writing parquet files
+
+Completion check
+Ensure that you have completed all the compulsory deliverables for this week.
+
+Deliverable:
+
+Expectation:
+
+Transfer speed exercise
+
+Submit Google form; work through answers
+
+Google Qwiklabs:
+
+- A Tour of Google Cloud Hands-on Labs
+
+- Cloud Storage: Qwik Start
+
+- Get started with Cloud Storage: challenge lab
+
+Complete each online lab
+
+Week 2 exercise
+
+Submit notebook to gitlab for grading
+
+Docker tutorial
+
+Work through online tutorial, submit Google form
+
+1. An example of a basic instruction that a CPU will implement is the addition of two numbers in memory (ADD).
+2. In addition to the physical cores, computers also allow hyper threading , which means that the cores can run an additional thread of execution on a single physical core.
+3. A bit is the smallest unit of data in computing and digital communications. It can represent a binary digit, which is either a 0 or a 1. Bits are fundamental in conveying digital information and are the building blocks of all digital data (wikipedia).
+4. A Hadoop cluster is a distributed computing environment comprising interconnected nodes that collectively store and process large datasets using Hadoop’s ecosystem, facilitating scalable and fault-tolerant data processing.
+5. Locally redundant storage
+6. Zone-redundant storage
+7. Geo-redundant storage
+8. Garbage collection is the process by which the JVM automatically reclaims memory by identifying and disposing of objects that are no longer in use by the application.
+Week 1: Introduction to data engineering
+Week 3: Database management systems
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

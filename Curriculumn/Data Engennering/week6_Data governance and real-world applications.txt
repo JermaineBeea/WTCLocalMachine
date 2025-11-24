@@ -1,0 +1,446 @@
+Week 6: Data governance and real-world applications
+This week will be divided into two parts: data governance and real-world data engineering applications. The first part will cover data governance policies, which ensure that data is managed and used properly across an organisation, followed by techniques for monitoring and alerting to maintain data integrity. We will also examine the importance of data quality, exploring how high-quality data is essential for accurate decision-making and operational efficiency. The second topic will focus on practical applications of data engineering where we will unpack three data engineering use cases.
+
+Learning outcomes:
+
+A student will understand data governance roles and frameworks as well as their value within organisations.
+
+A student will understand the six dimensions of data quality and be able to identify poor data quality practices.
+
+A student will understand how data engineering is applied practically in the real world.
+
+Daily guide:
+
+Content
+
+Deliverable
+
+Monday
+
+6.1 Data governance
+
+Online tutorial: pandas - cleaning data
+
+Tuesday
+
+6.1 Data governance continued6.2 Data engineering applications
+
+Online tutorial: naming conventions
+
+Wednesday
+
+6.2 Data engineering applications continued
+
+Thursday
+
+6.3 Capstone project preparation
+
+Docker tutorial
+
+Friday
+
+Consolidation
+
+Quiz
+
+6.1 Data governance
+https://clickup.com/blog/data-governance/?utm_source=google-pmax&utm_medium=cpc&utm_campaign=gpm_cpc_ar_nnc_pro_trial_all-devices_tcpa_lp_x_all-departments_x_pmax&utm_content=&utm_creative=_&gad_source=1&gclid=CjwKCAjwk8e1BhALEiwAc8MHiHojPSK-DnYCWD_yX6xIMIOddPam4V61sJSuLEYXGS_YZg9gZAleuBoC-DQQAvD_BwE[Data governance] refers to the framework of policies, standards, processes, and technologies that ensure the effective and efficient use of information, enabling an organisation to achieve its goals. For data engineers, data governance is crucial as it ensures data integrity, security, and compliance with regulations. It provides a clear structure for managing data quality, data stewardship, and data lifecycle management. By implementing robust data governance, data engineers can ensure that data is reliable, accessible, and protected, which is essential for making informed business decisions, maintaining user trust and minimising risks associated with data breaches or inaccuracies.
+
+6.1.1 Governance pillars, roles and frameworks
+Data governance is achieved through the four foundational pillars that ensure comprehensive and effective management of an organisation’s data. The pillars help ensure data is reliable, safe, and useful for making decisions and meeting regulatory requirements. To achieve data governance, organisations must implement the following:
+
+Data quality
+
+Ensures the accuracy, consistency, and reliability of business data.
+
+Data stewardship
+
+Responsible individuals managing, overseeing, and protecting data assets.
+
+Data security
+
+Restrict and control data access, ensuring compliance with regulations and protecting against breaches.
+
+Data management
+
+Structured administration of data throughout its lifecycle, ensuring it is properly stored, maintained, and utilised.
+
+Having established the foundational pillars of data governance, it is equally important to recognize the key roles involved in implementing these pillars. These roles are crucial in ensuring that data governance policies are effectively executed and maintained within an organisation. By understanding and defining these roles, organisations can assign clear responsibilities and foster a culture of accountability and stewardship, ultimately leading to better data management and utilisation. Four critical roles required to achieve data governance include:
+
+img 0
+
+With a clear understanding of the key roles in data governance, the next step is to explore data governance frameworks . A data governance framework is a structured set of guidelines, policies, and processes that organisations use to manage their data assets effectively. It outlines the roles, responsibilities and standards necessary for ensuring data quality, security and compliance. These frameworks provide structured approaches and guidelines that organisations can adopt to implement and manage their data governance strategies effectively. By establishing a robust framework, organisations can align their data governance efforts with business objectives, ensuring consistency and accountability across all levels.
+
+To implement a data governance framework, organisations typically follow these steps:
+
+Define Objectives : Establish clear goals for data governance that align with business objectives.
+
+Assign Roles : Identify and assign data governance roles and responsibilities across the organisation.
+
+Develop Policies : Create policies and standards for data management, quality, security, and usage.
+
+Establish Processes : Implement processes for data stewardship, data quality assessment, and compliance monitoring.
+
+Deploy Tools : Utilise technology and tools to support data governance activities, such as data cataloguing and access controls.
+
+Train Staff : Educate employees on data governance policies and their responsibilities within the framework.
+
+Test Resilience : Actively test the framework’s resilience by intentionally attempting to disrupt it. This could include using mechanisms and tools such as Chaos Monkey to identify weak points, validate safeguards and ensure that data governance policies and processes can withstand unexpected failures or security risks.
+
+Monitor and Evaluate : Regularly review and assess the framework’s effectiveness, making adjustments as necessary to ensure continuous improvement.
+
+By following these steps, organisations can create a comprehensive data governance framework that enhances data management and supports better decision-making.
+
+To summarise, data governance provides significant value to organisations by establishing a structured framework for managing data effectively. It ensures that data is accurate, secure, and meets regulatory requirements, which enhances decision-making and operational efficiency. A key benefit of data governance is the improvement of data quality, as it encourages practices that make sure data is reliable, consistent, and suitable for its intended use. By fostering a culture of responsibility and care, data governance enables organisations to treat their data as a valuable asset, driving innovation and improving customer experiences. Additionally, effective data governance reduces risks related to data breaches and non-compliance, ultimately protecting the organisation’s reputation and financial well-being. Given its vital role in achieving high data quality, the next section will explore the concept of data quality, discussing its importance, best practices, and how it impacts overall data governance.
+
+Engage with the following resources to learn more about data governance
+
+Watch
+
+* Data governance explained in 5 minutes
+
+Read
+
+* Data governance fundamentals cheat sheet
+
+* A step-by-step guide to setting up a data governance program
+
+6.1.2 Data quality
+Data quality refers to the condition of data based on factors such as accuracy, completeness, reliability, relevance, and timeliness. It is crucial for data engineers because they are responsible for designing, building and maintaining the data infrastructure that supports the entire organisation’s data operations. High-quality data is the foundation upon which data engineers can create robust, efficient and reliable data systems. As organisations increasingly rely on data for decision-making, it is evident that data should be assessed on multiple fronts to ensure its reliability and usefulness. This is represented by the six dimensions of data quality, seen in the diagram below:
+
+img 1
+
+[Source]
+
+The dimensions of data quality are fundamental aspects that determine the reliability and usability of data within an organisation. Let’s have a closer look at each.
+
+Accuracy
+
+Refers to the degree to which data correctly describes the real-world entity or event it represents. Crucial for reliable decision-making and analysis.
+
+Completeness
+
+Measures whether all required data is present and comprehensive. Assesses if all necessary data attributes are filled in.
+
+Consistency
+
+Ensures that data is uniform across different datasets and systems. Data does not contradict itself.
+
+Timeliness
+
+Measures how up-to-date and available the data is for its intended use. Timely data is essential for making current and relevant decisions.
+
+Validity
+
+Ensures that data conforms to the defined rules, formats and standards so that the data used is meaningful and correct.
+
+Uniqueness
+
+Ensures that each data record is distinct and not duplicated within the dataset. It confirms that there are no redundant records.
+
+Establishing high data quality
+In order to establish high data quality, data stewards may identify common issues such as inaccurate, incomplete, inconsistent, duplicate or poorly governed data. By recognizing these challenges, they can implement targeted strategies to address them, ensuring that data remains accurate, reliable and a valuable asset for informed decision-making. In the table below you will find various examples of common issues to look out for when ensuring high data quality, as well as how to remedy them:
+
+Data quality shortfall
+
+Consequence
+
+Solution
+
+Inaccurate data
+
+Data may be incorrect or outdated, leading to poor decision-making.
+
+Implement regular data validation processes and establish procedures for updating data as needed.
+
+Incomplete data
+
+Missing data fields can lead to gaps in information.
+
+Develop data entry guidelines and use mandatory fields to ensure completeness during data collection.
+
+Inconsistent data
+
+Variations in data formats or naming conventions can cause confusion.
+
+Create standardised data formats and naming conventions, and use data transformation tools to ensure consistency.
+
+Duplicate data
+
+Multiple records for the same entity can skew analysis.
+
+Use data deduplication tools to identify and remove duplicates, and establish procedures to prevent future occurrences.
+
+Poor data governance
+
+Lack of clear policies can lead to mishandling of data.
+
+Establish and enforce a data governance framework with clear roles, responsibilities, and policies for data management.
+
+Data security risks
+
+Vulnerabilities can lead to data breaches and loss of trust.
+
+Implement strong security measures, including access controls and encryption and regularly review security policies.
+
+Data cleaning
+The process of identifying and correcting these errors, inconsistencies and inaccuracies in a dataset is known as data cleaning. Data cleaning, also known as data cleansing or data scrubbing, involves tasks such as removing duplicates, handling missing values, standardising formats, and correcting errors in data entries. It is essential for the preparation of data for analysis, ensuring that it is accurate, complete and reliable. By cleaning the data, organisations can trust that their data is ready for use in various applications, from reporting to advanced analytics. Data cleaning is a critical step in any data pipeline, whether during the initial data collection phase, when integrating data from multiple sources, or as part of ongoing data maintenance efforts.
+
+Pandas: Cleaning data
+
+Complete the following tutorial provided by W3 schools. The tutorial consists of four parts. Take your time to work through each:
+
+- Cleaning empty cells
+
+- Cleaning wrong format
+
+- Cleaning wrong data
+
+- Removing duplicates
+
+Naming conventions
+Naming conventions play a critical role in establishing high data quality by ensuring consistency and clarity across datasets. A well-defined naming convention helps make data easily understandable, which reduces the likelihood of errors or misinterpretation when accessed by various teams. Standardising how tables, columns and files are named improves data traceability and simplifies integration across systems. Additionally, consistent naming conventions enhance collaboration between data engineers and analysts by providing a shared language for referring to data. By adhering to predefined naming conventions, organisations can maintain data accuracy and facilitate smoother data management processes.
+
+Consult the resources below before reading through the online tutorial provided
+
+Resources
+
+* Building a data warehouse - naming conventions
+
+* How to write beautiful python code with PEP 8
+
+Tutorial
+
+* PEP-8 Tutorial: Code standards in python
+
+Data quality management
+Data quality management is the ongoing process of ensuring that data within an organisation meets the required standards of accuracy, completeness, consistency, timeliness, validity and uniqueness. Effective data quality management is crucial because, as we have mentioned, high-quality data is the foundation for accurate analysis, informed decision-making and effective business operations. By implementing structured processes and using the right tools, organisations can proactively monitor and maintain data quality, preventing issues before they impact the business.
+
+Monitoring and alerting
+A key component of data quality management is continuous monitoring and alerting. Organisations should set up automated systems to regularly check the quality of their data against established benchmarks. These systems can track various data quality dimensions, such as accuracy and consistency, and alert data stewards or administrators when issues arise. For example, if data entries suddenly start failing validation rules or if there’s a spike in missing data, the system will trigger an alert so that the issue can be addressed immediately. This proactive approach helps to catch and correct errors before they escalate into larger problems.
+
+Below is an example of a grafana dashboard used by data engineers to monitor and alert on kafka streams.
+
+img 2
+
+Monitoring and alerting in a retail company
+
+Scenario
+
+A large retail company relies on customer data for personalised marketing campaigns. The accuracy and completeness of customer email addresses are crucial for the success of these campaigns.
+
+Data quality monitoring
+
+The company implements a data quality monitoring system that regularly checks the customer database for missing or invalid email addresses. The system runs daily checks using validation rules that ensure email addresses are correctly formatted and that required fields, such as the email address, are not left blank.
+
+Alerting
+
+During one of the daily checks, the monitoring system detects a spike in missing email addresses for new customer records. An alert is automatically triggered and sent to the data steward responsible for customer data.
+
+Issue resolution
+
+The data steward discovers that the issue stems from a recent update to the customer registration form, where the email field was made optional. The data steward coordinates with the IT department to fix the form, ensuring that the email address field is mandatory once again.To address the missing data, the data steward initiates a data correction process by sending follow-up emails to the affected customers, requesting them to update their information. Additionally, the data steward updates the validation rules in the monitoring system to include more stringent checks, ensuring that this issue doesn’t reoccur.
+
+In the scenario above, the monitoring and alerting system successfully identified the data quality issue before it could negatively impact the marketing campaigns. By quickly addressing the root cause and correcting the data, the company was able to maintain the effectiveness of its marketing efforts and ensure accurate communication with customers.
+
+Various tools are available for the implementation and management of data quality, including capabilities such as data cleaning, monitoring and alerting. Some of these tools are outlined below:
+
+Microsoft SQL Server Data Quality Services (DQS): A knowledge-driven data quality solution that provides data cleansing, matching, and profiling services to ensure accurate and reliable data.
+
+Databand: A data observability platform that helps monitor data quality in real-time, providing alerts and insights to quickly identify and resolve data issues.
+
+Datadog: Primarily known for infrastructure monitoring, Datadog also offers capabilities for monitoring data pipelines and ensuring the health and quality of data in real-time.
+
+RudderStack: A customer data platform that ensures data consistency and quality as it flows through different systems, with built-in monitoring and error-handling features.
+
+OpenRefine: An open-source tool designed for cleaning messy data. It allows users to explore data, clean it and transform it into a standardised format.
+
+Pandas: A powerful data analysis library in Python that includes functions for data cleaning, handling missing values, and ensuring data quality through effective manipulation.
+
+Talend: A comprehensive data integration and management tool that offers features for data quality profiling, cleansing, and monitoring.
+
+Alteryx: A data analytics platform that combines data preparation, blending, and advanced analytics, including tools for data cleaning and quality management.
+
+These tools help organisations maintain a high level of data quality by providing real-time monitoring, alerting, and robust data management capabilities.
+
+6.2 Data engineering applications
+In today’s data-driven landscape, effective data engineering is essential for organisations to harness the power of their data. This section explores three real-world applications of data engineering, each illustrating the full utilisation of the data lifecycle that we have learnt about throughout this elective.
+
+img 3
+
+6.2.1 Data engineering for analytics in the cloud | FinTech
+The background:
+
+The background to this use case is that a large fintech organisation has numerous operational databases - these are used to handle all the day-to-day operations, such as managing clients and transactions. These databases are all on-premise. The organisation wanted to move into the analytics space, but doing analytics work on operational databases is not recommended - any delays or issues caused by analytics workloads would disrupt critical business processes.
+
+The mission:
+
+The mission was to establish a Google Cloud Platform (GCP)-based, centralised analytics platform that supports data discovery and cross-team collaboration while ensuring the system remains completely separate from the on-prem environment. This involved designing a data pipeline that could efficiently process, sanitise, and monitor data without direct database connections, ensuring secure, compliant, and efficient data flow.
+
+Primary challenges:
+
+Data compliance
+
+One of the primary challenges for the data engineering team on this use case, relates to data security. The business has a card data environment (CDE) - the audits to become https://controller.ucsf.edu/how-to-guides/accounting-reporting/understanding-payment-card-industry-data-security-standard-pci#:~:text=The%20Payment%20Card%20Industry%20Data,designed%20to%20protect%20account%20data.[PCI DSS ](Payment Card Industry Data Security Standard) compliant are extremely complex and expensive. The task/challenge was to keep the new centralised cloud environment out of scope of these audits by never connecting directly to any source database, which would require strict rules around data handling. Rather, the business would need to push data out of the CDE for the data engineers to pick up.
+
+Data loss prevention
+
+Most organisations have a data loss prevention (DLP) system in place. However, this organisation did not. Another challenge for the data engineering team was therefore to build a basic pipeline to sanitise relevant data (e.g. bin card numbers) as well as scan data and apply relevant rules (e.g. some data may require a scan & fail rule, whereas other may require a scan & redact rule to be implemented).
+
+Efficient data processing
+
+The solution had to be robust and efficient to enable the managing of high daily ingestion volumes (with hundreds of millions of records) to ensure timely processing for analytics workloads, all without impacting the operational databases and business processes.
+
+The solution:
+
+The solution involved building a comprehensive data pipeline to transfer, sanitise, process, and monitor data within GCP, centred around Google BigQuery for centralised storage. The solution is depicted in the diagram below. On the on-premise side, the business mostly has close-of-day processes i.e. end-of-day aggregations. At the end of every day, they send a file out of the CDE. Using SQL Server Integration Services (SSIS), Secure Copy Protocol (SCP) is used to extract the file that gets copied to the virtual machine (VM), on the left of the diagram. For sanitisation, files underwent data redaction before ingestion to prevent sensitive information from entering the centralised environment. After basic cleaning, the files land in the dropzone (i.e. the landing bucket).
+
+infrastructure diagram
+
+Figure: Infrastructure diagram for analytics in the cloud
+
+The pipeline is orchestrated using Cloud Composer (Airflow) to monitor file ingestion in the landing bucket, validate file schemas according to a pattern match (unexpected files are ignored), and trigger alerts for any discrepancies. Checks performed on files include checking for empty files (in which case, they are skipped) or schema mismatches (which would result in an error and trigger an alert). Metrics are tracked in a Postgres instance in CloudSQL with a Grafana dashboard for monitoring and alerting on metrics such as ingestion times and row counts (source vs pipeline vs destination) to ensure no data loss, providing real-time insights into data processing (example depicted below). Orchestration metrics are captured in a state store (e.g. file scheduled, triggered, currently running, success/failure) with alerts setup on failure. Cloud Composer is also used to kick off dataflow / processing jobs.
+
+grafana
+
+Figure: Grafana dashboard used for monitoring and alerting of ingestions
+
+The dataflow / processing pipeline is built using Apache Beam. In this pipeline, basic casting and cleaning up of data is performed. A common cleaning job is that of dates: Date types can be inconsistent (e.g. datetime vs date), and very often, dates are sent as integers (e.g. 20240607). Sometimes, there may be a ‘0’ if there is no date, which will result in an error when casting to date, and thus requires a cleanup before casting. The dataflow pipeline reads from csv files, and writes out to BigQuery. One of the benefits of Dataflow is that it is a managed service (i.e. doesn’t need to be maintained by the data engineering team) and that it autoscales. Apache Beam can be used for both batch and stream pipelines. The data engineering team is able to develop the pipeline, and just change the connector (e.g. from csv to pubsub) if switching to stream is required. Metrics tracked in the processing pipeline include global counts over batches - these are emitted to the Postgres instance.
+
+All deployments are managed via GitLab with CI/CD pipelines, following strict code reviews and best practices. As far as possible, everything is config driven using HOCON templating for streamlined management.
+
+Key solution highlights:
+
+Data pipeline security: Custom sanitisation pipeline to redact sensitive information, ensuring compliance.
+
+Data orchestration: Airflow used to schedule and monitor file ingestion, with checks for file schema and content quality.
+
+Processing with Dataflow: Apache Beam-based Dataflow pipeline for efficient data transformation and storage in BigQuery.
+
+Real-time monitoring: Grafana dashboards track ingestion metrics, alert on issues, and report on data quality.
+
+CI/CD with GitLab: All code and configurations managed with CI/CD pipelines, ensuring reliable deployments.
+
+High data volume processing: Pipeline handling 320m-500m records per day and processes up to 5.5TB of data daily.
+
+Results/stats:
+
+Some significant stats around this use case include:
+
+Data sources integrated: Currently, 374 different data sources are being ingested into the centralised data platform, enhancing data discoverability and collaboration.
+
+Total records processed: To date, a total of 191 billion records have been ingested, showcasing the platform’s capacity for large-scale data handling.
+
+Daily data processing: Between 320 and 350 million records are ingested per day to enable timely and up-to-date analytics.
+
+Reporting output: 85 reports are generated per day, providing valuable insights to support business decision-making.
+
+Data handling volumes: 3.8TB - 5.5TB of data is handled daily (excluding ingestion volumes)
+
+These results highlight the effectiveness of the implemented solution in managing vast amounts of data securely and efficiently, all while maintaining compliance and avoiding disruptions to operational databases.
+
+6.2.2 Real-time stream aggregation | Telecommunications
+The background:
+
+A leading telecommunications company wanted to improve its customer experience by offering real-time provisioning of rewards based on recharges. The existing setup processed rewards in batches, causing a latency of over a week, which limited the business’s ability to promptly reward and engage with customers. Additionally, they needed an efficient way to handle and analyse extensive call data records (CDR) for auditing and anomaly detection purposes.
+
+The mission:
+
+The mission was to enable real-time data processing to provide timely rewards and insights into customer recharges and CDRs. Implement a robust, scalable infrastructure capable of handling high data volumes and supporting fast queries for both customers and customer care teams.
+
+Design decisions:
+
+Mirror everything vs filter necessary
+
+One of the major design decisions the data engineering team had to make was the choice between mirroring everything from source, or only extracting and storing the necessary data. Given that the designed solution makes use of cloud storage where data storage costs are low, the decision was made to mirror everything. This means that for any new applications or use cases that the business has, the data is already in the centralised cloud-based environment. However, even cloud storage is not infinite: Tiered storage is implemented based on data usage, with older topics archived and strict retention policies implemented based on data priorities. This allows for a managed trade off between storage costs, and querying speeds and costs.
+
+The solution:
+
+The solution, depicted in the diagram below, involved building a scalable, real-time data processing system to handle high-volume transactions and deliver immediate rewards and analytics for the telecommunications company. To achieve this, the team mirrored all data from the client’s Kafka cluster to their own. The topics on the client side had far more data than required, requiring some filtering for the relevant data needed to reduce the processing load downstream.
+
+Apache Flink is used as the streaming framework to process real-time events. It comes with many built-in connections but also allows the team to add custom code such as for data windowing that is needed for the CDR data. The team was initially using python with beam, but faced various issues with this. They also tried Pyflink, which worked well, but had some limitations. Ultimately, the team moved to java, where no wrappers are needed for the required functionality, although some custom connectors and code still had to be added.
+
+Recharge and rewards data are stored in Cassandra, a high-velocity store, allowing subscribers to query their progress in campaigns via USSD. These quick lookups are handled via a REST API. Flink jobs are used to read from topics, filter the relevant data, lookup subscriber progress from the high-velocity store, aggregate subscriber recharges and update progress back to the high-velocity store. They also emit events when subscribers hit specific thresholds, or reach their campaign goals - these events are published to other kafka topics for consumption. Other jobs will read from those topics and trigger an action, while some are setup as cron.[1] jobs for weekly updates. A kubernetes cluster is used as the compute in this setup - the kafka topics and flink jobs run on the cluster, along with containerised task managers. The customer care user interface on the client side also queries the high-velocity store indirectly via a REST API.
+
+realtime stream
+
+Figure: Real-time stream aggregation infrastructure diagram
+
+The CDR data is dealt with differently, given that this entails a large number of file drops. An AWS EC2 instance (elastic container) is used as the compute here. An S3 bucket is mounted onto the instance. Files are dropped onto the instance and moved to the bucket (they cannot be dropped directly due to strict policies). Some of the files received are encoded and therefore need to be decoded. Lambda functions are used to automatically decoded these files and write them back out to the S3 bucket. Flink jobs read the data, and write out the ‘raw’ delimited data in parquet format on S3. Certain data requires aggregation - records within files are windowed on event time for various intervals and are again written out to S3. The parquet data is partitioned by date and bucketed (‘clustered’) by unique IDs to enable faster and cheaper querying. Athena tables are created on top of the parquet files to allow the querying of the data.
+
+AWS QuickSight is used to provide visual insights for daily trend analysis.
+
+Key solution highlights:
+
+Real-time data processing: Real-time data mirroring and processing is achieved with Apache Flink for high-volume events.
+
+High-velocity store: Cassandra is used as a high-velocity data store, enabling quick lookups and updates.
+
+Decoding: AWS EC2 and Lambda functions are used for decoding and managing CDR file drops.
+
+Data storage: S3 and Athena used for efficient data storage and querying.
+
+Visualisations: AWS QuickSight is used for visual trend analysis and filtered insights.
+
+Scalable compute: Kubernetes is used for flexibility and efficiency.
+
+Results/Stats:
+
+Daily data processing: More than 1TB of call data is processed daily.
+
+Data handling volumes: Capable of handling 1.7 million recharges per day, processed in a real-time stream.
+
+Data aggregations: Data of more than 7 million subscribers is aggregated, with weekly bulk uploads to support ongoing campaigns.
+
+Future Work:
+
+Future steps for the data engineering team includes the following:
+
+Integrating anomaly detection on customer data for proactive issue identification.
+
+Enabling the export of aggregated data to other services for client use, broadening data accessibility for further analysis.
+
+6.2.3 Unified data pipeline | Telecommunications
+Background
+
+A large telecommunications company required a robust system to integrate diverse data sources across various departments, including legacy and modern streaming platforms, databases, and file systems. The goal was to establish a "data enablement team" to streamline the flow of data across departments and into a Big Data Platform (BDP), in this case Hive, for long-term storage and analytics. Due to existing infrastructure, the solution needed to work with the client’s Cloudera stack, allowing seamless data movement and supporting analytics and discovery.
+
+The mission
+
+The mission was to facilitate the structured, clean, and standardised transfer of data into the BDP, ensuring data is ready for long-term storage and analytics work. A secondary mission was to enable and support the shipping of data between departments within the client environment. This required creating an efficient and scalable ETL process across dev and production clusters located in separate environments.
+
+Primary challenges:
+
+Integration with existing and legacy infrastructure
+
+The client was already using the Cloudera stack, so there was no flexibility around which stack to use. The client was already making use of various different databases, legacy systems such as RabbitMQ and modern platforms like Kafka. The team had to ensure that the solution integrates with the existing stack and infrastructure, and needed to build out the required tooling to make this work.
+
+The solution
+
+The solution, depicted in the two diagrams below, uses Apache NiFi for file handling, Airflow for scheduling, and a Spark-based ETL framework for data processing and transformation. Data is ingested into the BDP in a structured and standardised format, to enable consistent analytics and discovery work.
+
+The primary compute engine used for the ingestion framework is Spark, with distributed computation. Various ETL tools are used, with code mostly written in python, and some bash scripts used for file cleanups. The solution leverages Openshift for job orchestration, both in the cloud and on-prem (i.e. physical nodes). All ingestions are fully config-driven: Each ingestion is configured by defining the ingestor (e.g. jdbc), source, extract SQL and sink, or via a file ingestor with defined field names and delimiters.
+
+Scheduling was initially done using NiFi, but this proved challenging for version control and CI/CD. Since NiFi is a UI-based tool, it offered too much flexibility where users could configure, change and execute custom scripts with no clear version control and no CI/CD. The decision was therefore made to move all scheduling to Airflow.
+
+All file processing and movement was initially also done using NiFi, kicking off tasks on a cron schedule via RUN commands, something it handles very well. NiFi offers great performance in basic cleaning and staging a high velocity of files received or moving files between nodes. Given that this use case receives thousands of csvs per minute that need to be moved between various different nodes (cloud and physical), NiFi is appropriate for these tasks.
+
+Metrics are captured in a MySQL database on AWS Aurora. Grafana dashboards are used for real-time monitoring and alerting, with custom scripts to enhance metrics, track things over time (e.g. partition sizes of data) as well as anomaly detection.
+
+unified pipeline logic
+
+Figure: Unified data pipeline logic diagram
+
+unified pipeline infra
+
+Figure: Unified data pipeline infrastructure diagram
+
+6.3 Capstone project preparation
+You will utilise docker extensively in order to successfully complete your capstone project. To prepare for this, complete the following tutorial.
+
+1. Cron jobs are commands or shell scripts to run periodically at fixed times, dates, or intervals. (wikipedia)
+Week 5 Exercise
+Week 6 Exercise
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.
