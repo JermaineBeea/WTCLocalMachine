@@ -1,0 +1,602 @@
+Week 1: Introduction to data engineering
+Learning outcomes:
+
+A student will have a high-level understanding of what a data engineer does.
+
+A student will be able to identify and implement a simple extract, transform and load (ETL) pipeline.
+
+Daily guide:
+
+Content
+
+Deliverable
+
+Monday
+
+1.1 What is data engineering?1.2 The data engineering life cycle
+
+Tuesday
+
+1.3 Unpacking the ETL pipeline1.4 Unix/Linux and Bash
+
+Wednesday
+
+1.5 Python basics
+
+Google Colabs (x2)
+
+Thursday
+
+1.5 Python basics continued
+
+Python practical
+
+Friday
+
+Consolidation
+
+Quiz
+
+1.1 What is data engineering?
+Data engineering is a multidisciplinary field that involves the design, development, and management of data architecture, infrastructure, and tools. It focuses on the practical application of data collection, storage, processing, and analysis to support the information needs of organisations.
+
+Collaboration and business integration
+Data engineers collaborate with various teams within an organisation. For example, they may work closely with data scientists to deliver algorithms and models, ensuring that they are deployed in a scalable and efficient manner, or with data analysts who are responsible for constructing dashboards. Users of data within an organisation typically rely on data engineers to manage analytical data so that they may execute on their tasks. Collaboration with business analysts helps in understanding data requirements, and with IT teams for seamless integration into existing systems. Data engineers are integral to decision-making processes, as they enable businesses to derive actionable insights from their data assets.
+
+The role of a data engineer
+In the modern industry, data engineers play a pivotal role in ensuring that businesses can effectively harness the power of their data. A data engineer is responsible for constructing the systems and architecture that allow for the collection, storage, and analysis of large volumes of data. They often bridge the gap between data and business by building the robust infrastructure needed to transform raw data into valuable insights.
+
+As a key player in the data landscape, a data engineer is tasked with a variety of responsibilities, leveraging a diverse skill set to construct and maintain the foundation upon which an organisation’s data strategy thrives. This includes the following:
+
+* Data integrations
+
+Integrating data from diverse sources to create a unified and accessible dataset.
+
+* Data modelling
+
+Creating conceptual and logical data models that define how data should be organised and accessed. This involves designing schemas, defining relationships, and ensuring data structures align with business requirements. Data modelling is a crucial aspect of designing and managing databases.[1]. It is a versatile practice applied across various database systems and data management scenarios. It provides a structured framework for representing and organising data, ensuring that databases are well-designed, scalable, and optimised for specific use cases.
+
+* General programming
+
+Proficiency in programming languages for building scalable and efficient data solutions.
+
+* Cloud platforms
+
+Utilising cloud services to store, process, and analyse data in a scalable and cost-effective manner. Deploying and managing data pipelines on cloud platforms such as AWS, GCP, or Azure.
+
+* Infrastructure
+
+Designing, configuring, and maintaining the underlying infrastructure that supports data processing and storage. Setting up databases, clusters, and servers to optimise data workflows.
+
+* Scheduling
+
+Orchestrating and automating data workflows to ensure timely and efficient processing. Implementing scheduling systems for regular data updates, ensuring data pipelines run smoothly.
+
+* Collaboration and communication
+
+In addition to technical skills, effective collaboration and communication are integral to the role of a data engineer.
+
+* Cross-team collaboration
+
+Collaborating with data scientists, analysts, and business stakeholders to understand data requirements and deliver solutions aligned with organisational goals.
+
+* Documentation
+
+Documenting data engineering processes, data models, and infrastructure to ensure clarity, transparency, and knowledge transfer.
+
+* Problem-solving
+
+Identifying and resolving challenges related to data quality, performance, and scalability through innovative problem-solving.
+
+The data engineer’s role is dynamic, requiring a balance between technical expertise, collaboration with cross-functional teams, and the ability to adapt to evolving data needs. By mastering these key skills and tasks, data engineers empower organisations to turn raw data into actionable insights, contributing significantly to the success of data-driven initiatives.
+
+What is the difference between a database administrator (DBA) and a data engineer (DE )?
+
+A DBA is primarily concerned with managing and maintaining database management systems. This includes their installation, monitoring, security and availability to users within the business (wikipedia).A data engineer is concerned with designing and developing scalable pipelines, and providing data access to more areas of the business through scalable data architectures. This role arose from the rapid increase in data volumes and the variety of data systems in businesses (wikipedia).
+
+1.2 The data engineering lifecycle
+The data engineering lifecycle encompasses the end-to-end process of managing data within an organisation. This includes the generation, storage, ingestion, transformation and the serving of data to analytics professionals or other users and systems, which in turn may generate more or different data, thus continuing the cycle. This necessitates the identification of data sources and the design of data architecture. Data engineers are involved in the extraction of raw data, its transformation into a usable format, and the loading of the processed data into storage systems. Throughout this cycle, data engineers ensure data quality, integrity, and security. The lifecycle also involves the continuous monitoring, optimization, and adaptation of the data infrastructure to evolving business needs. As businesses increasingly rely on data for strategic decision-making, the role of data engineers becomes more critical in shaping the architecture that underpins these decisions.
+
+https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/?_gl=1*1n2pqqx*_ga*NDEyNjEwMDQ1LjE3MTYzNjUxMzE.*_ga_092EL089CH*MTcxNjM2NTEzMS4xLjEuMTcxNjM2NjA1MS42MC4wLjA.[Fundamentals of Data Engineering] (Reis and Housley, 2022) further discusses the data engineering lifecycle in detail and clearly depicts the lifecycle in the following diagram.
+
+Example: Personalised product recommendations
+
+An Ecommerce business may interact with its users primarily through a mobile phone application. Suppose you purchase a few products in a single basket.[2] online. This purchase history is captured in operational systems (a database) and may be used to make recommendations to other users who were interested in the same products as you. However, in order to do that, it is necessary to extract and structure that data in such a way that those associations/similarities may be found in the data. It may then be possible to make recommendations and affect the buying patterns of your users.
+
+img 0
+
+ETL pipelines
+Critical to moving data between systems and preparing it for analysis, is the ETL (extract, transform, load) pipeline. This pipeline approach is instrumental to data integration and is often believed to form the backbone of data engineering, orchestrating the flow of data from diverse sources to a final, refined destination. Below is a broad overview of each step where a data warehouse acts as the analytics store and is the target of an ETL pipeline. Alternative paradigms exist, for example EL, where data is loaded into a data lake without transforming it first.img 1
+
+For now, we will consider the conventional ELT process.
+
+ETL overview
+
+Extraction (E): Retrieve raw data from various sources, such as databases, logs, Application programming interfaces __ (API), or external files. This initial step where raw data is brought into the data pipeline is also known as data ingestion. It involves setting up mechanisms to collect data from sources, ensuring a continuous and reliable flow. Methods of data extraction include:
+
+Querying databases to extract relevant information.
+
+Pulling data from external APIs.
+
+Reading log files or flat files for data extraction.
+
+Transformation (T): Convert and manipulate raw data into a format suitable for analysis or storage. This includes:
+
+Cleaning data by handling missing values and errors.
+
+Applying business rules and logic to transform data.
+
+Aggregating, enriching, or summarising data for analysis.
+
+Implementing data processing frameworks.
+
+Optimising workflows.
+
+Ensuring data quality.
+
+Load (L): Load the transformed data into a destination system, such as a data warehouse or database. This includes:
+
+Storing data in a structured format in databases.
+
+Loading data into data warehouses for analytics.
+
+Managing data storage systems for easy retrieval.
+
+Ultimately this step in the ETL pipeline involves designing databases, data warehouses, or data lakes to efficiently store and retrieve data in an organised and accessible manner.
+
+Benefits of a well-executed ETL process
+
+Data consistency
+
+Ensures that data is consistent across the organisation, avoiding discrepancies.
+
+Efficient analysis
+
+Provides a structured and optimised dataset for efficient analysis by data scientists and analysts.
+
+Timely decision-making
+
+Enables timely access to accurate and relevant information, facilitating informed decision-making.
+
+The value of ETL pipelines
+
+Analysts don’t directly query raw data where it resides because it may lack the necessary structure, consistency, and quality for effective analysis. ETL processes are essential to transform and optimise data, addressing these challenges and providing analysts with cleaned, standardised, and performance-optimised datasets for insightful querying.
+
+1.3 Unpacking the ETL pipeline
+img 2
+
+In a typical ETL data flow pipeline, data may be collected at multiple sources (this may be a system such as an operational database.[3]), undergoes preparation and cleaning through transformation, and may then be written to a sink (e.g. an analytical system). In this next section we will unpack the ETL pipeline from source to sink in more detail.
+
+1.3.1 Source systems
+A source system is the origin of data, encompassing various data repositories, databases, flat files, and APIs which may hold information relevant to an organisation’s operations (these will be discussed below). It serves as the starting point for the ETL process.
+
+Considerations when reading data from source systems
+Data structure and schema
+
+Understanding the structure and schema of the source data is crucial to plan for its transformation and integration into the analytical system.
+
+Data volume and velocity
+
+Assessing the volume and velocity of data in source systems helps in designing efficient ETL processes that can handle varying data loads.
+
+Data quality
+
+Evaluating the quality of data in source systems is essential to anticipate and address issues related to accuracy, completeness, and consistency during the ETL process.
+
+Connectivity and integration
+
+Ensuring seamless connectivity and integration capabilities with source systems is vital for effective data extraction and loading.
+
+Where are source systems situated?
+Source systems may be situated in various environments:
+
+On-premises: Source systems physically hosted within an organisation’s infrastructure.
+
+In the cloud: Source systems hosted on cloud platforms, including private, public, hybrid, or multi-cloud setups.
+
+As mentioned, common source systems include databases, flat files and APIs; each are discussed subsequently.
+
+Common source systems
+1. Databases
+A database is a structured collection of data organised for efficient storage, retrieval, and management. It typically employs a database management system (DBMS) to facilitate data organisation and access.
+
+A common application of the ETL pipeline in data engineering is moving data from databases designed to support business operations (operational databases) to those that support analytical workloads. Operational databases are designed for day-to-day transactional operations and are characterised by:
+OLTP (Online transaction processing) model:
+
+OLTP databases are optimised for high transaction volume, providing real-time
+
+processing capabilities for routine business operations.
+
+Transactional nature:
+
+Operational databases excel at handling numerous, small, and frequent transactions,
+
+such as inserting, updating, and deleting records.
+
+The traditional counterpart to the OLTP system, is that of the online analytical processing (OLAP) system - that is a system specifically designed for efficient querying of data.
+
+Example: Environment segregation and operational databases
+
+Consider the Ecommerce business of the previous example: A system failure (e.g. database is unavailable/goes down) may result in lost revenue – customers are unable to make purchases on your site.
+
+To protect ourselves when making changes to important systems, we deploy system changes into a development environment first, before promoting it to the business critical production environment. Inevitably, operational systems are running in production. Suppose a business provides analysts with direct access to query this production database. In such cases, analysts may run unoptimised queries which invariably place that system in jeopardy and in some cases cause it to fail. For this reason we do not perform analytical workloads directly on operation databases.
+
+2. Flat files
+A flat file is a type of data storage that stores information in a plain-text format, where each line of the file represents a record, and fields are separated by delimiters, such as commas or tabs. Common flat file formats include CSV (comma-separated values) and TSV (tab-separated values). Flat files are commonly used for data export/import, data exchange between different systems, and as an interim storage format.
+
+Characteristics of flat files:
+
+Simplicity
+
+Flat files are simple and easy to create, making them a widely used format for data interchange.
+
+Human-readable
+
+Being in plain-text format, flat files are human-readable and can be easily opened and understood using a basic text editor.
+
+Limited structure
+
+Flat files lack the structural complexities of relational databases and are generally used for straightforward data storage and exchange.
+
+Example: Using databases for queries
+
+Suppose you receive two CSV extracts containing raw data, and you need to perform complex queries for analysis.
+
+The first extract contains your users:
+
+user_id,name,surname,email_address,create_date1001,Leonhard,Euler,leuler@gmail.com,2023-05-22 05:52:48.9840471002,Carl, Gauss,carlgauss@gmail.com ,2023-05-23 06:22:08.454012
+
+Whilst the second contains purchases:
+
+order_id,user_id,total_amount,create_date64872,1001,356.03,2023-05-28 05:41:48.916544
+
+Suppose you wanted to determine who the biggest spenders were so that you could email them discount codes for their next purchase, then for each user_id you would need to perform a sum of the total_amount, and lookup that user_id in the first extract to get the user’s email address. This could work if you only had 1 million rows, but this would become challenging if you had 10 million (or/and you wanted to do it for 100 users). A database would handle this easily.
+
+3. APIs
+An API is a set of rules and protocols that allows one software application to interact with another. It defines the methods and data formats that applications can use to request and exchange information. APIs are integral to web development, enabling data retrieval from external services, integration with third-party platforms, and facilitating the development of software applications.
+
+Characteristics of APIs:
+
+Interoperability
+
+APIs enable different software applications and systems to communicate and work together, promoting interoperability.
+
+Abstraction
+
+APIs abstract the underlying complexities of systems, providing a simplified interface for developers to interact with.
+
+Standardisation
+
+APIs adhere to standard protocols, ensuring consistency and facilitating integration between diverse applications.
+
+Example: API for e-commerce
+
+Suppose you are using a mobile app to purchase products online. When you add items to your basket, the app communicates with the e-commerce platform’s API. The app sends a request to the e-commerce API with the product details. The API processes this request and updates your basket on the server. This ensures that your basket is consistent across different devices you might use.
+
+Here is a more detailed breakdown:
+
+1.
+
+You add a product to your basket on your mobile app.
+
+2.
+
+The mobile app sends a request to the e-commerce platform’s API endpoint (e.g., POST /api/basket) with the product ID and quantity.
+
+3.
+
+The e-commerce API receives this request, updates the basket on the server, and responds with the updated basket details.
+
+4.
+
+The app displays the updated basket to you, showing the added product and the current total.
+
+This interaction allows for a seamless shopping experience, where the server keeps track of your basket, ensuring it’s updated and synchronised across different devices you might use.
+
+We will learn more about APIs in week 4.
+
+1.3.2 Transformation
+Data transformation is a pivotal stage in the ETL process where raw data from source systems may undergo changes to align with the structure and requirements of the analytical system (sink). This involves converting, cleaning, and enriching data to ensure it is in a standardised, optimal format for efficient querying and analysis. The transformation phase in the data engineering process is crucial because source data is often structured differently than what is optimal for analysis in the sink location. For example, when provided with a CSV extract, transforming and writing it into a database becomes necessary for efficient querying. This is because databases structure data more optimally, offering a consistent language like SQL for querying across various database technologies, following a schema-on-write approach.[4].
+
+Why use a relational database management system?
+
+* Structured (tabular) data may be efficiently modelled in RDMBSs as row and column information.* Data retrieval is simplified in this setting by Structured Query Language (SQL) which is commonly applied across different RDBMS technologies.* Relationships between different tables (data) is easily traversed and managed in this environment.There is more - we will discuss this in Week 3: Database Management Systems
+
+Typical transformations
+Cleaning data:
+
+Transformation involves cleaning data to remove inconsistencies, errors, and missing
+
+values. This ensures data quality before loading it into the analytical system.
+
+Schema mapping:
+
+Source data may have a different schema than the analytical system. Transformation
+
+includes mapping data to the desired schema, aligning it with the structure required for
+
+analysis.
+
+Data enrichment:
+
+Additional information may be required for comprehensive analysis. Transformation
+
+allows for data enrichment by adding relevant details from other sources.
+
+Data aggregation:
+
+Large datasets may need aggregation for meaningful insights. Transformation involves
+
+aggregating data based on specified criteria to derive valuable summary information.
+
+Standardisation:
+
+Ensuring uniformity in data formats and units is vital for accurate analysis.
+
+Transformation includes standardising data to maintain consistency across the dataset.
+
+Considerations in transformation:
+Scalability
+
+Transformation processes must be able to handle varying data volumes and meet the demands of growing datasets without compromising on performance (i.e. be scalable).
+
+Flexibility
+
+Transformation workflows should be adaptable to evolving business requirements, ensuring the system remains versatile and responsive to changing data needs.
+
+Automation
+
+Implementing automation in transformation processes streamlines operations, reduces manual errors, and enhances the overall efficiency of data processing workflows.
+
+Example: Transforming data for analytics
+
+Consider the following sample data:
+
+order_id
+
+user_id
+
+rand_amount
+
+create_date
+
+64872
+
+1001
+
+R 325.20
+
+2023-05-28 05:41:48.916544
+
+64873
+
+1002
+
+R 150.75
+
+2023-05-28 06:15:30.123456
+
+64874
+
+1003
+
+R 500.00
+
+2023-05-28 07:30:22.789012
+
+You want to be able to perform aggregations (e.g., total rand_amount ). To do this, we need to remove the string ‘R ’ and map the rand_amount field to a numeric type for writing to the database (you can’t aggregate strings). This is an example of a transformation (data cleaning and schema mapping) performed before storing the data. Your resulting data will look as follows:
+
+order_id
+
+user_id
+
+rand_amount
+
+create_date
+
+64872
+
+1001
+
+325.20
+
+2023-05-28 05:41:48.916544
+
+64873
+
+1002
+
+150.75
+
+2023-05-28 06:15:30.123456
+
+64874
+
+1003
+
+500.00
+
+2023-05-28 07:30:22.789012
+
+Now, rand_amount is a numeric field, allowing for aggregations such as summing up the total rand_amount .
+
+1.3.3 Sink: data warehouses and analytical systems
+In the final stage of the ETL process, the refined and transformed data is loaded into the analytical system, known as the sink. This stage encompasses two critical components: data warehouses and analytical systems, both playing pivotal roles in structuring and leveraging the processed data for meaningful insights. The sink represents where data is prepared for analysis by analysts and users. This integrated environment combines the strengths of data warehouses and analytical systems to provide a comprehensive platform for exploration, reporting, and decision-making.
+
+Data warehouses
+Data warehouses are specialised databases designed for the storage and retrieval of large volumes of structured data. They are optimised for analytical queries, aggregations, and reporting. Data warehouses provide a structured and organised repository, often employing well-designed schemas and indexing strategies to ensure efficient data retrieval. These repositories support historical data management, scalability to handle growing data volumes, and integration with analytical tools and platforms. They play a crucial role in business intelligence, enabling organisations to derive actionable insights from their data for strategic decision-making. Examples of data warehouses include Google BigQuery, Amazon Redshift and Snowflake.
+
+Characteristics of data warehouses:
+Optimised storage
+
+Data warehouses are dedicated to optimised storage, employing compression, indexing, and aggregation to efficiently handle large volumes of structured and transformed data.
+
+Structured schemas
+
+Well-designed schemas provide a logical framework, defining relationships, hierarchies, and constraints that align with analytical requirements.
+
+Efficient query performance
+
+Indexing strategies enhance query performance, ensuring swift data retrieval for analysts conducting various operations.
+
+Historical data management
+
+Data warehouses excel in managing historical data, enabling time-based analysis and tracking changes over specific periods.
+
+Scalability
+
+With scalability as a core feature, data warehouses accommodate growing data volumes, ensuring long-term data management.
+
+Analytical systems:
+Analytical systems are platforms or software designed to facilitate the analysis of data, enabling users to explore, interpret, and derive meaningful insights from datasets. These systems typically provide user-friendly interfaces, dashboards, and tools for tasks such as querying, reporting, and visualisation. Analytical systems play a crucial role in business intelligence, supporting a wide range of analytical techniques, from basic reporting to advanced analytics and machine learning. They empower users, including analysts and decision-makers, to interact with data, uncover patterns, and make informed decisions based on the insights derived from the analysis. Examples of analytical systems include Looker Studio, Power BI and Tableau.
+
+Characteristics of analytical systems:
+User-centric exploration
+
+Analytical systems prioritise user experience, providing intuitive interfaces for interactive exploration and ad hoc querying.
+
+Business intelligence tools
+
+Featuring dashboards, visualisations, and reporting tools, analytical systems empower users to extract meaningful insights from the processed data.
+
+Advanced analytics
+
+Supporting advanced techniques, these systems facilitate complex calculations, statistical analyses, and even machine learning within a collaborative and adaptive framework.
+
+Customised reporting
+
+Adaptive reporting features allow users to create customised reports tailored to specific business needs, ensuring insights align with organisational goals.
+
+In conclusion, the sink integrates data warehouses and analytical systems to create a dynamic platform for insightful data analysis. Data warehouses provide optimised storage and efficient retrieval while analytical systems deliver a user-friendly interface and advanced analytical capabilities. Together, they empower organisations to unleash the full potential of their refined data, fostering informed decision-making, strategic insights, and a robust data-driven future.
+
+Example: Sales analysis
+
+Data engineers integrate and process large volumes of sales data from various sources. By cleaning and structuring this data, they ensure it is ready for analysis in a business intelligence tool, as seen below. As a result, the company can generate detailed reports and dashboards that highlight customer behaviour patterns, popular products, and sales trends, enabling the marketing team to develop targeted campaigns and the management team to make strategic inventory decisions.
+
+img 3
+
+Data engineering is therefore vital in reaching the final product of displaying data using analytics systems, empowering organisations to visualise, interpret, and leverage data-driven insights for informed decision-making and strategic planning.
+
+1.4 Unix/Linux and Bash
+Cloud computing is typically underpinned by the Linux operating system (OS). Of the three predominant modern operating systems, Linux is free to use and modify, making it ideal for organisations to leverage at scale for their data centres..[5] This means that most of the services a user interacts with (e.g. Google Search, Netflix) are utilising Linux servers in the backend.
+
+Data engineers will inevitably interact with Linux systems in the course of their work, and the most common way to interact with them is via a terminal . A terminal is a text interface which allows a user to execute commands on a Linux host, most often in a remote fashion where a user can login to a Linux host in the cloud and execute commands directly on that host. These remote connections are typically established using the secure shell protocol (SSH).
+
+Example: Executing commands on a remote host.
+
+Suppose you are landing data on a linux host for ingestion by a system. This host is considered an edge node as it resides at the edge of a network and provides an entry point to that network. In our case, we want to ingest data into a larger system, and landing the file in a specific location means that it is picked up by an ingestion system (e.g. NiFi).
+
+Sadly, we have noticed that a process is no longer able to write files to that location and want to understand what is going wrong. To diagnose this problem we connect to that machine using our user bob , our access credentials and the host’s IP address:
+
+bob@locolhost$ ssh bob@10.243.37.35``Last login: Wed Jul 3 17:48:34 2024 from 10.243.37.1
+
+Once on that machine, we can execute a bash command to see how much disk space is available:
+
+bob@remotehost$ df -hFilesystem Size Used Avail Use% Mounted on/dev/loop46 239G 145G 91G 62% /
+
+1.5 Python basics for the data engineer
+Data engineering relies heavily on python for its versatility and robust ecosystem of libraries. This section aims to provide a foundational understanding of python basics tailored for data engineers. Whether you’re revisiting virtual environments, honing data manipulation skills with pandas, mastering data ingestion, or performing ETL operations, these exercises will equip you with essential skills for efficient data engineering in python.
+
+Virtual environments and installing necessary packages
+Virtual environments.[6]: virtual environments are essential for isolating python projects. Use tools like ‘venv’ or ‘virtualenv’ to create and manage virtual environments.
+
+Package installation: practice installing necessary packages using pip within virtual environments.
+
+For example:
+
+img 4
+
+Data manipulation in pandas
+Pandas is a powerful and widely used open-source data manipulation and analysis library for python. It provides data structures, such as series and dataframe, that are designed to efficiently handle and manipulate structured data. Developed on top of the numpy library, pandas offers a versatile set of functions and methods for tasks ranging from data cleaning and exploration to advanced data analysis.
+
+Terminology:
+
+The dataframe is a two-dimensional table with labelled axes.
+
+Series is a one-dimensional labelled array.
+
+Numpy is an open-source library in python that facilitates numerical computing by providing support for large, multi-dimensional arrays and matrices, along with an extensive collection of mathematical functions to operate on these arrays.
+
+Python tutorials
+Work through the following two tutorials to prepare for the practical exercise to be completed this week.
+
+Python tutorial
+
+This tutorial will refresh your knowledge about basic python
+
+Run each example to observe the expected output
+
+Pay special attention to functions
+
+Advanced python tutorial
+
+Pay special attention to error handling
+
+Week 1 practical activity
+Fork the Jupyter notebook from Gitlab so that you have your own Gitlab repo with the starter code. Complete the notebook (instruction in the notebook file), and submit the code by pushing back to the GitLab repository.
+
+To edit and run the notebook locally, install Jupyter Lab.
+
+Note	Ensure your notebook produces the required output.csv file, as the auto-grading will run tests against this file. You will also see the starter code contains a .lms/exercises.toml file. Do not edit or remove this directory or file, as this is how the LMS knows to which project to connect the submission.
+Warning	You must fork the starter repo, which causes you to create your own repo on Gitlab to which you commit your solution. The original start repo is read-only, so you will not be able to commit back to it.
+Week 1 consolidation
+Self-assessment
+Before closing off the week by completing the week 1 quiz, let’s revisit the learning outcomes for this week by asking ourselves the following questions:
+
+Do I have a high-level understanding of what a data engineer does?
+
+Am I able to identify and implement a simple extract, transform and load pipeline?
+
+If you are not confident that you can answer ‘yes’ to the above questions, revisit the necessary content from this week and consult the additional resources below to strengthen your understanding.
+
+Additional resources
+
+Videos
+
+* How data engineering works* What is ETL?* Python fundamentals for data engineering: Create your first ETL pipeline
+
+Reading
+
+* Introduction to data engineering: A complete beginner’s guide* Simple ETL pipeline with python: Spotify
+
+Revision
+
+* W3Schools: Introduction to python* GeeksforGeeks: Learn python basics
+
+Week 1 quiz
+Spend some time consolidating all the new knowledge you have acquired before completing the following quiz. The quiz consists of 12 questions. You will have one attempt to complete it. The quiz is based on all content covered in week 1.
+
+Completion check
+Ensure that you have completed all the compulsory deliverables for this week:
+
+Deliverable:
+
+Expectation:
+
+Google colab: Python tutorial
+
+Work through colab notebook
+
+Google colab: Advanced python tutorial
+
+Work through colab notebook
+
+Python practical exercise
+
+Fork and Submit notebook to gitlab for grading
+
+Week 1 quiz
+
+Submit Google form; autograded
+
+1. A database is a data store which contains an organised collection of data and provides Database Management system (DBMS) software to allow users and applications to query and analyse the data (wikipedia)
+2. A basket is a virtual shopping cart where users collect and store products they intend to purchase before proceeding to checkout.
+3. An operational database is a database system which supports business operations and not analytical workloads (e.g. a database tracking customer purchases at a point-of-sale in a store).
+4. Schema-on-write approach: a traditional approach where data is first structured and transformed before being loaded into a data storage system.
+5. The Windows OS from Microsoft and MasOS from Apple are both closed source and proprietary - i.e. the source code is not visible or modifiable.
+6. A networked application that allows a user to interact with both the computing environment and the work of other users.
+Learning Techniques
+Week 2: Data storage and virtualisation
+© 2024 WeThinkCode_, All Rights Reserved.
+
+Reuse by explicit written permission only.

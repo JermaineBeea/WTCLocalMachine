@@ -1,0 +1,13 @@
+Metric (decimal) prefixes for bytes
+
+Kilo (KB) = 10³
+
+Mega (MB) = 10⁶
+
+Giga (GB) = 10⁹
+
+Tera (TB) = 10¹²
+
+Peta (PB) = 10¹⁵
+
+Exa (EB) = 10¹⁸
