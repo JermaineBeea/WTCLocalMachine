@@ -15,3 +15,106 @@ git revert HEAD or git reset HEAD~1
 
 
 
+✅ 1. Change the date of the most recent commit
+
+You can update either or both:
+
+Author date (--date)
+
+Committer date (GIT_COMMITTER_DATE)
+
+Example: set commit date to 7 Dec 2025 10:30. +0200 is the timezone, so you dont have to modiify this 
+GIT_COMMITTER_DATE="2025-12-07 10:30:00 +0200" \
+git commit --date="2025-12-07 10:30:00 +0200" -m "commmit messsage"
+
+
+Then force-push:
+git push --force-with-lease
+
+
+✅ 2. Change the date of an older commit
+
+Use interactive rebase:
+
+Step 1: Start rebase for the last N commits
+
+Example for last 5 commits:
+
+git rebase -i HEAD~5
+
+Step 2: In the editor, change pick → edit for the commit whose date you want to change.
+Step 3: When Git stops on that commit, run:
+GIT_COMMITTER_DATE="Fri Dec 5 10:30:00 2025" git commit --amend --no-edit --date "Fri Dec 5 10:30:00 2025"
+
+Step 4: Continue the rebase:
+git rebase --continue
+
+Step 5: Push updated history:
+git push --force-with-lease
+
+
+✅ 3.COMMIT WITH SPECIFIC DATE
+GIT_COMMITTER_DATE="2025-12-05 10:30:00 +0200" \
+git commit --date="2025-12-05 10:30:00 +0200" -m "Your message"
+
+
+
+
+1️⃣ Discard unstaged changes (if you’re okay losing them)
+git reset --hard
+
+
+This will remove all unstaged or staged changes.
+
+2️⃣ Reset your branch to match origin/main
+git reset --hard origin/main
+
+
+Your branch now matches exactly the remote main.
+
+Any local commits not in main are gone.
+
+3️⃣ Force push to overwrite remote (if needed)
+git push --force-with-lease
+
+
+Use this only if you want the remote branch to match main exactly.
+
+
+
+1. If it’s the latest commit
+
+You can use git reset:
+
+# Remove the last commit but keep changes staged
+git reset --soft HEAD~1
+
+# OR remove the last commit and discard changes
+git reset --hard HEAD~1
+
+
+Then push to GitLab (force push required):
+
+git push origin main --force
+
+
+Replace main with your branch name.
+⚠️ Warning: This rewrites history. Be careful if others have pulled this branch.
+
+2. If it’s an older commit
+
+You can use interactive rebase:
+
+git rebase -i <commit-hash>^
+
+
+Replace <commit-hash> with the commit you want to remove.
+
+An editor will open with a list of commits. Change pick to drop for the commit you want to remove.
+
+Save and exit.
+
+Then force push the updated branch:
+
+git push origin main --force
+
