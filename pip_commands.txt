@@ -1,1 +1,0 @@
-cd /home/wtc/Documents/Repositories/WTC\ Repositories/Data\ Engennering/DATA_ENGENEERING_PROJECT/data-engineering-project-2024 && python3 -m pytest tests/test_api.py::TestUtilityFunctions::test_build_date_filter -v
