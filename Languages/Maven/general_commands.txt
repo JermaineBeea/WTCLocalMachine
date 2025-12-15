@@ -1,0 +1,2 @@
+mvn -v
+mvn -q -DskipTests package
